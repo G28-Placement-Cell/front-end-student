@@ -1,0 +1,39 @@
+  // const columns = [
+  //   { key: 'name', name: 'COMPANY NAME' },
+  //   { key: 'type', name: 'TYPE' },
+  //   { key: 'cpi', name: 'CRITERIA' },
+  //   { key: 'open_for', name: 'OPEN FOR' },
+  //   { key: 'registration_open', name: 'REGISTRATION STARTS' },
+  //   { key: 'registration_end', name: 'REGISTRATION ENDS' },
+  //   { key: 'status', name: 'STATUS' },
+  //   { key: 'actions', name: 'ACTION' },
+  // ];
+  
+  // const rows = [
+  //   {name: "Micryyyyyyyyyyyyyyyyyyyosoft",type:"Summer Internship",cpi: "NONE",open_for: "btech-ict,btech-mnc",registration_open: "12-20-2023 06:00",
+  //   registration_end: "12-20-2023 08:00",status:(stats)?"OPEN":"CLOSED",actions: <button>REGISTER</button>},
+  //   {name: "Google",type: "Job",cpi: 7,open_for: "btech-ict,btech-mnc",registration_open: "13-20-2023 06:00",
+  //   registration_end: "13-20-2023 23:30",status:(stats)?"OPEN":"CLOSED",actions: <button>REGISTER</button>}
+  // ];
+
+  // return (
+  //   <div className="App d-flex flex-column" style={{justifyContent: "space-between"}}>
+
+  //     <Head />
+  //     {jobProfiles.map((job)=>
+  //     {return <Job name={job.name} type={job.type} cpi={job.cpi} open_for={job.open_for} 
+  //     registration_open={job.registration_open} registration_end={job.registration_end}/>})}
+  //   </div>
+
+  // );
+
+
+  // 
+
+
+// const jobProfiles=[{name: "Microsoft",type:"Summer Internship",cpi: "NONE",open_for: "btech-ict,btech-mnc",registration_open: "12-20-2023 06:00",
+//   registration_end: "12-20-2023 08:00"},{name: "Google",type:"Job",cpi: 7,open_for: "btech-ict,btech-mnc",registration_open: "13-20-2023 06:00",
+//   registration_end: "13-20-2023 23:30"},{name: "Google",type:"Summer Internship",cpi: 7,open_for: "btech-ict,btech-mnc",registration_open: "13-20-2023 06:00",
+//   registration_end: "13-20-2023 23:30"}]
+
+// return <DataGrid columns={columns} rows={rows} />;
