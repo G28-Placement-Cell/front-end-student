@@ -9,8 +9,8 @@ export const Buttoned = () => {
                 <>
                     <button style={{ backgroundColor: "#493D72", color: "white" }} className="btn btn-sm pb-2" onClick={() => { setStads(!stads) }}> DEREGISTER </button>
                     <div style={{display:'flex', flexDirection:'column', justifyContent:'center',justifySelf:'flex-end' , inlineSize:110}}>
-                        <div className="pb-2 d-flex flex-column gap-1 px-1 pe-1 my-1" style={{ border: '1px solid #cc0000'}}>
-                            <h5 className="me-0 pe-0">Resume</h5>
+                        <div className="pb-2 d-flex flex-column gap-1 px-1 pe-1 my-1" style={{ border: '1px solid #2B2442', borderRadius: '5px'}}>
+                            <h5 className="me-0 pe-0 mb-0">Resume</h5>
                             <button style={{ backgroundColor: "#493D72", color: "white" }} className="btn btn-sm"> DOWNLOAD</button>
                             <button style={{ backgroundColor: "#493D72", color: "white"}} className="btn btn-sm"> UPDATE</button>
                         </div>

@@ -48,12 +48,22 @@ export const Tablet = () => {
         createData('Micryyyyyydffffffffosoft', "Summer Internship", "NONE","https://www.microsoft.com/en-in/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
         createData('Google', "Summer Internship", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
         createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
     ];
 
 return (
 <>
-    <Header />  
-    <TableContainer component={Paper}>
+    {/* <Header />   */}
+    <TableContainer component={Paper} style={{height: '590px'}} sx={{borderRadius:0}}>
       <Table sx={{ minWidth: 700}} aria-label="customized table">
         <TableHead>
           <TableRow >
@@ -71,7 +81,7 @@ return (
           {rows.map((row) => (
             <StyledTableRow className="mt-10 py-10" key={row.name}>
               <StyledTableCell  component="th" scope="row">
-                <a style={{color: "red", textDecoration: "none"}} href={row.link} target="_blank">{row.name}</a>
+                <a style={{color: "#2B2442", textDecoration: "none"}} href={row.link} target="_blank">{row.name}</a>
               </StyledTableCell>
               <StyledTableCell align="right">{row.type}</StyledTableCell>
               <StyledTableCell align="right">{row.cpi}</StyledTableCell>
@@ -85,7 +95,7 @@ return (
         </TableBody>
       </Table>
     </TableContainer>
-    <Footer />
+    {/* <Footer /> */}
     </>  
 );
 }
