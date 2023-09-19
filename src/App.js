@@ -6,9 +6,7 @@ import { Tablet } from './pages/Tablet';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
 import Footer from './components/Footer'; 
 import Header from './components/Header';
-
-
-
+import StudentProfile from './pages/StudentProfile';
 function App() {
   
   return (
@@ -16,7 +14,7 @@ function App() {
         <Router>
            <Header />
           <Routes>
-            <Route path='/profile'  />
+            <Route path='/Profile' element={<StudentProfile/>} />
             <Route path='/companies' element={<Tablet />}/>
             <Route path='/announcements'  />
             <Route path='/performance' />

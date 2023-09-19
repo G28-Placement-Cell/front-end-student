@@ -14,7 +14,7 @@ function Header() {
   return (
     <AppBar position="static" style={{ backgroundColor: "#2B2442" }}>
       <Toolbar>
-        <Link to='#' className='menu-bars' style={{ marginLeft: 0 }}>
+        <Link to='#' className='menu-bars' style={{ marginLeft:0}}>
           <FaIcons.FaBars onClick={showSidebar} style={{color:'white', alignSelf:'center', justifySelf:'center', marginBottom:6}} />
         </Link>
         <>
