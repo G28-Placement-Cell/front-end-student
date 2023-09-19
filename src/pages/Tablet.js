@@ -58,12 +58,28 @@ export const Tablet = () => {
         createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
         createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
         createData('eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
     ];
 
 return (
 <>
     {/* <Header />   */}
-    <TableContainer component={Paper} style={{height: '590px'}} sx={{borderRadius:0}}>
+    <TableContainer component={Paper} style={{height: '85vh'}} sx={{borderRadius:0}}>
       <Table sx={{ minWidth: 700}} aria-label="customized table">
         <TableHead>
           <TableRow >
