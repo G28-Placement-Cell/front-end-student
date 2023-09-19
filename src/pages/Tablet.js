@@ -27,13 +27,13 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type': {
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: theme.palette.common.white,
     },
     '&:last-child td, &:last-child th': {
       border: 0,
     },
     '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: theme.palette.common.white,
     },
   }));
   
@@ -45,16 +45,35 @@ export const Tablet = () => {
     const [stats,setStatus] = useState(true);
 
     const rows = [
-        createData('Micryyyyyydffffffffosoft', "Summer Internship", "NONE","https://www.microsoft.com/en-in/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Microsoft', "Summer Internship", "NONE","https://www.microsoft.com/en-in/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
         createData('Google', "Summer Internship", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
         createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Googleeee', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        
+        
     ];
 
 return (
 <>
-    <Header />  
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700}} aria-label="customized table">
+    {/* <Header />   */}
+    <TableContainer component={Paper} style={{height:'590px'}} sx={{borderRadius: 0}}>
+      <Table sx={{ minWidth: 700, borderRadius: 0}} aria-label="customized table">
         <TableHead>
           <TableRow >
             <StyledTableCell>COMPANY NAME</StyledTableCell>
@@ -71,7 +90,7 @@ return (
           {rows.map((row) => (
             <StyledTableRow className="mt-10 py-10" key={row.name}>
               <StyledTableCell  component="th" scope="row">
-                <a style={{color: "red", textDecoration: "none"}} href={row.link} target="_blank">{row.name}</a>
+                <a style={{color: "#493D72", textDecoration: "none"}} href={row.link} target="_blank">{row.name}</a>
               </StyledTableCell>
               <StyledTableCell align="right">{row.type}</StyledTableCell>
               <StyledTableCell align="right">{row.cpi}</StyledTableCell>
@@ -85,7 +104,7 @@ return (
         </TableBody>
       </Table>
     </TableContainer>
-    <Footer />
+    {/* <Footer /> */}
     </>  
 );
 }
