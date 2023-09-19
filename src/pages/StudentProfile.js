@@ -1,5 +1,7 @@
 import React from 'react';
-import '../style/studentprofile.css'
+import '../style/studentprofile.css';
+import {Button} from '@mui/material';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 class StudentProfile extends React.Component {
 
     render() { 
@@ -186,7 +188,12 @@ class StudentProfile extends React.Component {
                   <hr/>
                   <div className="row">
                     <div className="col-sm-12">
-                      <a className="btn btn-info " target="__blank" href="h/ttps://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Resume</a>
+                      <Button sx={{width:150, mr:5}} id="resume" required={true} component="label"  variant="contained" startIcon={<CloudUploadIcon />}>
+                            Download Resume 
+                      </Button>
+                      <Button sx={{width:150}} id="resume" required={true} type="file" component="label"  variant="contained" startIcon={<CloudUploadIcon />}>
+                            Upload Resume 
+                      </Button>
                     </div>
                   </div>
                 </div>
