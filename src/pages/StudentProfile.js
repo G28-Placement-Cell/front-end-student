@@ -188,10 +188,10 @@ class StudentProfile extends React.Component {
                   <hr/>
                   <div className="row">
                     <div className="col-sm-12">
-                      <Button sx={{width:150, mr:5}} id="resume" required={true} component="label"  variant="contained" startIcon={<CloudUploadIcon />}>
+                      <Button sx={{width:150, mr:5, backgroundColor:"#2B2442"}} id="resume" required={true} component="label"  variant="contained" startIcon={<CloudUploadIcon />}>
                             Download Resume 
                       </Button>
-                      <Button sx={{width:150}} id="resume" required={true} type="file" component="label"  variant="contained" startIcon={<CloudUploadIcon />}>
+                      <Button sx={{width:150, backgroundColor:"#2B2442"}} id="resume" required={true} type="file" component="label"  variant="contained" startIcon={<CloudUploadIcon />}>
                             Upload Resume 
                       </Button>
                     </div>
