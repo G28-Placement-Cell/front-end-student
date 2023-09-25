@@ -1,9 +1,9 @@
 import React from 'react';
-import * as IoIcons from 'react-icons/io';
+// import * as IoIcons from 'react-icons/io';
 import * as BiIcons from 'react-icons/bi';
 import * as TfiIcons from "react-icons/tfi";
 import * as HiIcons from "react-icons/hi"
-import * as RxIcons from "react-icons/rx"
+// import * as RxIcons from "react-icons/rx"
 import * as TbIcons from 'react-icons/tb'
 
 export const SidebarData = [

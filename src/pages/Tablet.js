@@ -9,9 +9,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Buttoned } from '../components/Buttonsed';
-import Header from '../components/Header';
+// import Header from '../components/Header';
 import 'react-data-grid/lib/styles.css';
-import Footer from '../components/Footer';
+// import Footer from '../components/Footer';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -81,8 +81,8 @@ return (
 <>
     {/* <Header />   */}
     <TableContainer component={Paper} style={{height: '85vh'}} sx={{borderRadius:0}}>
-      <Table sx={{ minWidth: 700}} aria-label="customized table">
-        <TableHead>
+      <Table stickyHeader sx={{ minWidth: 700}} aria-label="customized table">
+        <TableHead >
           <TableRow >
             <StyledTableCell>COMPANY NAME</StyledTableCell>
             <StyledTableCell align="right">TYPE</StyledTableCell>
