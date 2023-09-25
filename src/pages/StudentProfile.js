@@ -1,10 +1,23 @@
 import React from 'react';
 import '../style/studentprofile.css';
 import {Button} from '@mui/material';
+import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 class StudentProfile extends React.Component {
 
+  
     render() { 
+      const VisuallyHiddenInput = styled('input')({
+        clip: 'rect(0 0 0 0)',
+        clipPath: 'inset(50%)',
+        height: 1,
+        overflow: 'hidden',
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        whiteSpace: 'nowrap',
+        width: 1,
+      });
         return (
           <div className="container">
         <div className="main-body">
@@ -193,6 +206,7 @@ class StudentProfile extends React.Component {
                       </Button>
                       <Button sx={{width:150, backgroundColor:"#2B2442"}} id="resume" required={true} type="file" component="label"  variant="contained" startIcon={<CloudUploadIcon />}>
                             Upload Resume 
+                            <VisuallyHiddenInput type="file" />
                       </Button>
                     </div>
                   </div>

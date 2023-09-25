@@ -21,7 +21,7 @@ function App() {
             <Route path='/companies' element={<Tablet />}/>
             <Route path='/announcements'  />
             <Route path='/performance' />
-            <Route path='/updateresume'  />
+            {/* <Route path='/updateresume'  /> */}
             <Route path='/changepassword' element={<ChangePassword />}/>
             <Route path='/logout'  />
           </Routes>

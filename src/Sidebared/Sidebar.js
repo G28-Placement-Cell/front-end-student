@@ -31,12 +31,12 @@ export const SidebarData = [
     icon: <BiIcons.BiLineChart />,
     cName: 'nav-text'
   },
-  {
-    title: 'Update Resume',
-    path: '/updateresume',
-    icon: <RxIcons.RxUpdate />,
-    cName: 'nav-text'
-  },
+  // {
+  //   title: 'Update Resume',
+  //   path: '/updateresume',
+  //   icon: <RxIcons.RxUpdate />,
+  //   cName: 'nav-text'
+  // },
   {
     title: 'Change Password',
     path: '/changepassword',
