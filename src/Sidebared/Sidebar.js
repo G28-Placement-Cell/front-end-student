@@ -5,8 +5,29 @@ import * as TfiIcons from "react-icons/tfi";
 import * as HiIcons from "react-icons/hi"
 // import * as RxIcons from "react-icons/rx"
 import * as TbIcons from 'react-icons/tb'
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../slices/student/authslice';
+import { useNavigate } from 'react-router-dom';
+import { useLogoutMutation } from '../slices/student/studentApislice';
+
+// const dispatch = useDispatch();
+// const [logoutapicall] = useLogoutMutation();
+
+// const navigate = useNavigate();
+// const logoutHandler = async () => {
+//   try {
+//     await logoutapicall().unwrap();
+//     dispatch(logout());
+//     navigate('/');
+//   }
+//   catch (err) {
+//     console.log(err);
+//   }
+// }
+
 
 export const SidebarData = [
+
   {
     title: 'Profile',
     path: '/profile',
@@ -45,7 +66,8 @@ export const SidebarData = [
   },
   {
     title: 'Log out',
-    path: '/logout',
+    path: '/',
+    // function: logoutHandler,
     icon: <BiIcons.BiLogOut />,
     cName: 'nav-text'
   }
