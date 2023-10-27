@@ -39,11 +39,19 @@ const authSlice = createSlice({
             localStorage.setItem('studentInfo', JSON.stringify(action.payload));
             localStorage.setItem('token', action.payload.token);
         },
+        getCredentials: (state, action) => {
+            state.studentInfo = localStorage.getItem('studentInfo')
+                ? JSON.parse(localStorage.getItem('studentInfo'))
+                : null;
+        },
         logout: (state, action) => {
             state.studentInfo = null;
             localStorage.removeItem('studentInfo');
             localStorage.removeItem('token');
         },
+        getData:(state,action)=>{
+            localStorage.getItem('studentinfo.student_id');
+        }
     },
 });
 

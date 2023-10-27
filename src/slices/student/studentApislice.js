@@ -27,7 +27,15 @@ export const studentApislice = apislice.injectEndpoints({
                 message: "ok"
             })
         }),
+        getdata: builder.mutation({
+            query: (data) => ({
+                url: `${student_url}/get_student_profile`,
+                body: data,
+                method: 'POST',
+                message: "ok"
+            })
+        })
     })
 })
 
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation } = studentApislice;
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useGetdataMutation } = studentApislice;

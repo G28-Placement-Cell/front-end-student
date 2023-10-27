@@ -13,6 +13,13 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import { useState } from "react";
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { useLoginMutation } from '../slices/student/studentApislice';
+import { setCredentials } from '../slices/student/authslice';
+import { toast } from 'react-toastify';
+
+
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
@@ -27,22 +34,22 @@ const VisuallyHiddenInput = styled('input')({
 
 
 function StudentRegister() {
-    const [name,setName] = useState('');
-    const [surname,setSurname] = useState('');
-    const [student_id,setStudent_id] = useState('');
-    const [fath_name,setFath_name] = useState('');
-    const [moth_name,setMoth_name] = useState('');
-    const [permanent_address,setPermanent_address] = useState('');
-    const [current_address,setCurrent_address] = useState('');
-    const [cpi,setCpi] = useState('');
-    const [current_backlogs,setCurrent_backlogs] = useState('');
-    const [total_backlogs,setTotal_backlogs] = useState('');
-    const [skype_id,setSkype_id] = useState('');
-    const [phone,setPhone] = useState('');
-    const [alt_phone,setAlt_phone] = useState('');
-    const [dob,setDob] = useState('');
-    const [tenth_percentage,setTenth_percentage] = useState('');
-    const [twelth_percentage,setTwelth_percentage] = useState('');
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
+    const [student_id, setStudent_id] = useState('');
+    const [fath_name, setFath_name] = useState('');
+    const [moth_name, setMoth_name] = useState('');
+    const [permanent_address, setPermanent_address] = useState('');
+    const [current_address, setCurrent_address] = useState('');
+    const [cpi, setCpi] = useState('');
+    const [current_backlogs, setCurrent_backlogs] = useState('');
+    const [total_backlogs, setTotal_backlogs] = useState('');
+    const [skype_id, setSkype_id] = useState('');
+    const [phone, setPhone] = useState('');
+    const [alt_phone, setAlt_phone] = useState('');
+    const [dob, setDob] = useState('');
+    const [tenth_percentage, setTenth_percentage] = useState('');
+    const [twelth_percentage, setTwelth_percentage] = useState('');
     const [branch, setBranch] = useState('');
     const [domain, setDomain] = useState('');
     const [regfor, setRegfor] = useState('');
@@ -87,6 +94,36 @@ function StudentRegister() {
         setRegfor(event.target.value);
         setSubmitted(false);
     };
+
+    const [register, { isLoading }] = useLoginMutation();
+    // const { studentInfo } = useSelector((state) => state.auth);
+    // console.log(studentInfo);
+    // useEffect(() => {
+    //     if (studentInfo) {
+    //         // navigate('/');
+    //         window.location.href = 'http://localhost:3001'
+    //         // href = "http://localhost:3001/";
+    //     }
+    // }, [studentInfo]);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const submitHandler = async (e) => {
+        e.preventDefault();
+        try {
+
+            const res = await register({}).unwrap();
+            dispatch(setCredentials({ ...res }))
+            // href = "http://localhost:3001/";
+            // navigate('http://localhost:3001/');
+            //link to http://localhost:3001 with payload
+            // window.location.href = 'http://localhost:3001'
+            navigate('/profile');
+        }
+        catch (err) {
+            toast.error(err?.data?.message || err.error)
+        }
+    }
     return (
         <>
             {console.log("studentRegister.js")}
@@ -95,7 +132,7 @@ function StudentRegister() {
             </Typography>
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 
-                <form id="stu_reg" onSubmit={verify} enctype="multipart/form-data" method="post">
+                <form id="stu_reg" onSubmit={submitHandler} enctype="multipart/form-data" method="post">
 
                     <Container sx={{ mb: 10, display: "flex", flexDirection: 'column ', justifyContent: "center", alignItems: "center", }} >
                         <Grid container sx={{ justifyContent: "center", mb: 0 }}>
@@ -419,7 +456,7 @@ function StudentRegister() {
                         </Grid>
                         {/* submit button */}
                         <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                            <Button fullWidth type="submit" variant="contained" sx={{}}>
+                            <Button fullWidth type="submit" onClick={verify} variant="contained" sx={{}}>
                                 Register
                             </Button>{
 
