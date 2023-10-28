@@ -10,6 +10,7 @@ import StudentProfile from './pages/StudentProfile';
 import { ChangePassword } from './pages/ChangePassword';
 import Announcement from './pages/Announcement'
 import StudentLogin from './pages/StudentLogin';
+import { Errored } from './pages/Errored';
 import StudentRegister from './pages/studentRegister';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           {/* <Route path='/updateresume'  /> */}
           <Route path='/changepassword' element={<ChangePassword />} />
           <Route path='/logout' />
+          <Route path='/*' element={<Errored />} />
         </Routes>
         <Footer />
       </Router>
