@@ -12,6 +12,8 @@ import Announcement from './pages/Announcement'
 import StudentLogin from './pages/StudentLogin';
 import { Errored } from './pages/Errored';
 import StudentRegister from './pages/studentRegister';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -19,6 +21,7 @@ function App() {
     <>
       <Router>
         <Header />
+        <ToastContainer />
         <Routes>
           <Route path='/' element={<StudentLogin />} />
           <Route path='/register' element={<StudentRegister />} />

@@ -12,7 +12,9 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLoginMutation } from '../slices/student/studentApislice';
 import { setCredentials } from '../slices/student/authslice';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function StudentLogin() {
 
@@ -23,20 +25,10 @@ function StudentLogin() {
     const dispatch = useDispatch();
 
     const [login, { isLoading }] = useLoginMutation();
-    // const { studentInfo } = useSelector((state) => state.auth);
-    // console.log(studentInfo);
-    // useEffect(() => {
-    //     if (studentInfo) {
-    //         // navigate('/');
-    //         window.location.href = 'http://localhost:3001'
-    //         // href = "http://localhost:3001/";
-    //     }
-    // }, [studentInfo]);
 
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-
             const res = await login({ studentid, password }).unwrap();
             dispatch(setCredentials({ ...res }))
             // href = "http://localhost:3001/";
@@ -46,7 +38,8 @@ function StudentLogin() {
             navigate('/profile');
         }
         catch (err) {
-            toast.error(err?.data?.message || err.error)
+            toast.error(err?.data?.message || err.error);
+            console.log(err);
         }
     }
 
@@ -78,6 +71,7 @@ function StudentLogin() {
                     <Button color="inherit" sx={{ mx: 1 }}>About Us</Button>
                 </Toolbar>
             </AppBar> */}
+
             <Grid container>
                 {/* Left 60% - Image */}
                 <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} item xs={8}>
