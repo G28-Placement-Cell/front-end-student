@@ -10,6 +10,8 @@ import { logout } from '../slices/student/authslice';
 import { useNavigate } from 'react-router-dom';
 import { useLogoutMutation } from '../slices/student/studentApislice';
 
+
+
 // const dispatch = useDispatch();
 // const [logoutapicall] = useLogoutMutation();
 
@@ -24,8 +26,6 @@ import { useLogoutMutation } from '../slices/student/studentApislice';
 //     console.log(err);
 //   }
 // }
-
-
 export const SidebarData = [
 
   {
@@ -68,6 +68,7 @@ export const SidebarData = [
     title: 'Log out',
     path: '/',
     // function: logoutHandler,
+    // onclick: { logoutHandler },
     icon: <BiIcons.BiLogOut />,
     cName: 'nav-text'
   }

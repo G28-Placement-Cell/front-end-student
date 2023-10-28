@@ -15,7 +15,7 @@ import Select from '@mui/material/Select';
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { useLoginMutation } from '../slices/student/studentApislice';
+import { useLoginMutation, useRegisterMutation } from '../slices/student/studentApislice';
 import { setCredentials } from '../slices/student/authslice';
 import { toast } from 'react-toastify';
 
@@ -57,6 +57,7 @@ function StudentRegister() {
     const [password, setPassword] = useState('');
     const [altemail, setAltemail] = useState('');
     const [altpassword, setAltpassword] = useState('');
+    const [gender, setGender] = useState('');
 
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState(false);
@@ -95,30 +96,21 @@ function StudentRegister() {
         setSubmitted(false);
     };
 
-    const [register, { isLoading }] = useLoginMutation();
-    // const { studentInfo } = useSelector((state) => state.auth);
-    // console.log(studentInfo);
-    // useEffect(() => {
-    //     if (studentInfo) {
-    //         // navigate('/');
-    //         window.location.href = 'http://localhost:3001'
-    //         // href = "http://localhost:3001/";
-    //     }
-    // }, [studentInfo]);
+    const [register, { isLoading }] = useRegisterMutation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-
-            const res = await register({}).unwrap();
+            const res = await register({ name, surname, student_id, fath_name, moth_name, permanent_address, current_address, cpi, current_backlogs, total_backlogs, skype_id, phone, alt_phone, dob, tenth_percentage, twelth_percentage, branch, domain, regfor, email, password, altemail, altpassword, gender }).unwrap();
+            console.log(res);
             dispatch(setCredentials({ ...res }))
             // href = "http://localhost:3001/";
             // navigate('http://localhost:3001/');
             //link to http://localhost:3001 with payload
             // window.location.href = 'http://localhost:3001'
-            navigate('/profile');
+            navigate('/');
         }
         catch (err) {
             toast.error(err?.data?.message || err.error)
@@ -148,6 +140,7 @@ function StudentRegister() {
                                                 type="text"
                                                 variant="outlined"
                                                 fullWidth
+                                                onChange={(e) => setName(e.target.value)}
                                                 required={true}
                                             />
                                         </Grid>
@@ -159,6 +152,7 @@ function StudentRegister() {
                                                 type="text"
                                                 variant="outlined"
                                                 fullWidth
+                                                onChange={(e) => setSurname(e.target.value)}
                                                 required={true}
                                             />
                                         </Grid>
@@ -170,6 +164,7 @@ function StudentRegister() {
                                         type="number"
                                         variant="outlined"
                                         fullWidth
+                                        onChange={(e) => setStudent_id(e.target.value)}
                                         required={true}
                                         sx={{ mt: 2 }}
                                     />
@@ -224,6 +219,7 @@ function StudentRegister() {
                                         type="text"
                                         variant="outlined"
                                         fullWidth
+                                        onChange={(e) => setSkype_id(e.target.value)}
                                         required={true}
                                         sx={{ mt: 2 }}
                                     />
@@ -234,6 +230,7 @@ function StudentRegister() {
                                         type="tel"
                                         pattern="[1-9]{1}[0-9]{9}"
                                         fullWidth
+                                        onChange={(e) => setPhone(e.target.value)}
                                         required={true}
                                         sx={{ mt: 2 }}
                                     />
@@ -244,6 +241,7 @@ function StudentRegister() {
                                         type="tel"
                                         pattern="[1-9]{1}[0-9]{9}"
                                         fullWidth
+                                        onChange={(e) => setAlt_phone(e.target.value)}
                                         required={true}
                                         sx={{ mt: 2 }}
                                     />
@@ -257,6 +255,7 @@ function StudentRegister() {
                                         aria-labelledby="demo-radio-buttons-group-label"
                                         defaultValue="male"
                                         name="radio-buttons-group"
+                                        onChange={(e) => setGender(e.target.value)}
                                     >
                                         <span style={{
                                             marginTop: "1px",
@@ -280,7 +279,7 @@ function StudentRegister() {
                                         variant="outlined"
                                         fullWidth
                                         required={true}
-
+                                        onChange={(e) => setDob(e.target.value)}
                                         sx={{ mt: 1 }}
                                     />
                                 </div>
@@ -296,6 +295,7 @@ function StudentRegister() {
                                                 type="text"
                                                 variant="outlined"
                                                 fullWidth
+                                                onChange={(e) => setFath_name(e.target.value)}
                                                 required={true}
                                             />
                                         </Grid>
@@ -307,6 +307,7 @@ function StudentRegister() {
                                                 type="text"
                                                 variant="outlined"
                                                 fullWidth
+                                                onChange={(e) => setMoth_name(e.target.value)}
                                                 required={true}
                                             />
                                         </Grid>
@@ -318,6 +319,7 @@ function StudentRegister() {
                                         id="permanent-address"
                                         type="text"
                                         fullWidth
+                                        onChange={(e) => setPermanent_address(e.target.value)}
                                         required={true}
                                         sx={{ mt: 2 }}
                                     />
@@ -328,6 +330,7 @@ function StudentRegister() {
                                         id="current-address"
                                         type="text"
                                         fullWidth
+                                        onChange={(e) => setCurrent_address(e.target.value)}
                                         required={true}
                                         sx={{ mt: 2 }}
                                     />
@@ -337,6 +340,7 @@ function StudentRegister() {
                                         name="10th-percentage"
                                         variant="outlined"
                                         fullWidth
+                                        onChange={(e) => setTenth_percentage(e.target.value)}
                                         type="number"
                                         sx={{ mt: 2 }}
                                         required={true}
@@ -347,6 +351,7 @@ function StudentRegister() {
                                         name="12th-percentage"
                                         variant="outlined"
                                         fullWidth
+                                        onChange={(e) => setTwelth_percentage(e.target.value)}
                                         type="number"
                                         required={true}
                                         sx={{ mt: 2 }}
@@ -358,6 +363,7 @@ function StudentRegister() {
                                         variant="outlined"
                                         fullWidth
                                         type="number"
+                                        onChange={(e) => setCpi(e.target.value)}
                                         required={true}
                                         sx={{ mt: 2 }}
                                     />
@@ -370,6 +376,7 @@ function StudentRegister() {
                                                 type="number"
                                                 id="current-backlogs"
                                                 name="current-backlogs"
+                                                onChange={(e) => setCurrent_backlogs(e.target.value)}
                                                 required={true}
                                             />
                                         </Grid>
@@ -381,6 +388,7 @@ function StudentRegister() {
                                                 type="number"
                                                 id="total-backlogs"
                                                 name="total-backlogs"
+                                                onChange={(e) => setTotal_backlogs(e.target.value)}
                                                 required={true}
                                             />
                                         </Grid>
@@ -456,7 +464,7 @@ function StudentRegister() {
                         </Grid>
                         {/* submit button */}
                         <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                            <Button fullWidth type="submit" onClick={verify} variant="contained" sx={{}}>
+                            <Button fullWidth type="submit" variant="contained" sx={{}}>
                                 Register
                             </Button>{
 

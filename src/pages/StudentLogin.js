@@ -25,15 +25,6 @@ function StudentLogin() {
     const dispatch = useDispatch();
 
     const [login, { isLoading }] = useLoginMutation();
-    // const { studentInfo } = useSelector((state) => state.auth);
-    // console.log(studentInfo);
-    // useEffect(() => {
-    //     if (studentInfo) {
-    //         // navigate('/');
-    //         window.location.href = 'http://localhost:3001'
-    //         // href = "http://localhost:3001/";
-    //     }
-    // }, [studentInfo]);
 
     const submitHandler = async (e) => {
         e.preventDefault();
