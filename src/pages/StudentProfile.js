@@ -29,17 +29,21 @@ function StudentProfile() {
   //   }
   // }
 
-  // useEffect(() => {
-  //   fetch('http://localhost:8000/api/student/profile', {
-  //     method: 'GET',
-  //     headers: {
-  //       'content-type': 'application/json',
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => { setStudent(data); console.log(data); })
-  //     .catch((err) => console.log(err))
-  // }, []);
+  useEffect(() => {
+    console.log(localStorage.getItem('token'));
+    fetch('http://localhost:5000/api/student/profile', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    }).then((res) => res.json()).then((data) => {
+      console.log(data);
+      setStudent(data.stu);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }, []);
 
   // useEffect(() => {
   //   fetchdata();

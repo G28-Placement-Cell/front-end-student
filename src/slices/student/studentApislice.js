@@ -30,8 +30,11 @@ export const studentApislice = apislice.injectEndpoints({
         getdata: builder.mutation({
             query: (data) => ({
                 url: `${student_url}/get_student_profile`,
-                body: data,
-                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                },
+                method: 'GET',
                 message: "ok"
             })
         })
