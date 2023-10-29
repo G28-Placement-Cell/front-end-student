@@ -45,7 +45,7 @@ export const Tablet = () => {
   const [stats, setStatus] = useState(true);
 
     const rows = [
-        createData('Micryyyyyydffffffffosoft', "Summer Internship", "NONE","https://www.microsoft.com/en-in/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
+        createData('Micryyyyyydffffffffosoft', "Summer Internship", 0,"https://www.microsoft.com/en-in/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
         createData('Google', "Summer Internship", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
         createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
         createData('Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
