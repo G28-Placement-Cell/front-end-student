@@ -1,10 +1,21 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
+// import {CheckDate} from "../pages/ChechDate"
 
-export const Buttoned = () => {
+export const Buttoned = ({reg_open,reg_end,cpiOf}) => {
     const [stads, setStads] = useState(false);
+    const studCpi = 7;
+    var currentDate = new Date();
+    const [stats, setStatus] = useState(false);
+    const date1 = new Date(reg_open);
+    const date2 = new Date(reg_end);
+    useEffect(() => {
+        if (currentDate.getTime() > date1.getTime() && currentDate.getTime() < date2.getTime())
+            setStatus(!stats);
+        console.log(date1, date2);
+    }, []);
+
     return (
-        <>
-            {!stads && <button style={{ backgroundColor: "#493D72", color: "white", fontSize: 16, height: 41, 
+        <>  {stats && (studCpi>=cpiOf) && !stads && <button style={{ backgroundColor: "#493D72", color: "white", fontSize: 16, height: 41, 
             marginTop:2}} className="btn btn-lg pb-2" onClick={() => { setStads(!stads) }}>REGISTER</button>}
             {stads &&
                 <>
@@ -18,6 +29,10 @@ export const Buttoned = () => {
                     </div> */}
                 </>
             }
+            {(!stats || studCpi<cpiOf) && <><button style={{ backgroundColor: "#493D72", color: "white", fontSize: 16, height: 41, 
+            marginTop:2}} className="btn btn-lg pb-2" disabled> REGISTER </button></>}
+            {/* { !stats && <button style={{ backgroundColor: "#493D72", color: "white", fontSize: 16, height: 41, 
+            marginTop:2}} className="btn btn-lg pb-2" onClick={() => { setStads(!stads) }}>REGISTER</button>} */}
         </>
     );
 }
