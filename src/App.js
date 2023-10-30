@@ -12,6 +12,7 @@ import Announcement from './pages/Announcement'
 import StudentLogin from './pages/StudentLogin';
 import { Errored } from './pages/Errored';
 import StudentRegister from './pages/studentRegister';
+import UpdateResume from './pages/UpdateResume';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -29,6 +30,7 @@ function App() {
           <Route path='/companies' element={<Tablet />} />
           <Route path='/announcements' element={<Announcement />} />
           <Route path='/performance' />
+          <Route path='/updateResume' element={<UpdateResume />} />
           {/* <Route path='/updateresume'  /> */}
           <Route path='/changepassword' element={<ChangePassword />} />
           <Route path='/logout' />

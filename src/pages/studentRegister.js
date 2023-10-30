@@ -154,8 +154,8 @@ function StudentRegister() {
                 .catch(error => {
                     console.error(error);
                 });
-            const res1 = await upload({ formData }).unwrap();
-            console.log(res1);
+            // const res1 = await upload({ formData }).unwrap();
+            // console.log(res1);
             navigate('/');
         }
         catch (err) {
@@ -170,7 +170,7 @@ function StudentRegister() {
             </Typography>
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 
-                <form id="stu_reg" onSubmit={submitHandler} enctype="multipart/form-data" method="post" action="http://localhost:8000/api/student/files">
+                <form id="stu_reg" onSubmit={submitHandler} enctype="multipart/form-data" method="post">
 
                     <Container sx={{ mb: 10, display: "flex", flexDirection: 'column ', justifyContent: "center", alignItems: "center", }} >
                         <Grid container sx={{ justifyContent: "center", mb: 0 }}>
@@ -490,7 +490,7 @@ function StudentRegister() {
                                             </Select>
                                         </FormControl>
                                     </Box>
-                                    <Grid container spacing={2} sx={{ mt: 0.3 }}>
+                                    {/* <Grid container spacing={2} sx={{ mt: 0.3 }}>
                                         <Grid item md={6}>
                                             <Button for="resume" component="label" fullWidth variant="contained" startIcon={<CloudUploadIcon />}>
                                                 Upload Resume
@@ -504,7 +504,7 @@ function StudentRegister() {
                                                 <VisuallyHiddenInput type="file" id="photo" required={false} />
                                             </Button>
                                         </Grid>
-                                    </Grid>
+                                    </Grid> */}
                                 </div>
                             </Grid>
                         </Grid>
