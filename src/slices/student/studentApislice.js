@@ -24,7 +24,7 @@ export const studentApislice = apislice.injectEndpoints({
                 url: `${student_url}/register`,
                 method: 'POST',
                 body: data,
-                message: "ok"
+                message: "ok",
             })
         }),
         getdata: builder.mutation({
@@ -36,9 +36,20 @@ export const studentApislice = apislice.injectEndpoints({
                 },
                 method: 'GET',
                 message: "ok"
+            }),
+        }),
+        upload: builder.mutation({
+            query: (data) => ({
+                url: `${student_url}/files`,
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                body: data,
+                message: "ok"
             })
-        })
+        }),
     })
 })
 
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useGetdataMutation } = studentApislice;
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useGetdataMutation, useUploadMutation } = studentApislice;

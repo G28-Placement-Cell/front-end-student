@@ -121,6 +121,7 @@ function StudentLogin() {
 
                                 {/* Forgot Password link */}
                                 <a href="#" style={{ textDecoration: 'none', color: 'blue' }}>Forgot Password?</a>
+                                <a href="/register" style={{ textDecoration: 'none', color: 'blue' }}>Register</a>
                             </div>
                         </form>
                     </div>
