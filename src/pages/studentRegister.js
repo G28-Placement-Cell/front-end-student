@@ -15,7 +15,7 @@ import Select from '@mui/material/Select';
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { useLoginMutation, useRegisterMutation } from '../slices/student/studentApislice';
+import { useLoginMutation, useRegisterMutation, useUploadMutation } from '../slices/student/studentApislice';
 import { setCredentials } from '../slices/student/authslice';
 import { toast } from 'react-toastify';
 
@@ -58,7 +58,7 @@ function StudentRegister() {
     const [altemail, setAltemail] = useState('');
     const [altpassword, setAltpassword] = useState('');
     const [gender, setGender] = useState('');
-
+    const [resume, setResume] = useState('');
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState(false);
 
@@ -99,17 +99,63 @@ function StudentRegister() {
     const [register, { isLoading }] = useRegisterMutation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
+    const [upload, { isLoading: isUploading }] = useUploadMutation();
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
             const res = await register({ name, surname, student_id, fath_name, moth_name, permanent_address, current_address, cpi, current_backlogs, total_backlogs, skype_id, phone, alt_phone, dob, tenth_percentage, twelth_percentage, branch, domain, regfor, email, password, altemail, altpassword, gender }).unwrap();
-            console.log(res);
+            // const formData = new FormData();
+            // // formData.append('name', name);
+            // // formData.append('surname', surname);
+            // // formData.append('student_id', student_id);
+            // // formData.append('fath_name', fath_name);
+            // // formData.append('moth_name', moth_name);
+            // // formData.append('permanent_address', permanent_address);
+            // // formData.append('current_address', current_address);
+            // // formData.append('cpi', cpi);
+            // // formData.append('current_backlogs', current_backlogs);
+            // // formData.append('total_backlogs', total_backlogs);
+            // // formData.append('skype_id', skype_id);
+            // // formData.append('phone', phone);
+            // // formData.append('alt_phone', alt_phone);
+            // // formData.append('dob', dob);
+            // // formData.append('tenth_percentage', tenth_percentage);
+            // // formData.append('twelth_percentage', twelth_percentage);
+            // // formData.append('branch', branch);
+            // // formData.append('domain', domain);
+            // // formData.append('regfor', regfor);
+            // // formData.append('email', email);
+            // // formData.append('password', password);
+            // // formData.append('altemail', altemail);
+            // // formData.append('altpassword', altpassword);
+            // // formData.append('gender', gender);
+            // formData.append('resume', resume);
+            // // const data = await fetch(`http://localhost:8000/api/student/register`, {
+            // //     method: 'POST',
+            // //     headers: {
+            // //         'content-type': 'application/form-data',
+            // //     },
+            // //     body: formData
+            // // }).then((res) => res.json());
+            // // console.log(data);
+            // // console.log(formData.values().return('resume'));
+            // // const res = await register(formData).unwrap();
             dispatch(setCredentials({ ...res }))
-            // href = "http://localhost:3001/";
-            // navigate('http://localhost:3001/');
-            //link to http://localhost:3001 with payload
-            // window.location.href = 'http://localhost:3001'
+            const formData = new FormData();
+
+            await fetch('http://localhost:8000/api/student/files', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+            const res1 = await upload({ formData }).unwrap();
+            console.log(res1);
             navigate('/');
         }
         catch (err) {
@@ -124,7 +170,7 @@ function StudentRegister() {
             </Typography>
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 
-                <form id="stu_reg" onSubmit={submitHandler} enctype="multipart/form-data" method="post">
+                <form id="stu_reg" onSubmit={submitHandler} enctype="multipart/form-data" method="post" action="http://localhost:8000/api/student/files">
 
                     <Container sx={{ mb: 10, display: "flex", flexDirection: 'column ', justifyContent: "center", alignItems: "center", }} >
                         <Grid container sx={{ justifyContent: "center", mb: 0 }}>
@@ -448,14 +494,14 @@ function StudentRegister() {
                                         <Grid item md={6}>
                                             <Button for="resume" component="label" fullWidth variant="contained" startIcon={<CloudUploadIcon />}>
                                                 Upload Resume
-                                                <VisuallyHiddenInput id="resume" required={true} type="file" />
+                                                <VisuallyHiddenInput id="resume" name="resume" required={false} type="file" onChange={(e) => { setResume(e.target.value) }} />
                                             </Button>
 
                                         </Grid>
                                         <Grid item md={6}>
                                             <Button for="photo" component="label" v fullWidth variant="contained" startIcon={<PersonIcon />}>
                                                 Upload Photo
-                                                <VisuallyHiddenInput type="file" id="photo" required={true} />
+                                                <VisuallyHiddenInput type="file" id="photo" required={false} />
                                             </Button>
                                         </Grid>
                                     </Grid>
