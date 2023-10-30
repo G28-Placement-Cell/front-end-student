@@ -3,6 +3,7 @@ import React from 'react';
 import * as BiIcons from 'react-icons/bi';
 import * as TfiIcons from "react-icons/tfi";
 import * as HiIcons from "react-icons/hi"
+
 // import * as RxIcons from "react-icons/rx"
 import * as TbIcons from 'react-icons/tb'
 import { useDispatch, useSelector } from 'react-redux';
@@ -32,6 +33,12 @@ export const SidebarData = [
     title: 'Profile',
     path: '/profile',
     icon: <BiIcons.BiUser />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Update Resume',
+    path: '/updateresume',
+    icon: <BiIcons.BiUpload />,
     cName: 'nav-text'
   },
   {
