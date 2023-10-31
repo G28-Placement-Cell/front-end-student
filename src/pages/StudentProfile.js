@@ -261,10 +261,10 @@ function StudentProfile() {
                     <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" onClick={handleclick} variant="contained" startIcon={<CloudUploadIcon />}>
                       Download Resume
                     </Button>
-                    <Button sx={{ width: 150, backgroundColor: "#2B2442" }} id="resume" required={true} type="file" component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+                    {/* <Button href='/updateresume' sx={{ width: 150, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
                       Upload Resume
                       <VisuallyHiddenInput type="file" />
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
               </div>
