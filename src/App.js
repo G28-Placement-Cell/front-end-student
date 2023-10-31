@@ -16,6 +16,7 @@ import StudentRegister from './pages/studentRegister';
 import UpdateResume from './pages/UpdateResume';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Jobprofile from './pages/Jobprofile';
 import {registerCharts} from './components/Performancemain';
 
 registerCharts()
@@ -37,6 +38,7 @@ function App() {
           <Route path='/updateResume' element={<UpdateResume />} />
           {/* <Route path='/updateresume'  /> */}
           <Route path='/changepassword' element={<ChangePassword />} />
+          <Route path='/jobprofile' element={<Jobprofile/>}/>
           <Route path='/logout' />
           <Route path='/*' element={<Errored />} />
         </Routes>
