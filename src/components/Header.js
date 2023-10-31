@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../slices/student/authslice';
 import { useNavigate } from 'react-router-dom';
 import { useLogoutMutation } from '../slices/student/studentApislice';
+import TemporaryDrawer from './Navbar';
 
 
 
@@ -34,33 +35,7 @@ function Header() {
   return (
     <AppBar position="sticky" style={{ backgroundColor: "#2B2442" }}>
       <Toolbar>
-        <Link to='#' className='menu-bars' style={{ marginLeft: 0 }}>
-          <FaIcons.FaBars onClick={showSidebar} style={{ color: 'white', alignSelf: 'center', justifySelf: 'center', marginBottom: 6 }} />
-        </Link>
-        <>
-          <IconContext.Provider value={{ color: '#fff' }}>
-
-            <nav className={sidebar ? 'nav-menu active' : 'nav-menu'} style={{}}>
-              <ul className='nav-menu-items' onClick={showSidebar}>
-                <li className='navbar-toggle'>
-                  <Link to='#' className='menu-bars'>
-                    <AiIcons.AiOutlineClose style={{}} />
-                  </Link>
-                </li>
-                {SidebarData.map((item, index) => {
-                  return (
-                    <li key={index} className={item.cName}>
-                      <Link to={item.path}>
-                        {item.icon}
-                        <span>{item.title}</span>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </nav>
-          </IconContext.Provider>
-        </>
+          < TemporaryDrawer />
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, marginLeft: 2 }}>
           Placement Cell
         </Typography>
