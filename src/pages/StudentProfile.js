@@ -48,6 +48,18 @@ function StudentProfile() {
     });
   }, []);
 
+  const handleclick = async () => {
+    // const studentid = localStorage.getItem('studentinfo.student_id');
+    const fileid = student?.resume;
+    // const res = await axios.get(`http://localhost:8000/api/student/files/${fileid}`, {
+    //   headers: {
+    //     'Authorization': `Bearer ${localStorage.getItem('token')}`
+    //   },
+    // });
+    // console.log(res);
+    window.open(`http://localhost:8000/api/student/files/${fileid}`);
+  }
+
   // useEffect(() => {
   //   fetchdata();
   // }, []);
@@ -246,7 +258,7 @@ function StudentProfile() {
                 <hr />
                 <div className="row">
                   <div className="col-sm-12">
-                    <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+                    <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" onClick={handleclick} variant="contained" startIcon={<CloudUploadIcon />}>
                       Download Resume
                     </Button>
                     <Button sx={{ width: 150, backgroundColor: "#2B2442" }} id="resume" required={true} type="file" component="label" variant="contained" startIcon={<CloudUploadIcon />}>
