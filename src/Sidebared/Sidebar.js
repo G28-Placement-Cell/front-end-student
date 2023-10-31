@@ -70,13 +70,5 @@ export const SidebarData = [
     path: '/changepassword',
     icon: <TbIcons.TbArrowsExchange />,
     cName: 'nav-text'
-  },
-  {
-    title: 'Log out',
-    path: '/',
-    // function: logoutHandler,
-    // onclick: { logoutHandler },
-    icon: <BiIcons.BiLogOut />,
-    cName: 'nav-text'
   }
 ];
