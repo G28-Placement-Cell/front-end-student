@@ -9,7 +9,7 @@ export const CheckDate = ({ reg_open, reg_end }) => {
     useEffect(() => {
         if (currentDate.getTime() > date1.getTime() && currentDate.getTime() < date2.getTime())
             setStatus(!stats);
-        console.log(date1, date2);
+        // console.log(date1, date2);
     }, []);
     return (
         <>

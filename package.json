@@ -19,6 +19,7 @@
     "lucide-react": "^0.279.0",
     "moment": "^2.29.4",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-data-grid": "^7.0.0-beta.39",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",

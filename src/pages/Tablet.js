@@ -13,7 +13,9 @@ import { Buttoned } from '../components/Buttonsed';
 import 'react-data-grid/lib/styles.css';
 import {CheckDate } from '../components/ChechDate'
 
+
 // import Footer from '../components/Footer';
+
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -42,56 +44,67 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   function createData(profileId,name, type,cpi,link,open_for,registration_open,registration_end) {
     return { profileId,name, type,cpi,link,open_for,registration_open,registration_end };
   }
-
 export const Tablet = () => {
   // const [stats, setStatus] = useState(false);
+  const [company, setCompany] = useState([]);//student object
+  const [loading, setLoading] = useState(true);//loading state
+  useEffect(() => {
+    console.log(localStorage.getItem('token'));
+    fetch('http://localhost:8000/api/student/jobprofile', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    }).then((res) => res.json()).then((data) => {
+      console.log(data.job);
+      setCompany(data.job);
+      // setCompany(data);
+      setLoading(false);
+    }).catch((err) => {
+      console.log(err);
+      setLoading(false);
+    });
+  }, []);
 
 
-    const rows = [
-        createData(1,'Microsoft', "SI", 0,"https://www.microsoft.com/en-in/","btech-ict,btech-mnc", "2023-12-15 22:50:00", "2023-12-16 23:00:00"),
-        createData(2,'Google', "SI", 7,"https://www.google.com/","btech-ict,btech-mnc", "2023-10-30 22:50:00", "2023-12-30 23:00:00"),
-        createData(3,'Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "2023-12-15 22:50:00", "2023-12-16 23:00:00"),
-        createData(4,'Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "2023-12-15 22:50:00", "2023-12-16 23:00:00"),
-        // createData(5,'Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(6,'Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(7,'Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(8,'Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(9,'Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(10,'Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(11,'Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(12,'Google', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(13,'eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(14,'eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(15,'eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(16,'eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(17,'eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(18,'eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(19,'eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(20,'eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(21,'eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(22,'eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(23,'eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(24,'eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(25,'eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(26,'eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(27,'eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(28,'eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(29,'eeeed', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(30,'eeeeddddddd', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(31,'eeeeddddddd', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(32,'eeeeddddddd', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(33,'eeeeddddddd', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(34,'eeeeddddddd', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(35,'eeeeddddddd', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(36,'eeeeddddddd', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(37,'eeeeddddddd', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-        // createData(38,'eeeeddddddd', "Job", 7,"https://www.google.com/","btech-ict,btech-mnc", "12-20-2023 06:00", "12-20-2023 08:00"),
-    ];
+  
+    const options = {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+    };
+ 
 
+  const [student, setStudent] = useState({});//student object
+  const [loadings, setLoadings] = useState(true);//loading state
+
+  useEffect(() => {
+    console.log(localStorage.getItem('token'));
+    fetch('http://localhost:8000/api/student/profile', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    }).then((res) => res.json()).then((data) => {
+      console.log(data);
+      setStudent(data.stu);
+      setLoadings(false);
+    }).catch((err) => {
+      console.log(err);
+      setLoadings(false);
+    });
+  }, []);
+
+    const [cnt,setCnt]=useState(1);
 return (
 <>
 {/* style={{height: '85vh'}}  */}
     {/* <Header />   */}
+    
     <TableContainer component={Paper} sx={{borderRadius:0}}>
       <Table stickyHeader sx={{ minWidth: 700}} aria-label="customized table">
         <TableHead >
@@ -108,25 +121,27 @@ return (
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow className="mt-10 py-10" key={row.profileId}>
-              <StyledTableCell component="th" scope="row">{row.profileId}</StyledTableCell>
+          {company.map((row,index) => (
+            (student?.registering_for===row.offer_type) &&
+            <>
+            <StyledTableRow className="mt-10 py-10" key={row._id}>
+              <StyledTableCell component="th" scope="row">{index+1}</StyledTableCell>
               <StyledTableCell  align="right">
-                <a style={{color: "#2B2442", textDecoration: "none"}} href={row.link} target="_blank">{row.name}</a>
+                <a style={{color: "#2B2442", textDecoration: "none"}} href={row.link} target="_blank">{row.company_name}</a>
               </StyledTableCell>
-              <StyledTableCell align="right">{row.type}</StyledTableCell>
-              <StyledTableCell align="right">{row.cpi}</StyledTableCell>
+              <StyledTableCell align="right">{row.offer_type}</StyledTableCell>
+              <StyledTableCell align="right">{row.cpi_criteria}</StyledTableCell>
               <StyledTableCell align="right">{row.open_for}</StyledTableCell>
-              <StyledTableCell align="right">{row.registration_open}</StyledTableCell>
-              <StyledTableCell align="right">{row.registration_end}</StyledTableCell>
+              <StyledTableCell align="right">{new Date(row.registration_start_date).toLocaleString(undefined, options)}</StyledTableCell>
+              <StyledTableCell align="right">{new Date(row.registration_end_date).toLocaleString(undefined, options)}</StyledTableCell>
               <StyledTableCell align="right">
-                <CheckDate reg_open={row.registration_open} reg_end={row.registration_end}/>
+
+                <CheckDate reg_open={row.registration_start_date} reg_end={row.registration_end_date}/>
               </StyledTableCell>
-              {/* if(currentDate.getTime()>{row.registration_open}.getTime() && currentDate.getTime()<{row.registration_end}.getTime())  */}
-              {/* <StyledTableCell align="right"><CheckDate /></StyledTableCell> */}
-              
-              <StyledTableCell align="right" style={{alignItems:'end', display:'flex', flexDirection:'column', justifyContent:'end', columnWidth: 50}}><Buttoned reg_open={row.registration_open} reg_end={row.registration_end} cpiOf={row.cpi}/></StyledTableCell>
+              <StyledTableCell align="right" style={{alignItems:'end', display:'flex', flexDirection:'column', justifyContent:'end', columnWidth: 50}}><Buttoned reg_open={row.registration_start_date} reg_end={row.registration_end_date} cpiOf={row.cpi_criteria}/></StyledTableCell>
             </StyledTableRow>
+            
+            </>
           ))}
         </TableBody>
       </Table>
