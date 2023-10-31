@@ -102,44 +102,19 @@ function StudentRegister() {
     const [upload, { isLoading: isUploading }] = useUploadMutation();
     const submitHandler = async (e) => {
         e.preventDefault();
+        if (password !== altpassword) {
+            setError(true);
+            alert("Passwords do not match");
+            return; // Exit the function without submitting the form
+        } else if (email === altemail) {
+            setError(true);
+            alert("Please enter different email id");
+            return; // Exit the function without submitting the form
+        } else {
+            setError(false);
+        }
         try {
             const res = await register({ name, surname, student_id, fath_name, moth_name, permanent_address, current_address, cpi, current_backlogs, total_backlogs, skype_id, phone, alt_phone, dob, tenth_percentage, twelth_percentage, branch, domain, regfor, email, password, altemail, altpassword, gender }).unwrap();
-            // const formData = new FormData();
-            // // formData.append('name', name);
-            // // formData.append('surname', surname);
-            // // formData.append('student_id', student_id);
-            // // formData.append('fath_name', fath_name);
-            // // formData.append('moth_name', moth_name);
-            // // formData.append('permanent_address', permanent_address);
-            // // formData.append('current_address', current_address);
-            // // formData.append('cpi', cpi);
-            // // formData.append('current_backlogs', current_backlogs);
-            // // formData.append('total_backlogs', total_backlogs);
-            // // formData.append('skype_id', skype_id);
-            // // formData.append('phone', phone);
-            // // formData.append('alt_phone', alt_phone);
-            // // formData.append('dob', dob);
-            // // formData.append('tenth_percentage', tenth_percentage);
-            // // formData.append('twelth_percentage', twelth_percentage);
-            // // formData.append('branch', branch);
-            // // formData.append('domain', domain);
-            // // formData.append('regfor', regfor);
-            // // formData.append('email', email);
-            // // formData.append('password', password);
-            // // formData.append('altemail', altemail);
-            // // formData.append('altpassword', altpassword);
-            // // formData.append('gender', gender);
-            // formData.append('resume', resume);
-            // // const data = await fetch(`http://localhost:8000/api/student/register`, {
-            // //     method: 'POST',
-            // //     headers: {
-            // //         'content-type': 'application/form-data',
-            // //     },
-            // //     body: formData
-            // // }).then((res) => res.json());
-            // // console.log(data);
-            // // console.log(formData.values().return('resume'));
-            // // const res = await register(formData).unwrap();
             dispatch(setCredentials({ ...res }))
             const formData = new FormData();
 

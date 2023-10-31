@@ -49,7 +49,18 @@ export const studentApislice = apislice.injectEndpoints({
                 message: "ok"
             })
         }),
+        change_password: builder.mutation({
+            query: (data) => ({
+                url: `${student_url}/change_password`,
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                },
+                body: data,
+                message: "ok"
+            })
+        }),
     })
 })
 
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useGetdataMutation, useUploadMutation } = studentApislice;
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useGetdataMutation, useUploadMutation, useChange_passwordMutation } = studentApislice;
