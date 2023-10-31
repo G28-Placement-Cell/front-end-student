@@ -487,12 +487,9 @@ function StudentRegister() {
                         <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                             <Button fullWidth type="submit" variant="contained" sx={{}}>
                                 Register
-                            </Button>{
-
-                            }
+                            </Button>
                         </div>
                     </Container >
-
                 </form>
             </div >
         </>
