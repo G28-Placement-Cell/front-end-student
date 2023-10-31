@@ -19,9 +19,9 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
 
   return (
-    <>
       <Router>
         <Header />
+        <div style={{minHeight: "84vh"}}>
         <ToastContainer />
         <Routes>
           <Route path='/' element={<StudentLogin />} />
@@ -36,9 +36,9 @@ function App() {
           <Route path='/logout' />
           <Route path='/*' element={<Errored />} />
         </Routes>
+        </div>
         <Footer />
       </Router>
-    </>
   );
 
 }

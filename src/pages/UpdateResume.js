@@ -36,22 +36,26 @@ function UpdateResume() {
     });
     if (done) {
         return (
-            <div className="maincp">
-                <div className="change-password-container">
-                    <h1>File Uploaded Successfully</h1>
+            <div className="maincp" style={{marginTop:'20vh'}}>
+                <div className="change-password-container" >
+                    <h2 style={{margin:'auto',justifyContent:'center',alignItems:'center'}}>File Uploaded Successfully</h2>
                 </div>
             </div>
         );
     }
     return (
-        <div className="maincp">
-            <div className="change-password-container">
+        <div className="maincp" style={{marginTop:'20vh'}}>
+            
+            <div className="change-password-container" style={{margin:'auto',justifyContent:'center',alignItems:'center'}} >
                 {/* <form >
                     <input type="file" name="file" />
                 </form> */}
+                <h2>UPDATE RESUME</h2>
                 <form id="uploadForm" encType="multipart/form-data">
                     <input type="file" name="file" onChange={(e) => { setTmp(e.target.value) }} />
+                    <div style={{marginLeft:'7vw'}}>
                     <input type="submit" value="Upload" />
+                    </div>
                 </form>
             </div>
         </div>
