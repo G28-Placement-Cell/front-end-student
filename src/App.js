@@ -38,7 +38,7 @@ function App() {
           <Route path='/updateResume' element={<UpdateResume />} />
           {/* <Route path='/updateresume'  /> */}
           <Route path='/changepassword' element={<ChangePassword />} />
-          <Route path='/jobprofile' element={<Jobprofile/>}/>
+          <Route path='/jobprofile/:id' element={<Jobprofile />}/>
           <Route path='/logout' />
           <Route path='/*' element={<Errored />} />
         </Routes>
