@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 // import {CheckDate} from "../pages/ChechDate"
 import { useParams } from 'react-router-dom';
+import Jobprofile from "../pages/Jobprofile";
 
 export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId }) => {
 
@@ -9,7 +10,6 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId }) => {
   console.log(stuId);
   console.log(jobId);
 
-  const [stads, setStads] = useState(false);
   const [student, setStudent] = useState({});//student object
   const [loading, setLoading] = useState(true);//loading state
   // const studCpi = 7;
@@ -78,6 +78,8 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId }) => {
   }
 
   var currentDate = new Date();
+  console.log(student.jobprofiles);
+  const [stads, setStads] = useState(student.jobprofiles?.includes(stuId));
   const [stats, setStatus] = useState(false);
   const date1 = new Date(reg_open);
   const date2 = new Date(reg_end);
