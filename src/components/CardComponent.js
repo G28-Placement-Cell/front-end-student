@@ -7,9 +7,10 @@ function CustomCard({ item, height }) {
   
 
   return (
-    <Card sx={{width:'90vw'}}> {/* Apply the style property */}
+    <Card sx={{width:'90vw'}}>
       <CardContent>
-        <h3>{item.title}</h3>
+        <h2 style={{color:'blue'}}>{item.company}</h2>
+        <h4>{item.title}</h4>
         <p>{item.description}</p>
       </CardContent>
     </Card>
