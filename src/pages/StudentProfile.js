@@ -11,6 +11,12 @@ function StudentProfile() {
   const [student, setStudent] = useState({});//student object
   const [loading, setLoading] = useState(true);//loading state
 
+  const options = {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  };
+
   // const [getdata, { isLoading }] = useGetdataMutation();
 
   // const fetchdata = async () => {
@@ -186,7 +192,7 @@ function StudentProfile() {
                     <h6 className="mb-0">Date Of Birth</h6>
                   </div>
                   <div id="DOB" className="col-sm-9 text-secondary">
-                    {student?.dob}
+                    {new Date(student?.dob).toLocaleString(undefined, options)}
                   </div>
                 </div>
                 <hr />
