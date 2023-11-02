@@ -17,25 +17,6 @@ function StudentProfile() {
     day: 'numeric',
   };
 
-  // const [getdata, { isLoading }] = useGetdataMutation();
-
-  // const fetchdata = async () => {
-  //   try {
-  //     const studentid = localStorage.getItem('studentinfo.student_id');
-  //     const res = await getdata({ studentid }).unwrap();
-  //     // dispatch(setCredentials({ ...res }))
-  //     // href = "http://localhost:3001/";
-  //     // navigate('http://localhost:3001/');
-  //     //link to http://localhost:3001 with payload
-  //     // window.location.href = 'http://localhost:3001'
-  //     // navigate('/profile');
-  //     console.log(res);
-  //   }
-  //   catch (err) {
-  //     console.log(err);
-  //   }
-  // }
-
   useEffect(() => {
     console.log(localStorage.getItem('token'));
     fetch('http://localhost:8000/api/student/profile', {
