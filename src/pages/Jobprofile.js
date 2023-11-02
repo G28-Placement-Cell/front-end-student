@@ -137,7 +137,7 @@ function Jobprofile() {
                   <h6 className="mb-0">Description</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
-                  {company?.description}
+                  {company?.job_description}
                 </div>
               </div>
               <hr />
