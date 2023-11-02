@@ -1,0 +1,117 @@
+/* In a CSS file, e.g., AboutUs.css */
+/* body {
+  background-color: red;
+} */
+.title{
+  color:#3a87ad;
+}
+
+.lead{
+  text-align: justify;
+  font-size: 16px;
+  font-family: "Verdana, Geneva", sans-serif;
+  line-height: 24px;     
+}
+
+body{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background-color: #ffffff;
+}
+.page{
+  margin:20px;
+  padding: 10px;
+  padding-left: 20px;
+  box-shadow: 0 4px 16px 0 rgba(0,0,0,0.25);
+}
+
+.heading_style{
+  align-self: center;
+  padding: 30px 0;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  color: aliceblue;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 2px;
+  font-weight: 500;
+  background-image: url("Images/ourTeam_Img2.jpg");
+  /* transform: scale(50%,50%); */
+  background-position: center;
+  background-repeat: no-repeat;
+  display: block;
+  font-size: 1.5rem;
+  padding: 100px 0;
+  margin-bottom: 10px;
+  margin-top: 50px;
+  margin-right: 10px;
+}
+
+.card{
+  width: 100%;
+  height: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.column1{
+  margin:6%;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
+  background-color: #fff;
+  width: 21.25%;
+  border-radius: 15px;
+  box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.1);
+  float:left;
+}
+
+.column1:hover{
+  box-shadow: 0px 30px 18px -8px rgba(0, 0, 0, 0.1);
+  transform: scale(1.05, 1.05);
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row1::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title1 {
+  color: grey;
+}
+
+.rows{
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  align-content: center;
+  padding: 0 4px;   
+  margin-left: 25px;
+  margin-top: 25px;
+
+}
+
+/* Create two equal columns that sits next to each other */
+.form-group {
+  flex: 50%;
+  padding: 0 4px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.form-group-dd {
+  padding: 0 4px;
+  height: fit-content;
+}
+
+.form-group-dd img {
+  margin-top: 8px;
+  gap: 10px 10px;
+  vertical-align: middle;
+  width: 500px;
+  height: fit-content;
+}
+

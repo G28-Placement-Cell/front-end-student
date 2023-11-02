@@ -1,5 +1,6 @@
 import { Bar } from "react-chartjs-2"
 import '../App.css'
+import { useEffect, useState } from "react";
 
 const BarChart = () => {
   const options = {
@@ -15,9 +16,32 @@ const BarChart = () => {
     },
   }
 
+  const [student, setStudent] = useState({});
+  const [loading, setLoading] = useState(true);
+
+
+
+  useEffect(() => {
+    console.log(localStorage.getItem('token'));
+    fetch('http://localhost:8000/api/student/profile', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    }).then((res) => res.json()).then((data) => {
+      console.log(data);
+      setStudent(data.stu);
+      setLoading(false);
+    }).catch((err) => {
+      console.log(err);
+      setLoading(false);
+    });
+  }, []);
+
   const labels = ["Performance"]
-  const data1 = [10]
-  const data2 = [7]
+  const data1 = [`${student?.jobprofiles?.length}`]
+  const data2 = [`${student?.shortlisted?.length}`]
 
   const data = {
     labels,

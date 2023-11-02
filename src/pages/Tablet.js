@@ -140,7 +140,7 @@ export const Tablet = () => {
                   <StyledTableCell align="right">
                     <CheckDate reg_open={row.registration_start_date} reg_end={row.registration_end_date} />
                   </StyledTableCell>
-                  <StyledTableCell align="right" style={{ alignItems: 'end', display: 'flex', flexDirection: 'column', justifyContent: 'end', columnWidth: 50 }}><Buttoned reg_open={row.registration_start_date} reg_end={row.registration_end_date} cpiOf={row.cpi_criteria} /></StyledTableCell>
+                  <StyledTableCell align="right" style={{ alignItems: 'end', display: 'flex', flexDirection: 'column', justifyContent: 'end', columnWidth: 50 }}><Buttoned reg_open={row.registration_start_date} reg_end={row.registration_end_date} cpiOf={row.cpi_criteria} jobId={row._id}/></StyledTableCell>
                 </StyledTableRow>
 
               </>
