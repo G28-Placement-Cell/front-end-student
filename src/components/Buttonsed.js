@@ -22,7 +22,7 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId }) => {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
     }).then((res) => res.json()).then((data) => {
-        // console.log(data);
+      // console.log(data);
       setStudent(data.stu);
       setLoading(false);
     }).catch((err) => {
@@ -30,6 +30,10 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId }) => {
       setLoading(false);
     });
   }, []);
+
+  const [stads, setStads] = useState(
+    JSON.parse(localStorage.getItem(`registrationStatus_${jobId}_${stuId}`)) || false
+  );
 
   const handleRegister = () => {
     if (jobId && stuId) {
@@ -45,6 +49,8 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId }) => {
         })
       }).then((res) => res.json()).then((data) => {
         console.log(data);
+        // Save registration status in localStorage
+        localStorage.setItem(`registrationStatus_${jobId}_${stuId}`, true);
         setStads(true);
       }).catch((err) => {
         console.log(err);
@@ -68,6 +74,8 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId }) => {
         })
       }).then((res) => res.json()).then((data) => {
         console.log(data);
+        // Save registration status in localStorage
+        localStorage.setItem(`registrationStatus_${jobId}_${stuId}`, false);
         setStads(false);
       }).catch((err) => {
         console.log(err);
@@ -79,7 +87,6 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId }) => {
 
   var currentDate = new Date();
   console.log(student.jobprofiles);
-  const [stads, setStads] = useState(student.jobprofiles?.includes(stuId));
   const [stats, setStatus] = useState(false);
   const date1 = new Date(reg_open);
   const date2 = new Date(reg_end);
