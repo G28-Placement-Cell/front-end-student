@@ -73,7 +73,7 @@ function StudentProfile() {
                 <div className="d-flex flex-column align-items-center text-center">
                   <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} />
                   <div className="mt-3">
-                    <h4 id='student_name'>{student?.name}</h4>
+                    <h4 id='student_name'>{student?.name.toUpperCase()}</h4>
                     <p id="student id" className="text-secondary mb-1">{student?.student_id}</p>
                     <p id="verify" className="text-muted font-size-sm">Your profile is APPROVED </p>
                   </div>
@@ -108,15 +108,15 @@ function StudentProfile() {
                 </li>
                 <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                   <h6 className="mb-0">Branch</h6>
-                  <span id="Branch" className="text-secondary">{student?.academics.branch}</span>
+                  <span id="Branch" className="text-secondary">{student?.academics.branch.toUpperCase()}</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                   <h6 className="mb-0">Domain</h6>
-                  <span id="Domain" className="text-secondary">{student?.domain}</span>
+                  <span id="Domain" className="text-secondary">{student?.domain.toUpperCase()}</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                   <h6 className="mb-0">Registering For</h6>
-                  <span id="RegisteringFor" className="text-secondary">{student?.registering_for}</span>
+                  <span id="RegisteringFor" className="text-secondary">{student?.registering_for.toUpperCase()}</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                   <h6 className="mb-0">Interested in Placement</h6>
@@ -137,7 +137,7 @@ function StudentProfile() {
                     <h6 className="mb-0">First Name</h6>
                   </div>
                   <div id="FirstName" className="col-sm-9 text-secondary">
-                    {student?.name}
+                    {student?.name.toUpperCase()}
                   </div>
                 </div>
                 <hr />
@@ -146,7 +146,7 @@ function StudentProfile() {
                     <h6 className="mb-0">Last Name</h6>
                   </div>
                   <div id="LastName" className="col-sm-9 text-secondary">
-                    {student?.surname}
+                    {student?.surname.toUpperCase()}
                   </div>
                 </div>
                 <hr />
@@ -182,7 +182,7 @@ function StudentProfile() {
                     <h6 className="mb-0">Gender</h6>
                   </div>
                   <div id="Gender" className="col-sm-9 text-secondary">
-                    {student?.gender}
+                    {student?.gender.toUpperCase()}
                   </div>
                 </div>
                 <hr />
@@ -209,7 +209,7 @@ function StudentProfile() {
                     <h6 className="mb-0">Father Name</h6>
                   </div>
                   <div id="FatherName" className="col-sm-9 text-secondary">
-                    {student?.father_name}
+                    {student?.father_name.toUpperCase()}
                   </div>
                 </div>
                 <hr />
@@ -219,7 +219,7 @@ function StudentProfile() {
                     <h6 className="mb-0">Mother Name</h6>
                   </div>
                   <div id="MotherName" className="col-sm-9 text-secondary">
-                    {student?.mother_name}
+                    {student?.mother_name.toUpperCase()}
                   </div>
                 </div>
                 <hr />
