@@ -35,12 +35,13 @@ function Header() {
   return (
     <AppBar position="sticky" style={{ backgroundColor: "#2B2442" }}>
       <Toolbar>
-          < TemporaryDrawer />
+        < TemporaryDrawer />
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, marginLeft: 2 }}>
           Placement Cell
         </Typography>
         <Button color="inherit">Contact us</Button>
-        <Button color="inherit">About Us</Button>
+        <Link to='/aboutus'><Button color="inherit" style={{color :'#D1D2F4'}}>About Us</Button></Link>
+        
         <Button color="inherit" onClick={logoutHandler}>Logout</Button>
       </Toolbar>
     </AppBar>
