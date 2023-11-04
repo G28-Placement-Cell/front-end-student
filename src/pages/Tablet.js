@@ -130,7 +130,7 @@ export const Tablet = () => {
                   <StyledTableCell component="th" scope="row">{index + 1}</StyledTableCell>
                   <StyledTableCell align="right">
                     {/* <a style={{color: "#2B2442", textDecoration: "none"}} href={<JobProfile company={row}/>} target="_blank">{row.company_name}</a> */}
-                    <Link to={`/JobProfile/${row._id}`} target='_blank' style={{textDecoration:'none',color:'black'}}>{row.company_name.toUpperCase()}</Link>
+                    <Link to={`/JobProfile/${row._id}`} style={{textDecoration:'none',color:'black'}}>{row.company_name.toUpperCase()}</Link>
                   </StyledTableCell>
                   <StyledTableCell align="right">{row.offer_type.toUpperCase()}</StyledTableCell>
                   <StyledTableCell align="right">{row.cpi_criteria}</StyledTableCell>
