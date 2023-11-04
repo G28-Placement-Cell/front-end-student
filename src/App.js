@@ -28,7 +28,7 @@ function App() {
   return (
       <Router>
         <Header />
-        <div style={{minHeight: "84vh"}}>
+        <div style={{minHeight: "84vh", backgroundColor:'#e4eaf5'}}>
         <ToastContainer />
         <Routes>
           <Route path='/' element={<StudentLogin />} />

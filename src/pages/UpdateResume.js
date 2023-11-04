@@ -39,7 +39,7 @@ function UpdateResume() {
     });
     if (done) {
         return (
-            <div className="maincp" style={{ marginTop: '20vh' }}>
+            <div className="maincp" style={{ paddingTop: '20vh' }}>
                 <div className="change-password-container" >
                     <h2 style={{ margin: 'auto', justifyContent: 'center', alignItems: 'center' }}>File Uploaded Successfully</h2>
                 </div>
@@ -47,7 +47,7 @@ function UpdateResume() {
         );
     }
     return (
-        <div className="maincp" style={{ marginTop: '20vh' }}>
+        <div className="maincp" style={{ paddingTop: '20vh' }}>
 
             <div className="change-password-container" style={{ margin: 'auto', justifyContent: 'center', alignItems: 'center' }} >
                 {/* <form >
