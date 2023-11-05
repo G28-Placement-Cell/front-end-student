@@ -7,12 +7,12 @@ import Grid from '@mui/material/Grid';
 
 function App() {
 
-  const [Announcementsdata, setAnnouncement] = useState();//student object
+  const [Announcementsdata, setAnnouncement] = useState([]);//student object
   const [loading, setLoading] = useState(true);//loading state
 
   useEffect(() => {
     console.log(localStorage.getItem('token'));
-    fetch('http://localhost:8000/api/announcements', {
+    fetch('http://localhost:8000/api/announcements/admin/student', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
