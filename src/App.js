@@ -14,6 +14,7 @@ import { Errored } from './pages/Errored';
 import BarChart from './pages/Performance'
 import StudentRegister from './pages/studentRegister';
 import UpdateResume from './pages/UpdateResume';
+import AnnouncementSection from './pages/AdminAnnouncements';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Jobprofile from './pages/Jobprofile';
@@ -35,7 +36,8 @@ function App() {
           <Route path='/register' element={<StudentRegister />} />
           <Route path='/profile' element={<StudentProfile />} />
           <Route path='/companies' element={<Tablet />} />
-          <Route path='/announcements' element={<Announcement />} />
+          <Route path='/companyannouncements' element={<Announcement />} />
+          <Route path='/adminannouncements' element={<AnnouncementSection />} />
           <Route path='/performance' element={<BarChart/>}/>
           <Route path='/updateResume' element={<UpdateResume />} />
           {/* <Route path='/updateresume'  /> */}
