@@ -63,7 +63,7 @@ const BarChart = () => {
     ],
   }
 
-  return (<div className="graph-container" style={{marginTop:'5vh'}}><Bar options={options} data={data}/></div>);
+  return (<div className="graph-container" style={{paddingTop:'5vh'}}><Bar options={options} data={data}/></div>);
 }
 
 export default BarChart

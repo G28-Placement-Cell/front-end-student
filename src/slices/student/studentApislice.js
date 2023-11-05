@@ -54,7 +54,7 @@ export const studentApislice = apislice.injectEndpoints({
                 url: `${student_url}/change_password`,
                 method: 'POST',
                 headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    authorization: 'Bearer ' + localStorage.getItem('token')
                 },
                 body: data,
                 message: "ok"

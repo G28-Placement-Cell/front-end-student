@@ -18,6 +18,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Jobprofile from './pages/Jobprofile';
 import {registerCharts} from './components/Performancemain';
+import AboutUs from './pages/AboutUs';
+
 
 registerCharts()
 
@@ -26,7 +28,7 @@ function App() {
   return (
       <Router>
         <Header />
-        <div style={{minHeight: "84vh"}}>
+        <div style={{minHeight: "84vh", backgroundColor:'#e4eaf5'}}>
         <ToastContainer />
         <Routes>
           <Route path='/' element={<StudentLogin />} />
@@ -39,6 +41,7 @@ function App() {
           {/* <Route path='/updateresume'  /> */}
           <Route path='/changepassword' element={<ChangePassword />} />
           <Route path='/jobprofile/:id' element={<Jobprofile />}/>
+          <Route path='/aboutus' element={<AboutUs />}/>
           <Route path='/logout' />
           <Route path='/*' element={<Errored />} />
         </Routes>

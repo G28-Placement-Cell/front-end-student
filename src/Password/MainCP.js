@@ -32,20 +32,7 @@ function ChangePassword() {
   }
   const submitHandler = async (e) => {
     e.preventDefault();
-    // if (currentPassword !== '') {
-    //   if (newPassword === confirmPassword) {
-    //     if (newPassword !== '' && confirmPassword !== '') {
-    //       setMessage('Password changed successfully.');
-    //     } else {
-    //       setMessage('Please enter the new password.');
-    //     }
-    //   } else {
-    //     setMessage('Passwords do not match. Please try again.');
-    //   }
-    // }
-    // else {
-    //   setMessage('Please enter the password to be change.')
-    // }
+    
     try {
       // console.log('ok');
       const res = await change_password({ currentPassword, newPassword, confirmPassword }).unwrap();
@@ -56,11 +43,9 @@ function ChangePassword() {
       console.log(err);
     }
   };
-  // if (show) {
-  //   logoutHandler();
-  // }
+  
   return (
-    <div className="maincp">
+    <div className="maincp" style={{marginTop:0, paddingTop:'20px'}}>
       <div className="change-password-container">
         <h2>Change Password</h2>
         <form onSubmit={submitHandler}>
