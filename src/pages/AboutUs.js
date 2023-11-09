@@ -25,9 +25,9 @@
 //           text: 'Slide 4 Text',
 //         },
 //       ];
-    
+
 //       const [currentIndex, setCurrentIndex] = useState(0);
-    
+
 //       const onChange = (index) => {
 //         setCurrentIndex(index);
 //       };
@@ -35,7 +35,7 @@
 //   <div className="page">
 //   {/* </div><div className="card-header" style={{boxSizing: 'border-box', padding: 0,margin: 0,backgroundColor: '#ffffff'}}> */}
 //       <h1 className="title2" style={{paddingLeft: '1vw'}}>About Us</h1>
-  
+
 //     <div className="row">
 //         <div className="form-group">
 //           <p className="lead">
@@ -82,8 +82,8 @@
 //             ))}
 //           </Carousel>
 //         </div>
-    
-    
+
+
 //     <div className="card-header">
 //       <h1 className="title">Placement Highlights</h1>
 //     </div>
@@ -195,7 +195,7 @@
 //     </div>
 //     </div>
 //   </>);
-  
+
 // }
 
 // export default AboutUs;
@@ -382,10 +382,10 @@ const AboutUs = () => {
   return (
     <div>
       <div class="a">
-      <h1>Bridging Dreams with Careers</h1>
-      <p>At DA-IICT, we believe in fostering excellence in education and empowering our students to achieve their full potential. We are committed to providing a world-class learning environment that nurtures innovation, creativity, and problem-solving skills.
-      </p>
-  </div>
+        <h1>Bridging Dreams with Careers</h1>
+        <p>At DA-IICT, we believe in fostering excellence in education and empowering our students to achieve their full potential. We are committed to providing a world-class learning environment that nurtures innovation, creativity, and problem-solving skills.
+        </p>
+      </div>
 
       {/* <div className='b' >
         <p>
@@ -413,39 +413,39 @@ const AboutUs = () => {
                      the industry in order to ensure that DA-IICT graduates spread across the industry.
         </p>
       </div> */}
-    <div class="main-content">
-      <h2>About DA-IICT</h2>
-      <p>DA-IICT is a premier institution of higher education dedicated to the Information and Communication Technology. Established by the Reliance Group, DA-IICT is widely recognized for its academic rigor, cutting-edge research, and strong industry connections.</p>
+      <div class="main-content">
+        <h2>About DA-IICT</h2>
+        <p>DA-IICT is a premier institution of higher education dedicated to the Information and Communication Technology. Established by the Reliance Group, DA-IICT is widely recognized for its academic rigor, cutting-edge research, and strong industry connections.</p>
 
-      <p>The university offers a comprehensive range of undergraduate, postgraduate, and doctoral programs in the fields of computer science, electronics and communication engineering, and information technology. Our curriculum is designed to meet the evolving needs of the industry, ensuring that our graduates are equipped with the skills and knowledge to succeed in a dynamic and competitive global marketplace.</p>
+        <p>The university offers a comprehensive range of undergraduate, postgraduate, and doctoral programs in the fields of computer science, electronics and communication engineering, and information technology. Our curriculum is designed to meet the evolving needs of the industry, ensuring that our graduates are equipped with the skills and knowledge to succeed in a dynamic and competitive global marketplace.</p>
 
-      <p>DA-IICT is proud of its strong placement record, with graduates consistently securing coveted positions in leading multinational corporations and start-ups. Our Placement Cell actively collaborates with industry partners to provide our students with valuable internship opportunities and access to the latest industry trends.</p>
+        <p>DA-IICT is proud of its strong placement record, with graduates consistently securing coveted positions in leading multinational corporations and start-ups. Our Placement Cell actively collaborates with industry partners to provide our students with valuable internship opportunities and access to the latest industry trends.</p>
 
-      <p>Beyond academics, DA-IICT fosters a vibrant campus life that encourages students to explore their interests and participate in a variety of extracurricular activities. Our students are actively involved in research, community engagement, and student organizations, gaining valuable experience that enriches their overall learning experience.</p>
+        <p>Beyond academics, DA-IICT fosters a vibrant campus life that encourages students to explore their interests and participate in a variety of extracurricular activities. Our students are actively involved in research, community engagement, and student organizations, gaining valuable experience that enriches their overall learning experience.</p>
 
-      <p>If you are seeking a challenging and rewarding academic journey that will prepare you for a successful career in the technology industry, DA-IICT is the ideal place for you. Join us and embark on a journey of innovation, collaboration, and personal growth.</p>
+        <p>If you are seeking a challenging and rewarding academic journey that will prepare you for a successful career in the technology industry, DA-IICT is the ideal place for you. Join us and embark on a journey of innovation, collaboration, and personal growth.</p>
 
-      <h2>Our Programs</h2>
-      <div class="imagec">
-        <img src={campus} alt="DA-IICT Campus Life" className='img2'></img>
+        <h2>Our Programs</h2>
+        <div class="imagec">
+          <img src={campus} alt="DA-IICT Campus Life" className='img2'></img>
+        </div>
+
+        <p>DA-IICT offers a diverse range of undergraduate and postgraduate programs in the field of Information and Communication Technology. Our programs are designed to provide students with a strong foundation in the latest theoretical and practical advancements in the field.</p>
+
+        <h3>Undergraduate Programs</h3>
+        <ul>
+          <li>B.Tech. (Information and Communication Technology)</li>
+          <li>B.Tech. (ICT with minors in Computational Science)</li>
+        </ul>
       </div>
 
-      <p>DA-IICT offers a diverse range of undergraduate and postgraduate programs in the field of Information and Communication Technology. Our programs are designed to provide students with a strong foundation in the latest theoretical and practical advancements in the field.</p>
-
-      <h3>Undergraduate Programs</h3>
-      <ul>
-        <li>B.Tech. (Information and Communication Technology)</li>
-        <li>B.Tech. (ICT with minors in Computational Science)</li>
-      </ul>
-    </div>
-  
 
       {/* <div className='c'>
         <img src={line} alt="line" className='line'></img>
       </div> */}
 
       <div className='d'>
-      Your future is our priority. Join DA-IICT for a world of opportunities and Gujarat's unrivaled placements.
+        Your future is our priority. Join DA-IICT for a world of opportunities and Gujarat's unrivaled placements.
       </div>
 
       <div className='e'>
@@ -514,20 +514,20 @@ const AboutUs = () => {
 
       <div className='g'>
         Our Team Members
-        </div>
+      </div>
 
 
       <div className='h'>
 
-      <section className="vh-400" style={{ backgroundColor: 'white' }}>
-      <div className="container py-5 h-100">
-        <div className="row d-flex justify-content-center align-items-center h-100">
-          {profiles.map((profile, index) => (
-            <ProfileCard key={index} {...profile} />
-          ))}
-        </div>
-      </div>
-    </section>
+        <section className="vh-400" style={{ backgroundColor: 'white' }}>
+          <div className="container py-5 h-100">
+            <div className="row d-flex justify-content-center align-items-center h-100">
+              {profiles.map((profile, index) => (
+                <ProfileCard key={index} {...profile} />
+              ))}
+            </div>
+          </div>
+        </section>
 
 
 
@@ -541,4 +541,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default AboutUs;
