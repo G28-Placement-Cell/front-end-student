@@ -1,8 +1,5 @@
-/* In a CSS file, e.g., AboutUs.css */
-/* body {
-  background-color: red;
-} */
-.title{
+/*
+.title2{
     color:#3a87ad;
   }
   
@@ -17,10 +14,11 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    background-color: #ffffff;
   }
   .page{
     margin:20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     padding: 10px;
     padding-left: 20px;
     box-shadow: 0 4px 16px 0 rgba(0,0,0,0.25);
@@ -37,7 +35,7 @@
     letter-spacing: 2px;
     font-weight: 500;
     background-image: url("../images/ourTeam_Img2.jpg");
-    /* transform: scale(50%,50%); */
+    
     background-position: center;
     background-repeat: no-repeat;
     display: block;
@@ -48,7 +46,7 @@
     margin-right: 10px;
   }
   
-  .card{
+  .card2{
     width: 100%;
     height: auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -69,11 +67,11 @@
     transform: scale(1.05, 1.05);
   }
   
-  .container {
+  .container3 {
     padding: 0 16px;
   }
   
-  .container::after, .row1::after {
+  .container3::after, .row1::after {
     content: "";
     clear: both;
     display: table;
@@ -94,7 +92,7 @@
   
   }
   
-  /* Create two equal columns that sits next to each other */
+  
   .form-group {
     flex: 50%;
     padding: 0 4px;
@@ -114,5 +112,154 @@
     width: 500px;
     height: fit-content;
   }
+
+  */
+
+  /* .slides1 {
+    width:'75vw';
+     margin-left: '12vw';
+     margin-top: '3vh';
+  } */
+
+  .a {
+    text-align: center;
+    background-image: url("../images/campus-1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 675px;
+    padding-top: 100px;
+    width: auto;
+}
+
+.a h1 {
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.a p {
+  color: white;
+  font-size: 24px;
+}
+
+/* .b {
+    font-size: 24px;
+    font-family: "Helvetica Neue";
+    white-space: normal;
+    text-align: left;
+    font-weight: normal;
+    padding: 20px;
+} */
+
+.main-content {
+  padding: 10px;
+}
+
+.b {
+  font-size: 24px;
+  font-family: "Helvetica Neue";
+  white-space: normal;
+  text-align: left;
+  font-weight: normal;
+  padding: 20px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.imagec {
+  /* flex: 1; */
+  padding: 10px;
+  margin: 10px;
+  align-items: center;
+  border: 0;
+  width: 100%;
+  /* Adjust the image size as needed */
+  height: auto;
+  text-align: center;
+}
+
+.line {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+.d {
+    text-align: center;
+    font-size: 40px;
+    padding: 20px;
+    font-weight: bold;
+}
+
+.e {
+    text-align: center;
+    font-size: 20px;
+    padding: 20px;
+    width: 50%;
+    align-items: center;
+    margin-left: 25%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: grey;
+    padding-bottom: 50px;
+}
+
+
+.f {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.card {
+    flex: 1;
+    min-width: calc(33.33% - 20px);
+    /* 2 cards per row with spacing */
+    padding: 20px;
+    margin: 10px;
+    align-items: center;
+    border: 0;
+}
+
+.img1 {
+    width: 100px;
+    /* Adjust the image size as needed */
+    height: auto;
+
+}
+.img2 {
+  width: 200px;
+  /* Adjust the image size as needed */
+  height: auto;
+
+}
+
+.title {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.disc {
+    font-size: 16px;
+    margin-top: 10px;
+    color: grey;
+}
+
+
+.g{
+    text-align: center;
+    font-size: 60px;
+    padding: 20px;
+    font-weight: bold;
+}
+
+
+
+
+
+
   
   
