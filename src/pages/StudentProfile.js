@@ -78,7 +78,7 @@ function StudentProfile() {
       <div className="main-body">
         <div className="row gutters-sm">
           <div className="col-md-4 mb-3">
-            <div className="card">
+            <div className="card" style={{width:'100%'}}>
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
                   {/* {student && profilefileid && <img src={`http://localhost:8000/api/student/files/profilepic/${profilefileid}`} alt="Admin" className="rounded-circle" width={150} />} */}
@@ -90,8 +90,8 @@ function StudentProfile() {
                 </div>
               </div>
             </div>
-            <div className="card mt-3">
-              <ul className="list-group list-group-flush">
+            <div className="card mt-3" style={{width:'100%'}}>
+              <ul className="list-group list-group-flush" style={{width:'100%'}}>
                 <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                   <h6 className="mb-0">Email</h6>
                   <span id="Email" className="text-secondary">{student?.email.main}</span>
@@ -140,8 +140,8 @@ function StudentProfile() {
             </div>
           </div>
           <div className="col-md-8">
-            <div className="card mb-3">
-              <div className="card-body">
+            <div className="card mb-3" style={{width:'100%'}}>
+              <div className="card-body" style={{width:'100%'}}>
                 <div className="row">
                   <div className="col-sm-3">
                     <h6 className="mb-0">First Name</h6>
