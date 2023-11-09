@@ -42,6 +42,12 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
+    title: 'Update Profile pic',
+    path: '/updateProfilepic',
+    icon: <BiIcons.BiUpload />,
+    cName: 'nav-text'
+  },
+  {
     title: 'Company Announcements',
     path: '/companyannouncements',
     icon: <TfiIcons.TfiAnnouncement />,

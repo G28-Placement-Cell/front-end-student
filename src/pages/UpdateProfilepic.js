@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import { useUploadMutation } from '../slices/student/studentApislice';
 
-function UpdateResume() {
+function UpdateProfilepic() {
     const form = document.getElementById('uploadForm');
     const [tmp, setTmp] = useState('');
     const [done, setDone] = useState(false);
@@ -18,7 +18,7 @@ function UpdateResume() {
         e.preventDefault();
         const formData = new FormData(form);
         console.log(formData.get('file'));
-        fetch('http://localhost:8000/api/student/files/resume', {
+        fetch('http://localhost:8000/api/student/files/profilepic', {
             method: 'POST',
             body: formData,
             headers: {
@@ -53,7 +53,7 @@ function UpdateResume() {
                 {/* <form >
                     <input type="file" name="file" />
                 </form> */}
-                <h2>UPDATE RESUME</h2>
+                <h2>UPDATE Profile Pic</h2>
                 <form id="uploadForm" encType="multipart/form-data" >
                     <input type="file" name="file" onChange={(e) => { setTmp(e.target.value) }} />
                     {/* <div style={{justifyItems:'center'}}> */}
@@ -66,4 +66,4 @@ function UpdateResume() {
     );
 }
 
-export default UpdateResume;
+export default UpdateProfilepic;

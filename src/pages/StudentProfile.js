@@ -28,6 +28,8 @@ function StudentProfile() {
     }).then((res) => res.json()).then((data) => {
       console.log(data);
       setStudent(data.stu);
+      // const profilefileid = student?.profile_pic;
+      // const profileurl = `http://localhost:8000/api/student/files/profilepic/${profilefileid}`
       setLoading(false);
     }).catch((err) => {
       console.log(err);
@@ -35,7 +37,7 @@ function StudentProfile() {
     });
   }, []);
 
-  const handleclick = async () => {
+  const handleClickResume = async () => {
     // const studentid = localStorage.getItem('studentinfo.student_id');
     const fileid = student?.resume;
     // const res = await axios.get(`http://localhost:8000/api/student/files/${fileid}`, {
@@ -44,9 +46,13 @@ function StudentProfile() {
     //   },
     // });
     // console.log(res);
-    window.open(`http://localhost:8000/api/student/files/${fileid}`);
+    window.open(`http://localhost:8000/api/student/files/resume/${fileid}`);
   }
 
+  const handleClickProfilepic = async () => {
+    const fileid = student?.profile_pic;
+    window.open(`http://localhost:8000/api/student/files/profilepic/${fileid}`);
+  }
   // useEffect(() => {
   //   fetchdata();
   // }, []);
@@ -63,15 +69,19 @@ function StudentProfile() {
     width: 1,
   });
   if (loading) return (<div>Loading...</div>);
+  const profilefileid = student?.profile_pic;
+  // if (profilefileid) {
+  //   let profileurl = `http://localhost:8000/api/student/files/profilepic/${profilefileid}`;
+  // }
   return (
-    <div className="container" style={{marginTop:0, paddingTop:'20px', marginBottom:0, paddingBottom:'20px'}}>
+    <div className="container" style={{ marginTop: 0, paddingTop: '20px', marginBottom: 0, paddingBottom: '20px' }}>
       <div className="main-body">
         <div className="row gutters-sm">
           <div className="col-md-4 mb-3">
             <div className="card">
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} />
+                  {/* {student && profilefileid && <img src={`http://localhost:8000/api/student/files/profilepic/${profilefileid}`} alt="Admin" className="rounded-circle" width={150} />} */}
                   <div className="mt-3">
                     <h4 id='student_name'>{student?.name.toUpperCase()}</h4>
                     <p id="student id" className="text-secondary mb-1">{student?.student_id}</p>
@@ -245,13 +255,12 @@ function StudentProfile() {
                 <hr />
                 <div className="row">
                   <div className="col-sm-12">
-                    <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" onClick={handleclick} variant="contained" startIcon={<CloudUploadIcon />}>
+                    <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" onClick={handleClickResume} variant="contained" startIcon={<CloudUploadIcon />}>
                       Download Resume
                     </Button>
-                    {/* <Button href='/updateresume' sx={{ width: 150, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
-                      Upload Resume
-                      <VisuallyHiddenInput type="file" />
-                    </Button> */}
+                    <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" onClick={handleClickProfilepic} variant="contained" startIcon={<CloudUploadIcon />}>
+                      Download Profilepic
+                    </Button>
                   </div>
                 </div>
               </div>

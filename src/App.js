@@ -14,11 +14,12 @@ import { Errored } from './pages/Errored';
 import BarChart from './pages/Performance'
 import StudentRegister from './pages/studentRegister';
 import UpdateResume from './pages/UpdateResume';
+import UpdateProfilepic from './pages/UpdateProfilepic';
 import AnnouncementSection from './pages/AdminAnnouncements';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Jobprofile from './pages/Jobprofile';
-import {registerCharts} from './components/Performancemain';
+import { registerCharts } from './components/Performancemain';
 import AboutUs from './pages/AboutUs';
 
 
@@ -27,9 +28,9 @@ registerCharts()
 function App() {
 
   return (
-      <Router>
-        <Header />
-        <div style={{minHeight: "84vh", backgroundColor:'#e4eaf5'}}>
+    <Router>
+      <Header />
+      <div style={{ minHeight: "84vh", backgroundColor: '#e4eaf5' }}>
         <ToastContainer />
         <Routes>
           <Route path='/' element={<StudentLogin />} />
@@ -38,18 +39,19 @@ function App() {
           <Route path='/companies' element={<Tablet />} />
           <Route path='/companyannouncements' element={<Announcement />} />
           <Route path='/adminannouncements' element={<AnnouncementSection />} />
-          <Route path='/performance' element={<BarChart/>}/>
+          <Route path='/performance' element={<BarChart />} />
           <Route path='/updateResume' element={<UpdateResume />} />
+          <Route path='/updateProfilepic' element={<UpdateProfilepic />} />
           {/* <Route path='/updateresume'  /> */}
           <Route path='/changepassword' element={<ChangePassword />} />
-          <Route path='/jobprofile/:id' element={<Jobprofile />}/>
-          <Route path='/aboutus' element={<AboutUs />}/>
+          <Route path='/jobprofile/:id' element={<Jobprofile />} />
+          <Route path='/aboutus' element={<AboutUs />} />
           <Route path='/logout' />
           <Route path='/*' element={<Errored />} />
         </Routes>
-        </div>
-        <Footer />
-      </Router>
+      </div>
+      <Footer />
+    </Router>
   );
 
 }
