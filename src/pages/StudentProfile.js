@@ -64,7 +64,7 @@ function StudentProfile() {
   });
   if (loading) return (<div>Loading...</div>);
   return (
-    <div className="container" >
+    <div className="container" style={{marginTop:0, paddingTop:'20px', marginBottom:0, paddingBottom:'20px'}}>
       <div className="main-body">
         <div className="row gutters-sm">
           <div className="col-md-4 mb-3">

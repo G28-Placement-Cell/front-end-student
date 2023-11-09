@@ -1,49 +1,122 @@
-// src/App.js
 import React, { useState, useEffect } from 'react';
-import '../style/announcement.css';
-import { Typography } from '@mui/material';
-import CustomCard from '../components/CardComponent';
-import Grid from '@mui/material/Grid';
+import {
+  Typography,
+  ListItem,
+  ListItemText,
+  List,
+  Paper,
+} from '@mui/material';
+import '../style/AnnouncementSection.css'
 
-function App() {
-
-  const [Announcementsdata, setAnnouncement] = useState();//student object
-  const [loading, setLoading] = useState(true);//loading state
+const Announcement = ({ title }) => {
+  const [announcements, setAnnouncements] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
 
   useEffect(() => {
-    console.log(localStorage.getItem('token'));
-    fetch('http://localhost:8000/api/announcements', {
+    fetch('http://localhost:8000/api/announcements/admin/companyAnnouncements', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
-    }).then((res) => res.json()).then((data) => {
-      setAnnouncement(data);
-      console.log(data)
-      setLoading(false);
-    }).catch((err) => {
-      console.log(err);
-      setLoading(false);
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+
+        // Filter out announcements with null company
+        const validAnnouncements = data.filter(announcement => announcement.company);
+        console.log("Valid announcements:", validAnnouncements); // Log valid announcements
+
+        // Extract the unique company IDs from the valid announcements
+        const uniqueCompanyIds = [...new Set(validAnnouncements.map(announcement => announcement.company._id))];
+        console.log("Unique company IDs:", uniqueCompanyIds); // Log unique company IDs
+
+        // Fetch company names for each unique company ID
+        const fetchCompanyNames = uniqueCompanyIds.map(companyId =>
+          fetch(`http://localhost:8000/api/company/name/${companyId}`, {
+            method: 'GET',
+            headers: {
+              'content-type': 'application/json',
+            },
+          })
+            .then((res) => res.json())
+        );
+
+        // Wait for all company name fetches to complete
+        Promise.all(fetchCompanyNames)
+          .then(companyData => {
+
+            const companyMap = {};
+            companyData.forEach(company => {
+              companyMap[company.company._id] = company.company.companyname; // Access the 'companyname' field
+
+            });
+
+            console.log("Company map:", companyMap); // Log company map
+
+            const announcementsWithCompanyNames = validAnnouncements.map(announcement => ({
+              ...announcement,
+              companyName: companyMap[announcement.company._id],
+            }));
+
+            setAnnouncements(announcementsWithCompanyNames);
+            console.log(announcements);
+            setLoading(false);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
   }, []);
 
   return (
-    <div className="App test">
-      <Typography sx={{ mb: 4 }} variant='h3'>Announcements</Typography>
-      {Announcementsdata && <main className="App-content">
-        <div className="announcements" >
-          <Grid container spacing={2} sx={{ flexDirection: 'column', justifyContent: 'center', alignContent: 'center' }}>
-            {Announcementsdata.map((announcement) => (
-              <Grid item xs={12} key={announcement?._id}>
-                <CustomCard item={announcement} />
-              </Grid>
-            ))}
-          </Grid>
-        </div>
-      </main>}
+    <div style={{ position: 'relative', padding:'10px' }}>
+      <Paper sx={{ py: 1, px: 3 }} className="container">
+        <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
+          Company Announcements {title}:
+        </Typography>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          announcements && announcements.length > 0 ? (
+            <List className="list">
+              {announcements
+                .slice()
+                .reverse()
+                .map((announcement, index) => (
+                  <ListItem key={index} className="item">
+                    <ListItemText
+                      primary={
+                        <div>
+                          <Typography variant='h6' sx={{ mb: 1 }}>{announcement?.companyName}</Typography>
+                          <Typography variant='body1'>{announcement.title}</Typography>
+                        </div>
+                      }
+                      secondary={
+                        <div>
+                          <Typography variant='body2'>{announcement.description}</Typography>
+                          <Typography
+                            sx={{ fontSize: 12, fontStyle: "italic", textAlign: "right" }}
+                            color="text.secondary"
+                          >
+                            {new Date(announcement.date).toLocaleString()}
+                          </Typography>
+                        </div>
+                      }
+                      secondaryTypographyProps={{ variant: "body2" }}
+                    />
+                  </ListItem>
+                ))}
+            </List>
+          ) : (
+            <div style={{ minHeight: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Typography sx={{ textAlign: 'center' }} variant="body1">No data to display</Typography>
+            </div>
+          )
+        )}
+      </Paper>
     </div>
   );
-}
+};
 
-export default App;
+export default Announcement;

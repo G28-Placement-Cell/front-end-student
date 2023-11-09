@@ -12,6 +12,7 @@ function CustomCard({ item, height }) {
         <h2 style={{color:'blue'}}>{item.company}</h2>
         <h4>{item.title}</h4>
         <p>{item.description}</p>
+        <p>{item.date}</p>
       </CardContent>
     </Card>
   );

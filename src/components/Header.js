@@ -39,10 +39,11 @@ function Header() {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, marginLeft: 2 }}>
           Placement Cell
         </Typography>
-        <Button color="inherit">Contact us</Button>
-        <Link to='/aboutus'><Button color="inherit" style={{color :'#D1D2F4'}}>About Us</Button></Link>
-        
-        <Button color="inherit" onClick={logoutHandler}>Logout</Button>
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Button color="inherit" style={{ minWidth: '16vh' }}>Contact us</Button>
+          <Button color='inherit' style={{ minWidth: '16vh' }} onClick={() => navigate('/aboutus')}>About Us</Button>
+          <Button color="inherit" onClick={logoutHandler}>Logout</Button>
+        </div>
       </Toolbar>
     </AppBar>
   );

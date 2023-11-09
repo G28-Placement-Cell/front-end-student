@@ -45,7 +45,7 @@ function ChangePassword() {
   };
   
   return (
-    <div className="maincp">
+    <div className="maincp" style={{marginTop:0, paddingTop:'20px'}}>
       <div className="change-password-container">
         <h2>Change Password</h2>
         <form onSubmit={submitHandler}>
