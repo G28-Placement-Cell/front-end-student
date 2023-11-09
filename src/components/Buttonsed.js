@@ -1,20 +1,19 @@
 import { useState, useEffect } from "react";
-// import {CheckDate} from "../pages/ChechDate"
-import { useParams } from 'react-router-dom';
-import Jobprofile from "../pages/Jobprofile";
 
 export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId }) => {
 
   const stu_id = localStorage.getItem('studentInfo');
   const stuId = stu_id ? JSON.parse(stu_id)._id : null;
+  const jobProfiles = localStorage.getItem('jobProfiles');
   console.log(stuId);
   console.log(jobId);
+  console.log(jobProfiles)
 
   const [student, setStudent] = useState({});//student object
   const [loading, setLoading] = useState(true);//loading state
   // const studCpi = 7;
   useEffect(() => {
-    console.log(localStorage.getItem('token'));
+    // console.log(localStorage.getItem('token'));
     fetch('http://localhost:8000/api/student/profile', {
       method: 'GET',
       headers: {
@@ -32,8 +31,19 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId }) => {
   }, []);
 
   const [stads, setStads] = useState(
-    JSON.parse(localStorage.getItem(`registrationStatus_${jobId}_${stuId}`)) || false
+    localStorage.getItem('jobProfiles') &&
+    JSON.parse(localStorage.getItem('jobProfiles')).some(job => job._id === jobId)
   );
+
+  useEffect(() => {
+    if (!stads) {
+      setStads(
+        localStorage.getItem('jobProfiles') &&
+        JSON.parse(localStorage.getItem('jobProfiles')).some(job => job._id === jobId)
+      );
+    }
+  }, [stads, jobId]);
+
 
   const handleRegister = () => {
     if (jobId && stuId) {
@@ -48,9 +58,9 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId }) => {
           profileId: 1,
         })
       }).then((res) => res.json()).then((data) => {
-        console.log(data);
+        // console.log(data);
         // Save registration status in localStorage
-        localStorage.setItem(`registrationStatus_${jobId}_${stuId}`, true);
+        // localStorage.setItem(`registrationStatus_${jobId}_${stuId}`, true);
         setStads(true);
       }).catch((err) => {
         console.log(err);
@@ -73,9 +83,9 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId }) => {
           profileId: 1,
         })
       }).then((res) => res.json()).then((data) => {
-        console.log(data);
+        // console.log(data);
         // Save registration status in localStorage
-        localStorage.setItem(`registrationStatus_${jobId}_${stuId}`, false);
+        // localStorage.setItem(`registrationStatus_${jobId}_${stuId}`, false);
         setStads(false);
       }).catch((err) => {
         console.log(err);
@@ -86,7 +96,7 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId }) => {
   }
 
   var currentDate = new Date();
-  console.log(student.jobprofiles);
+  // console.log(student.jobprofiles);
   const [stats, setStatus] = useState(false);
   const date1 = new Date(reg_open);
   const date2 = new Date(reg_end);
@@ -112,18 +122,7 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId }) => {
         backgroundColor: "#493D72", color: "white", fontSize: 16, height: 41,
         marginTop: 2
       }} className="btn btn-lg pb-2" disabled> REGISTER </button></>}
-      {/* { !stats && <button style={{ backgroundColor: "#493D72", color: "white", fontSize: 16, height: 41, 
-            marginTop:2}} className="btn btn-lg pb-2" onClick={() => { setStads(!stads) }}>REGISTER</button>} */}
     </>
 
   );
 }
-
-
-{/* <div style={{display:'flex', flexDirection:'column', justifyContent:'center',justifySelf:'flex-end' , inlineSize:110}}>
-                        <div className="pb-2 d-flex flex-column gap-1 px-1 pe-1 my-1" style={{ border: '1px solid #2B2442', borderRadius: '5px'}}>
-                            <h5 className="me-0 pe-0 mb-0">Resume</h5>
-                            <button style={{ backgroundColor: "#493D72", color: "white" }} className="btn btn-sm"> DOWNLOAD</button>
-                            <button style={{ backgroundColor: "#493D72", color: "white"}} className="btn btn-sm"> UPDATE</button>
-                        </div>
-                    </div> */}

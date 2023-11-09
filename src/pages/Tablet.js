@@ -49,9 +49,36 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export const Tablet = () => {
   // const [stats, setStatus] = useState(false);
   const [company, setCompany] = useState([]);//student object
+  const [jobProfiles, setJobProfiles] = useState([]);
   const [loading, setLoading] = useState(true);//loading state
+
   useEffect(() => {
-    console.log(localStorage.getItem('token'));
+    fetch('http://localhost:8000/api/student/profile', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data?.stu?.jobprofiles);
+        setJobProfiles(data?.stu?.jobprofiles);
+
+        // Set jobProfiles in localStorage
+        localStorage.setItem('jobProfiles', JSON.stringify(data.stu.jobprofiles));
+
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }, []);
+
+
+  useEffect(() => {
+    // console.log(localStorage.getItem('token'));
     fetch('http://localhost:8000/api/student/jobprofile', {
       method: 'GET',
       headers: {
@@ -59,7 +86,7 @@ export const Tablet = () => {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
     }).then((res) => res.json()).then((data) => {
-      console.log(data.job);
+      // console.log(data.job);
       setCompany(data.job);
       // setCompany(data);
       setLoading(false);
@@ -84,7 +111,7 @@ export const Tablet = () => {
   const [loadings, setLoadings] = useState(true);//loading state
 
   useEffect(() => {
-    console.log(localStorage.getItem('token'));
+    // console.log(localStorage.getItem('token'));
     fetch('http://localhost:8000/api/student/profile', {
       method: 'GET',
       headers: {
@@ -92,7 +119,7 @@ export const Tablet = () => {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
     }).then((res) => res.json()).then((data) => {
-      console.log(data);
+      // console.log(data);
       setStudent(data.stu);
       setLoadings(false);
     }).catch((err) => {
@@ -101,7 +128,6 @@ export const Tablet = () => {
     });
   }, []);
 
-  const [cnt, setCnt] = useState(1);
   return (
     <>
       {/* style={{height: '85vh'}}  */}
@@ -126,11 +152,11 @@ export const Tablet = () => {
             {company.map((row, index) => (
               (student?.registering_for === row.offer_type) &&
               <>
-                <StyledTableRow className="mt-10 py-10" key={row._id}>
+                <StyledTableRow className="mt-10 py-10" key={index}>
                   <StyledTableCell component="th" scope="row">{index + 1}</StyledTableCell>
                   <StyledTableCell align="right">
                     {/* <a style={{color: "#2B2442", textDecoration: "none"}} href={<JobProfile company={row}/>} target="_blank">{row.company_name}</a> */}
-                    <Link to={`/JobProfile/${row._id}`} style={{textDecoration:'none',color:'black'}}>{row.company_name.toUpperCase()}</Link>
+                    <Link to={`/JobProfile/${row._id}`} style={{ textDecoration: 'none', color: 'black' }}>{row.company_name.toUpperCase()}</Link>
                   </StyledTableCell>
                   <StyledTableCell align="right">{row.offer_type.toUpperCase()}</StyledTableCell>
                   <StyledTableCell align="right">{row.cpi_criteria}</StyledTableCell>
@@ -140,7 +166,7 @@ export const Tablet = () => {
                   <StyledTableCell align="right">
                     <CheckDate reg_open={row.registration_start_date} reg_end={row.registration_end_date} />
                   </StyledTableCell>
-                  <StyledTableCell align="right" style={{ alignItems: 'end', display: 'flex', flexDirection: 'column', justifyContent: 'end', columnWidth: 50 }}><Buttoned reg_open={row.registration_start_date} reg_end={row.registration_end_date} cpiOf={row.cpi_criteria} jobId={row._id}/></StyledTableCell>
+                  <StyledTableCell align="right" style={{ alignItems: 'end', display: 'flex', flexDirection: 'column', justifyContent: 'end', columnWidth: 50 }}><Buttoned reg_open={row.registration_start_date} reg_end={row.registration_end_date} cpiOf={row.cpi_criteria} jobId={row._id} /></StyledTableCell>
                 </StyledTableRow>
 
               </>

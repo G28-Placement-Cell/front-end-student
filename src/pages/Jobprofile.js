@@ -43,7 +43,7 @@ function Jobprofile() {
         <div className="row gutters-sm">
 
           <div className="card mb-3">
-            <div className="card-body">
+            <div className="card-body" style={{width:'100%'}}>
               <div className="row">
                 <div className="col-sm-3">
                   <h6 className="mb-0">Company Name</h6>
