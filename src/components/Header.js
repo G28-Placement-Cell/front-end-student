@@ -36,9 +36,11 @@ function Header() {
     <AppBar position="sticky" style={{ backgroundColor: "#2B2442" }}>
       <Toolbar>
         < TemporaryDrawer />
+
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, marginLeft: 2 }}>
           Placement Cell
         </Typography>
+
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Button color="inherit" style={{ minWidth: '16vh' }}>Contact us</Button>
           <Button color='inherit' style={{ minWidth: '16vh' }} onClick={() => navigate('/aboutus')}>About Us</Button>
