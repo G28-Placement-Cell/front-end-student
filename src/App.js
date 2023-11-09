@@ -21,6 +21,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Jobprofile from './pages/Jobprofile';
 import { registerCharts } from './components/Performancemain';
 import AboutUs from './pages/AboutUs';
+import ForgotPass from './pages/ForgotPass';
 
 
 registerCharts()
@@ -48,6 +49,7 @@ function App() {
           <Route path='/aboutus' element={<AboutUs />} />
           <Route path='/logout' />
           <Route path='/*' element={<Errored />} />
+          <Route path='/forgotpass' element={<ForgotPass />} />
         </Routes>
       </div>
       <Footer />
