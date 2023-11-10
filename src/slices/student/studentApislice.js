@@ -1,7 +1,7 @@
 import { apislice } from "./apislice";
 
 const student_url = 'api/student'
-const reset_url = 'api'
+const reset_url = 'api/reset'
 
 export const studentApislice = apislice.injectEndpoints({
     endpoints: (builder) => ({
@@ -63,13 +63,21 @@ export const studentApislice = apislice.injectEndpoints({
         }),
         reset_pass: builder.mutation({
             query: (data) => ({
-                url: `${reset_url}/reset`,
+                url: `${reset_url}`,
                 method: 'POST',
                 body: data,
                 message: "ok"
             })
-        })
+        }),
+        reset_apply: builder.mutation({
+            query: (data) => ({
+                url: `${reset_url}/apply`,
+                method: 'POST',
+                body: data,
+                message: "ok"
+            })
+        }),
     })
 })
 
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useGetdataMutation, useUploadMutation, useChange_passwordMutation, useReset_passMutation } = studentApislice;
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useGetdataMutation, useUploadMutation, useChange_passwordMutation, useReset_passMutation, useReset_applyMutation } = studentApislice;

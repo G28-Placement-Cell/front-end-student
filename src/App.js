@@ -8,7 +8,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import StudentProfile from './pages/StudentProfile';
 import { ChangePassword } from './pages/ChangePassword';
-import { ResetPassword } from './pages/ResetPassword';
+// import { ResetPassword } from './pages/ResetPassword';
 import Announcement from './pages/Announcement'
 import StudentLogin from './pages/StudentLogin';
 import { Errored } from './pages/Errored';
@@ -23,7 +23,7 @@ import Jobprofile from './pages/Jobprofile';
 import { registerCharts } from './components/Performancemain';
 import AboutUs from './pages/AboutUs';
 import ForgotPass from './pages/ForgotPass';
-
+import { ResetPassword } from './pages/ResetPassword';
 
 registerCharts()
 
@@ -52,6 +52,7 @@ function App() {
           <Route path='/logout' />
           <Route path='/*' element={<Errored />} />
           <Route path='/forgotpass' element={<ForgotPass />} />
+          <Route path='/resetpassword' element={<ResetPassword />} />
         </Routes>
       </div>
       <Footer />

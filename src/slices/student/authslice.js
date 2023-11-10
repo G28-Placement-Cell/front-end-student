@@ -49,12 +49,20 @@ const authSlice = createSlice({
             localStorage.removeItem('studentInfo');
             localStorage.removeItem('token');
         },
-        getData:(state,action)=>{
+        getData: (state, action) => {
             localStorage.getItem('studentinfo.student_id');
-        }
+        },
+        setReset: (state, action) => {
+            state.resetInfo = action.payload.payload;
+            localStorage.setItem('resetId', (action.payload.payload.reset._id));
+        },
+        removeReset: (state, action) => {
+            state.resetInfo = null;
+            localStorage.removeItem('resetId');
+        },
     },
 });
 
-export const { setCredentials, logout } = authSlice.actions;
+export const { setCredentials, logout, setReset, removeReset } = authSlice.actions;
 
 export default authSlice.reducer;
