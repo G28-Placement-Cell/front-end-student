@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import StudentProfile from './pages/StudentProfile';
 import { ChangePassword } from './pages/ChangePassword';
+import { ResetPassword } from './pages/ResetPassword';
 import Announcement from './pages/Announcement'
 import StudentLogin from './pages/StudentLogin';
 import { Errored } from './pages/Errored';
@@ -45,6 +46,7 @@ function App() {
           <Route path='/updateProfilepic' element={<UpdateProfilepic />} />
           {/* <Route path='/updateresume'  /> */}
           <Route path='/changepassword' element={<ChangePassword />} />
+          <Route path='/resetpassword' element={<ResetPassword />} />
           <Route path='/jobprofile/:id' element={<Jobprofile />} />
           <Route path='/aboutus' element={<AboutUs />} />
           <Route path='/logout' />
