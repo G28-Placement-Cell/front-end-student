@@ -6,6 +6,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useEffect, useState } from 'react';
 import { useGetdataMutation } from '../slices/student/studentApislice';
 import axios from 'axios';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 
 function StudentProfile() {
   const [student, setStudent] = useState({});//student object
@@ -78,7 +79,7 @@ function StudentProfile() {
       <div className="main-body">
         <div className="row gutters-sm">
           <div className="col-md-4 mb-3">
-            <div className="card" style={{width:'100%'}}>
+            <div className="card" style={{ width: '100%' }}>
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
                   {/* {student && profilefileid && <img src={`http://localhost:8000/api/student/files/profilepic/${profilefileid}`} alt="Admin" className="rounded-circle" width={150} />} */}
@@ -90,8 +91,8 @@ function StudentProfile() {
                 </div>
               </div>
             </div>
-            <div className="card mt-3" style={{width:'100%'}}>
-              <ul className="list-group list-group-flush" style={{width:'100%'}}>
+            <div className="card mt-3" style={{ width: '100%' }}>
+              <ul className="list-group list-group-flush" style={{ width: '100%' }}>
                 <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                   <h6 className="mb-0">Email</h6>
                   <span id="Email" className="text-secondary">{student?.email.main}</span>
@@ -140,8 +141,8 @@ function StudentProfile() {
             </div>
           </div>
           <div className="col-md-8">
-            <div className="card mb-3" style={{width:'100%'}}>
-              <div className="card-body" style={{width:'100%'}}>
+            <div className="card mb-3" style={{ width: '100%' }}>
+              <div className="card-body" style={{ width: '100%' }}>
                 <div className="row">
                   <div className="col-sm-3">
                     <h6 className="mb-0">First Name</h6>
@@ -255,10 +256,10 @@ function StudentProfile() {
                 <hr />
                 <div className="row">
                   <div className="col-sm-12">
-                    <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" onClick={handleClickResume} variant="contained" startIcon={<CloudUploadIcon />}>
+                    <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" onClick={handleClickResume} variant="contained" startIcon={<CloudDownloadIcon />}>
                       Download Resume
                     </Button>
-                    <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" onClick={handleClickProfilepic} variant="contained" startIcon={<CloudUploadIcon />}>
+                    <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" onClick={handleClickProfilepic} variant="contained" startIcon={<CloudDownloadIcon />}>
                       Download Profilepic
                     </Button>
                   </div>
