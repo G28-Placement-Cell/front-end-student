@@ -115,7 +115,7 @@ function StudentLogin() {
 
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px', padding: '10px' }}>
                                 {/* Submit button */}
-                                <Button type="submit" variant="contained" color="primary">
+                                <Button type="submit" variant="contained" color="primary" sx={{ width: '100px' }}>
                                     Login
                                 </Button>
 
