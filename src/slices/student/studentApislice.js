@@ -65,7 +65,10 @@ export const studentApislice = apislice.injectEndpoints({
             query: (data) => ({
                 url: `${reset_url}`,
                 method: 'POST',
-                body: data,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
                 message: "ok"
             })
         }),
