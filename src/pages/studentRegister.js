@@ -107,6 +107,18 @@ function StudentRegister() {
     const [upload, { isLoading: isUploading }] = useUploadMutation();
     const submitHandler = async (e) => {
         e.preventDefault();
+        if (/^\d+(\.\d{0,2})?$/.test(cpi)) {
+            // Input is a valid number with up to 2 decimal places
+            if (parseFloat(cpi) >= 4 && parseFloat(cpi) <= 10) {
+
+            } else {
+                toast.error('CPI must be between 4 and 10');
+                return;
+            }
+        } else {
+            toast.error('Invalid CPI format');
+            return;
+        }
         const isValidEmail = email.endsWith('@daiict.ac.in');
         if (!isValidEmail) {
             toast.error("Please enter daiict email id");
@@ -407,7 +419,7 @@ function StudentRegister() {
                                         name="cpi"
                                         variant="outlined"
                                         fullWidth
-                                        type="number"
+                                        // type="number"
                                         onChange={(e) => setCpi(e.target.value)}
                                         required={true}
                                         sx={{ mt: 2 }}
