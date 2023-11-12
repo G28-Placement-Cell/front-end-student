@@ -13,6 +13,8 @@ import { Buttoned } from '../components/Buttonsed';
 // import Header from '../components/Header';
 import 'react-data-grid/lib/styles.css';
 import { CheckDate } from '../components/ChechDate'
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -107,13 +109,13 @@ export const Tablet = () => {
           display: "flex",
           justifyContent: "center",
           padding: "5vh 5vw",
-      }}>
-          <Paper sx={{ py: 1, px: 3, display: 'flex', flexDirection:'column' , justifyContent: 'center', alignItems: 'center', minHeight: '73vh' }} className="container">
-              <Typography variant="h4">
-                  Loading... please wait...
-              </Typography>
+        }}>
+          <Paper sx={{ py: 1, px: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '73vh' }} className="container">
+            <Box sx={{ display: 'flex' }}>
+              <CircularProgress />
+            </Box>
           </Paper>
-      </div>
+        </div>
       ) : (
         <TableContainer component={Paper} sx={{ borderRadius: 0 }}>
           <Table stickyHeader sx={{ minWidth: 700 }} aria-label="customized table">

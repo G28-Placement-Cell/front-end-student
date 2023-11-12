@@ -7,6 +7,8 @@ import {
   Paper,
 } from '@mui/material';
 import '../style/AnnouncementSection.css'
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 const Announcement = ({ title }) => {
   const [announcements, setAnnouncements] = useState([]);
@@ -68,9 +70,20 @@ const Announcement = ({ title }) => {
         setLoading(false);
       });
   }, []);
-
+  if (loading) return (<div style={{
+    position: "relative",
+    display: "flex",
+    justifyContent: "center",
+    padding: "5vh 5vw",
+  }}>
+    <Paper sx={{ py: 1, px: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '73vh' }} className="container">
+      <Box sx={{ display: 'flex' }}>
+        <CircularProgress />
+      </Box>
+    </Paper>
+  </div>);
   return (
-    <div style={{ position: 'relative', padding:'10px' }}>
+    <div style={{ position: 'relative', padding: '10px' }}>
       <Paper sx={{ py: 1, px: 3 }} className="container">
         <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
           Company Announcements {title}:

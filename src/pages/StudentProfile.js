@@ -7,6 +7,9 @@ import { useEffect, useState } from 'react';
 import { useGetdataMutation } from '../slices/student/studentApislice';
 import axios from 'axios';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import { Paper } from '@mui/material';
 
 function StudentProfile() {
   const [student, setStudent] = useState({});//student object
@@ -69,7 +72,21 @@ function StudentProfile() {
     whiteSpace: 'nowrap',
     width: 1,
   });
-  if (loading) return (<div>Loading...</div>);
+
+
+
+  if (loading) return (<div style={{
+    position: "relative",
+    display: "flex",
+    justifyContent: "center",
+    padding: "5vh 5vw",
+  }}>
+    <Paper sx={{ py: 1, px: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '73vh' }} className="container">
+      <Box sx={{ display: 'flex' }}>
+        <CircularProgress />
+      </Box>
+    </Paper>
+  </div>);
   const profilefileid = student?.profile_pic;
   // if (profilefileid) {
   //   let profileurl = `http://localhost:8000/api/student/files/profilepic/${profilefileid}`;
