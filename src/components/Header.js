@@ -42,7 +42,7 @@ function Header() {
         </Typography>
 
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button color="inherit" style={{ minWidth: '16vh' }}>Contact us</Button>
+          <Button color="inherit" style={{ minWidth: '16vh' }} onClick={() => navigate('/contactus')}>Contact Us</Button>
           <Button color='inherit' style={{ minWidth: '16vh' }} onClick={() => navigate('/aboutus')}>About Us</Button>
           <Button color="inherit" onClick={logoutHandler}>Logout</Button>
         </div>
