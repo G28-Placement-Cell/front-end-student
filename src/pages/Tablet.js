@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import * as React from 'react';
+import { Typography, Paper, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,7 +9,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Link } from 'react-router-dom'
-import Paper from '@mui/material/Paper';
 import { Buttoned } from '../components/Buttonsed';
 // import Header from '../components/Header';
 import 'react-data-grid/lib/styles.css';
@@ -40,10 +40,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export const Tablet = () => {
   // const [stats, setStatus] = useState(false);
   const [jobProfiles, setJobProfiles] = useState([]);
-  const [regJobProfiles, setRegJobProfiles] = useState([]);//registered job profiles
-  const [loading, setLoading] = useState(true);//loading state
-  const [student, setStudent] = useState({});//student object
-  const [loadings, setLoadings] = useState(true);//loading state
+  const [regJobProfiles, setRegJobProfiles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [student, setStudent] = useState({});
+  const [loadings, setLoadings] = useState(true);
 
   useEffect(() => {
     fetch('http://localhost:8000/api/student/profile', {
@@ -55,9 +55,7 @@ export const Tablet = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data.stu);
         setStudent(data.stu);
-        // console.log(data?.stu?.jobprofiles);
         setRegJobProfiles(data?.stu?.jobprofiles);
         setLoading(false);
       })
@@ -77,7 +75,6 @@ export const Tablet = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
         setJobProfiles(data.jobProfiles);
         setLoadings(false);
       })
@@ -104,51 +101,62 @@ export const Tablet = () => {
 
   return (
     <>
-      {/* style={{height: '85vh'}}  */}
-      {/* <Header />   */}
-
-      <TableContainer component={Paper} sx={{ borderRadius: 0 }}>
-        <Table stickyHeader sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead >
-            <TableRow >
-              <StyledTableCell>PROFILE ID</StyledTableCell>
-              <StyledTableCell align="right">COMPANY NAME</StyledTableCell>
-              <StyledTableCell align="right">TYPE</StyledTableCell>
-              <StyledTableCell align="right">CPI</StyledTableCell>
-              <StyledTableCell align="right">OPEN FOR</StyledTableCell>
-              <StyledTableCell align="right">REGISTRATION STARTS</StyledTableCell>
-              <StyledTableCell align="right">REGISTRATION ENDS</StyledTableCell>
-              <StyledTableCell align="right">STATUS</StyledTableCell>
-              <StyledTableCell align="right">ACTION</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {jobProfiles && jobProfiles.length > 0 && jobProfiles.map((row, index) => (
-              (student?.registering_for === row.offer_type) &&
-              <>
-                <StyledTableRow className="mt-10 py-10" key={index}>
-                  <StyledTableCell component="th" scope="row">{index + 1}</StyledTableCell>
-                  <StyledTableCell align="right">
-                    <Link to={`/JobProfile/${row._id}`} style={{ textDecoration: 'none', color: 'black' }}>{row.company_name.toUpperCase()}</Link>
-                  </StyledTableCell>
-                  <StyledTableCell align="right">{row.offer_type.toUpperCase()}</StyledTableCell>
-                  <StyledTableCell align="right">{row.cpi_criteria}</StyledTableCell>
-                  <StyledTableCell align="right">{row.open_for.toUpperCase()}</StyledTableCell>
-                  <StyledTableCell align="right">{formatDate(row.registration_start_date)}</StyledTableCell>
-                  <StyledTableCell align="right">{formatDate(row.registration_end_date)}</StyledTableCell>
-                  <StyledTableCell align="right">
-                    <CheckDate reg_open={row.registration_start_date} reg_end={row.registration_end_date} />
-                  </StyledTableCell>
-                  <StyledTableCell align="right" style={{ alignItems: 'end', display: 'flex', flexDirection: 'column', justifyContent: 'end', columnWidth: 50 }}>
-                    <Buttoned reg_open={row.registration_start_date} reg_end={row.registration_end_date} cpiOf={row.cpi_criteria} jobId={row._id} registered={regJobProfiles.some(profile => profile === row._id)} student_cpi={student?.cpi} />
-                  </StyledTableCell>
-                </StyledTableRow>
-              </>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      {/* <Footer /> */}
+      {loading || loadings ? (
+        <div style={{
+          position: "relative",
+          display: "flex",
+          justifyContent: "center",
+          padding: "5vh 5vw",
+      }}>
+          <Paper sx={{ py: 1, px: 3, display: 'flex', flexDirection:'column' , justifyContent: 'center', alignItems: 'center', minHeight: '73vh' }} className="container">
+              <Typography variant="h4">
+                  Loading... please wait...
+              </Typography>
+          </Paper>
+      </div>
+      ) : (
+        <TableContainer component={Paper} sx={{ borderRadius: 0 }}>
+          <Table stickyHeader sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableHead >
+              <TableRow >
+                <StyledTableCell>PROFILE ID</StyledTableCell>
+                <StyledTableCell align="right">COMPANY NAME</StyledTableCell>
+                <StyledTableCell align="right">TYPE</StyledTableCell>
+                <StyledTableCell align="right">CPI</StyledTableCell>
+                <StyledTableCell align="right">OPEN FOR</StyledTableCell>
+                <StyledTableCell align="right">REGISTRATION STARTS</StyledTableCell>
+                <StyledTableCell align="right">REGISTRATION ENDS</StyledTableCell>
+                <StyledTableCell align="right">STATUS</StyledTableCell>
+                <StyledTableCell align="right">ACTION</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {jobProfiles && jobProfiles.length > 0 && jobProfiles.map((row, index) => (
+                (student?.registering_for === row.offer_type) &&
+                <>
+                  <StyledTableRow className="mt-10 py-10" key={index}>
+                    <StyledTableCell component="th" scope="row">{index + 1}</StyledTableCell>
+                    <StyledTableCell align="right">
+                      <Link to={`/JobProfile/${row._id}`} style={{ textDecoration: 'none', color: 'black' }}>{row.company_name.toUpperCase()}</Link>
+                    </StyledTableCell>
+                    <StyledTableCell align="right">{row.offer_type.toUpperCase()}</StyledTableCell>
+                    <StyledTableCell align="right">{row.cpi_criteria}</StyledTableCell>
+                    <StyledTableCell align="right">{row.open_for.toUpperCase()}</StyledTableCell>
+                    <StyledTableCell align="right">{formatDate(row.registration_start_date)}</StyledTableCell>
+                    <StyledTableCell align="right">{formatDate(row.registration_end_date)}</StyledTableCell>
+                    <StyledTableCell align="right">
+                      <CheckDate reg_open={row.registration_start_date} reg_end={row.registration_end_date} />
+                    </StyledTableCell>
+                    <StyledTableCell align="right" style={{ alignItems: 'end', display: 'flex', flexDirection: 'column', justifyContent: 'end', columnWidth: 50 }}>
+                      <Buttoned reg_open={row.registration_start_date} reg_end={row.registration_end_date} cpiOf={row.cpi_criteria} jobId={row._id} registered={regJobProfiles.some(profile => profile === row._id)} student_cpi={student?.cpi} />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                </>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
     </>
   );
-}
+};
