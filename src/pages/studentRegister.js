@@ -119,6 +119,30 @@ function StudentRegister() {
             toast.error('Invalid CPI format');
             return;
         }
+        if (/^\d+(\.\d{0,2})?$/.test(tenth_percentage)) {
+            // Input is a valid number with up to 2 decimal places
+            if (parseFloat(tenth_percentage) >= 0 && parseFloat(tenth_percentage) <= 100) {
+
+            } else {
+                toast.error('Tenth_percentage must be between 0 and 100');
+                return;
+            }
+        } else {
+            toast.error('Invalid tenth_percentage format');
+            return;
+        }
+        if (/^\d+(\.\d{0,2})?$/.test(twelth_percentage)) {
+            // Input is a valid number with up to 2 decimal places
+            if (parseFloat(twelth_percentage) >= 0 && parseFloat(twelth_percentage) <= 100) {
+
+            } else {
+                toast.error('Twelth_percentage must be between 0 and 100');
+                return;
+            }
+        } else {
+            toast.error('Invalid twelth_percentage format');
+            return;
+        }
         const isValidEmail = email.endsWith('@daiict.ac.in');
         if (!isValidEmail) {
             toast.error("Please enter daiict email id");
@@ -398,7 +422,7 @@ function StudentRegister() {
                                         variant="outlined"
                                         fullWidth
                                         onChange={(e) => setTenth_percentage(e.target.value)}
-                                        type="number"
+                                        // type="number"
                                         sx={{ mt: 2 }}
                                         required={true}
                                     />
@@ -409,7 +433,7 @@ function StudentRegister() {
                                         variant="outlined"
                                         fullWidth
                                         onChange={(e) => setTwelth_percentage(e.target.value)}
-                                        type="number"
+                                        // type="number"
                                         required={true}
                                         sx={{ mt: 2 }}
                                     />
