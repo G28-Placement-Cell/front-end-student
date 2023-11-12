@@ -96,17 +96,6 @@ export const Tablet = () => {
     });
   }, []);
 
-
-
-  const options = {
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  };
-
-
   const [student, setStudent] = useState({});//student object
   const [loadings, setLoadings] = useState(true);//loading state
 
@@ -127,6 +116,17 @@ export const Tablet = () => {
       setLoadings(false);
     });
   }, []);
+
+  const formatDate = (dateString) => {
+    const options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+    const date = new Date(dateString);
+
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year} ${date.toLocaleString(undefined, options).split(' ')[1]}`;
+  };
 
   return (
     <>
@@ -161,14 +161,13 @@ export const Tablet = () => {
                   <StyledTableCell align="right">{row.offer_type.toUpperCase()}</StyledTableCell>
                   <StyledTableCell align="right">{row.cpi_criteria}</StyledTableCell>
                   <StyledTableCell align="right">{row.open_for.toUpperCase()}</StyledTableCell>
-                  <StyledTableCell align="right">{new Date(row.registration_start_date).toLocaleString(undefined, options)}</StyledTableCell>
-                  <StyledTableCell align="right">{new Date(row.registration_end_date).toLocaleString(undefined, options)}</StyledTableCell>
+                  <StyledTableCell align="right">{formatDate(row.registration_start_date)}</StyledTableCell>
+                  <StyledTableCell align="right">{formatDate(row.registration_end_date)}</StyledTableCell>
                   <StyledTableCell align="right">
                     <CheckDate reg_open={row.registration_start_date} reg_end={row.registration_end_date} />
                   </StyledTableCell>
                   <StyledTableCell align="right" style={{ alignItems: 'end', display: 'flex', flexDirection: 'column', justifyContent: 'end', columnWidth: 50 }}><Buttoned reg_open={row.registration_start_date} reg_end={row.registration_end_date} cpiOf={row.cpi_criteria} jobId={row._id} /></StyledTableCell>
                 </StyledTableRow>
-
               </>
             ))}
           </TableBody>
