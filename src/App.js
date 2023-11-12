@@ -21,6 +21,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Jobprofile from './pages/Jobprofile';
 import { registerCharts } from './components/Performancemain';
+import ContactUs from './pages/ContactUs';
 import AboutUs from './pages/AboutUs';
 import ForgotPass from './pages/ForgotPass';
 import { ResetPassword } from './pages/ResetPassword';
@@ -49,6 +50,7 @@ function App() {
           <Route path='/resetpassword' element={<ResetPassword />} />
           <Route path='/jobprofile/:id' element={<Jobprofile />} />
           <Route path='/aboutus' element={<AboutUs />} />
+          <Route path='/contactus' element={<ContactUs />} />
           <Route path='/logout' />
           <Route path='/*' element={<Errored />} />
           <Route path='/forgotpass' element={<ForgotPass />} />
