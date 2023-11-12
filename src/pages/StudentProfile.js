@@ -88,6 +88,7 @@ function StudentProfile() {
     </Paper>
   </div>);
   const profilefileid = student?.profile_pic;
+  // console.log(profilefileid)
   // if (profilefileid) {
   //   let profileurl = `http://localhost:8000/api/student/files/profilepic/${profilefileid}`;
   // }
@@ -99,7 +100,7 @@ function StudentProfile() {
             <div className="card" style={{ width: '100%' }}>
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
-                  {/* {student && profilefileid && <img src={`http://localhost:8000/api/student/files/profilepic/${profilefileid}`} alt="Admin" className="rounded-circle" width={150} />} */}
+                  {student && profilefileid && <img src={`http://localhost:8000/api/student/files/profilepic/${profilefileid}`} alt="Admin" className="rounded-circle" width={150} height={150} />}
                   <div className="mt-3">
                     <h4 id='student_name'>{student?.name.toUpperCase()}</h4>
                     <p id="student id" className="text-secondary mb-1">{student?.student_id}</p>
