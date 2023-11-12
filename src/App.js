@@ -25,6 +25,7 @@ import ContactUs from './pages/ContactUs';
 import AboutUs from './pages/AboutUs';
 import ForgotPass from './pages/ForgotPass';
 import { ResetPassword } from './pages/ResetPassword';
+import LogOut from './pages/LogOut';
 
 registerCharts()
 
@@ -51,10 +52,10 @@ function App() {
           <Route path='/jobprofile/:id' element={<Jobprofile />} />
           <Route path='/aboutus' element={<AboutUs />} />
           <Route path='/contactus' element={<ContactUs />} />
-          <Route path='/logout' />
-          <Route path='/*' element={<Errored />} />
+          <Route path='/logout' element={<LogOut />} />
           <Route path='/forgotpass' element={<ForgotPass />} />
           <Route path='/resetpassword' element={<ResetPassword />} />
+          <Route path='/*' element={<Errored />} />
         </Routes>
       </div>
       <Footer />
