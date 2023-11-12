@@ -112,6 +112,16 @@ function StudentRegister() {
             toast.error("Please enter daiict email id");
             return;
         }
+        const isValidNumber = /^[0-9]{10}$/.test(phone) && parseInt(phone, 10) >= 0;
+        if (!isValidNumber) {
+            toast.error("Please enter valid mobile number");
+            return;
+        }
+        const isValidaltNumber = /^[0-9]{10}$/.test(alt_phone) && parseInt(alt_phone, 10) >= 0;
+        if (!isValidaltNumber) {
+            toast.error("Please enter valid alternate mobile number");
+            return;
+        }
         if (password !== altpassword) {
             setError(true);
             toast.error("Passwords do not match");
