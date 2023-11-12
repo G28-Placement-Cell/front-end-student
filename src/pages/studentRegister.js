@@ -107,6 +107,11 @@ function StudentRegister() {
     const [upload, { isLoading: isUploading }] = useUploadMutation();
     const submitHandler = async (e) => {
         e.preventDefault();
+        const isValidEmail = email.endsWith('@daiict.ac.in');
+        if (!isValidEmail) {
+            toast.error("Please enter daiict email id");
+            return;
+        }
         if (password !== altpassword) {
             setError(true);
             toast.error("Passwords do not match");
