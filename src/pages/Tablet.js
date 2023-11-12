@@ -13,12 +13,6 @@ import { Buttoned } from '../components/Buttonsed';
 // import Header from '../components/Header';
 import 'react-data-grid/lib/styles.css';
 import { CheckDate } from '../components/ChechDate'
-import JobProfile from './Jobprofile'
-
-
-// import Footer from '../components/Footer';
-
-
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -43,14 +37,13 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-// function createData(profileId,name, type,cpi,link,open_for,registration_open,registration_end) {
-//   return { profileId,name, type,cpi,link,open_for,registration_open,registration_end };
-// }
 export const Tablet = () => {
   // const [stats, setStatus] = useState(false);
-  const [company, setCompany] = useState([]);//student object
   const [jobProfiles, setJobProfiles] = useState([]);
+  const [regJobProfiles, setRegJobProfiles] = useState([]);//registered job profiles
   const [loading, setLoading] = useState(true);//loading state
+  const [student, setStudent] = useState({});//student object
+  const [loadings, setLoadings] = useState(true);//loading state
 
   useEffect(() => {
     fetch('http://localhost:8000/api/student/profile', {
@@ -62,12 +55,10 @@ export const Tablet = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data?.stu?.jobprofiles);
-        setJobProfiles(data?.stu?.jobprofiles);
-
-        // Set jobProfiles in localStorage
-        localStorage.setItem('jobProfiles', JSON.stringify(data.stu.jobprofiles));
-
+        // console.log(data.stu);
+        setStudent(data.stu);
+        // console.log(data?.stu?.jobprofiles);
+        setRegJobProfiles(data?.stu?.jobprofiles);
         setLoading(false);
       })
       .catch((err) => {
@@ -76,46 +67,29 @@ export const Tablet = () => {
       });
   }, []);
 
-
   useEffect(() => {
-    // console.log(localStorage.getItem('token'));
-    fetch('http://localhost:8000/api/student/jobprofile', {
+    fetch('http://localhost:8000/api/jobprofile/', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
-    }).then((res) => res.json()).then((data) => {
-      // console.log(data.job);
-      setCompany(data.job);
-      // setCompany(data);
-      setLoading(false);
-    }).catch((err) => {
-      console.log(err);
-      setLoading(false);
-    });
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        setJobProfiles(data.jobProfiles);
+        setLoadings(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoadings(false);
+      });
   }, []);
 
-  const [student, setStudent] = useState({});//student object
-  const [loadings, setLoadings] = useState(true);//loading state
-
-  useEffect(() => {
-    // console.log(localStorage.getItem('token'));
-    fetch('http://localhost:8000/api/student/profile', {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
-    }).then((res) => res.json()).then((data) => {
-      // console.log(data);
-      setStudent(data.stu);
-      setLoadings(false);
-    }).catch((err) => {
-      console.log(err);
-      setLoadings(false);
-    });
-  }, []);
+  console.log('studentDetails', student);
+  console.log('reg', regJobProfiles);
+  console.log('jobprofiles', jobProfiles);
 
   const formatDate = (dateString) => {
     const options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' };
@@ -149,13 +123,12 @@ export const Tablet = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {company.map((row, index) => (
+            {jobProfiles && jobProfiles.length > 0 && jobProfiles.map((row, index) => (
               (student?.registering_for === row.offer_type) &&
               <>
                 <StyledTableRow className="mt-10 py-10" key={index}>
                   <StyledTableCell component="th" scope="row">{index + 1}</StyledTableCell>
                   <StyledTableCell align="right">
-                    {/* <a style={{color: "#2B2442", textDecoration: "none"}} href={<JobProfile company={row}/>} target="_blank">{row.company_name}</a> */}
                     <Link to={`/JobProfile/${row._id}`} style={{ textDecoration: 'none', color: 'black' }}>{row.company_name.toUpperCase()}</Link>
                   </StyledTableCell>
                   <StyledTableCell align="right">{row.offer_type.toUpperCase()}</StyledTableCell>
@@ -166,7 +139,9 @@ export const Tablet = () => {
                   <StyledTableCell align="right">
                     <CheckDate reg_open={row.registration_start_date} reg_end={row.registration_end_date} />
                   </StyledTableCell>
-                  <StyledTableCell align="right" style={{ alignItems: 'end', display: 'flex', flexDirection: 'column', justifyContent: 'end', columnWidth: 50 }}><Buttoned reg_open={row.registration_start_date} reg_end={row.registration_end_date} cpiOf={row.cpi_criteria} jobId={row._id} /></StyledTableCell>
+                  <StyledTableCell align="right" style={{ alignItems: 'end', display: 'flex', flexDirection: 'column', justifyContent: 'end', columnWidth: 50 }}>
+                    <Buttoned reg_open={row.registration_start_date} reg_end={row.registration_end_date} cpiOf={row.cpi_criteria} jobId={row._id} registered={regJobProfiles.some(profile => profile === row._id)} />
+                  </StyledTableCell>
                 </StyledTableRow>
               </>
             ))}
