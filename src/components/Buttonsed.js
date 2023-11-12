@@ -72,7 +72,7 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered }) => {
   return (
 
     <>
-      {stats && (student?.cpi >= cpiOf) && !stads && <button style={{
+      {stats && !stads && <button style={{
         backgroundColor: "#493D72", color: "white", fontSize: 16, height: 41,
         marginTop: 2
       }} className="btn btn-lg pb-2" onClick={() => { handleRegister() }}>REGISTER</button>}
@@ -81,7 +81,7 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered }) => {
           <button style={{ backgroundColor: "#493D72", color: "white", marginTop: 2, fontSize: 15, height: 41, borderRadius: 5 }} className="btn btn-sm pb-2" onClick={() => { handleDeregister() }}> DEREGISTER </button>
         </>
       }
-      {(!stats || student?.cpi < cpiOf) && <><button style={{
+      {(!stats) && <><button style={{
         backgroundColor: "#493D72", color: "white", fontSize: 16, height: 41,
         marginTop: 2
       }} className="btn btn-lg pb-2" disabled> REGISTER </button></>}
