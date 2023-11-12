@@ -18,7 +18,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useLoginMutation, useRegisterMutation, useUploadMutation } from '../slices/student/studentApislice';
 import { setCredentials } from '../slices/student/authslice';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+function validatePassword(password) {
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordPattern.test(password);
+};
 
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
@@ -104,12 +109,16 @@ function StudentRegister() {
         e.preventDefault();
         if (password !== altpassword) {
             setError(true);
-            alert("Passwords do not match");
+            toast.error("Passwords do not match");
             return; // Exit the function without submitting the form
         } else if (email === altemail) {
             setError(true);
-            alert("Please enter different email id");
+            toast.error("Please enter different email id");
             return; // Exit the function without submitting the form
+        } else if (!validatePassword(password)) {
+            setError(true);
+            toast.error('Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character');
+            return;
         } else {
             setError(false);
         }
