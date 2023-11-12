@@ -88,7 +88,7 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_
           <button style={{ backgroundColor: "#493D72", color: "white", marginTop: 2, fontSize: 15, height: 41, borderRadius: 5 }} className="btn btn-sm pb-2" onClick={() => { handleDeregister() }}> DEREGISTER </button>
         </>
       }
-      {(!stats) && <><button style={{
+      {(!stats || !isvalidcpi) && <><button style={{
         backgroundColor: "#493D72", color: "white", fontSize: 16, height: 41,
         marginTop: 2
       }} className="btn btn-lg pb-2" disabled> REGISTER </button></>}
