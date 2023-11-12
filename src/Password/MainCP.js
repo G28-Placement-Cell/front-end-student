@@ -7,6 +7,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../slices/student/authslice';
 import { useNavigate } from 'react-router-dom';
 
+function validatePassword(password) {
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  return passwordPattern.test(password);
+};
 
 function ChangePassword() {
   const [currentPassword, setCurrentPassword] = useState('');
@@ -32,7 +36,10 @@ function ChangePassword() {
   }
   const submitHandler = async (e) => {
     e.preventDefault();
-    
+    if (!validatePassword(newPassword)) {
+      toast.error('Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character');
+      return;
+    }
     try {
       // console.log('ok');
       const res = await change_password({ currentPassword, newPassword, confirmPassword }).unwrap();
@@ -43,9 +50,9 @@ function ChangePassword() {
       console.log(err);
     }
   };
-  
+
   return (
-    <div className="maincp" style={{marginTop:0, paddingTop:'20px'}}>
+    <div className="maincp" style={{ marginTop: 0, paddingTop: '20px' }}>
       <div className="change-password-container">
         <h2>Change Password</h2>
         <form onSubmit={submitHandler}>
@@ -75,11 +82,12 @@ function ChangePassword() {
               // value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            <button type="submit">Change Password</button>
+            <button
+              type="submit" > Change Password</button>
             {message && <p className="message">{message}</p>}
           </div>
         </form>
-      </div>
+      </div >
     </div >
 
   );
