@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered }) => {
+export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_cpi }) => {
 
   const stu_id = localStorage.getItem('studentInfo');
   const stuId = stu_id ? JSON.parse(stu_id)._id : null;
@@ -11,6 +11,13 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered }) => {
 
   const [student, setStudent] = useState({});//student object
   const [loading, setLoading] = useState(true);//loading state
+  console.log(student_cpi);
+  let isvalidcpi = false;
+  console.log(parseFloat(student_cpi), parseFloat(cpiOf));
+  if (parseFloat(student_cpi) >= parseFloat(cpiOf)) {
+    isvalidcpi = true;
+  }
+  console.log(isvalidcpi);
 
   const [stads, setStads] = useState(registered);
 
@@ -72,7 +79,7 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered }) => {
   return (
 
     <>
-      {stats && !stads && <button style={{
+      {stats && isvalidcpi && !stads && <button style={{
         backgroundColor: "#493D72", color: "white", fontSize: 16, height: 41,
         marginTop: 2
       }} className="btn btn-lg pb-2" onClick={() => { handleRegister() }}>REGISTER</button>}
