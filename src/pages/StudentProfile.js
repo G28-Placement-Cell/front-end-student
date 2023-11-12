@@ -86,7 +86,10 @@ function StudentProfile() {
                   <div className="mt-3">
                     <h4 id='student_name'>{student?.name.toUpperCase()}</h4>
                     <p id="student id" className="text-secondary mb-1">{student?.student_id}</p>
-                    <p id="verify" className="text-muted font-size-sm">Your profile is APPROVED </p>
+                    {
+                      student?.is_verified ? <p id="verify" className="text-muted font-size-sm">Your profile is APPROVED </p> : <p id="verify" className="text-muted font-size-sm">Your profile is NOT APPROVED </p>
+                    }
+
                   </div>
                 </div>
               </div>
