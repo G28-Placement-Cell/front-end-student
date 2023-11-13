@@ -19,8 +19,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 const AnnouncementSection = ({ title }) => {
-  
-  const [student, setStudent] = useState({});
+
+  const [student, setStudent] = useState();
   const [loadings, setLoadings] = useState(true);
   useEffect(() => {
     fetch('http://localhost:8000/api/student/profile', {
@@ -33,6 +33,9 @@ const AnnouncementSection = ({ title }) => {
       .then((res) => res.json())
       .then((data) => {
         setStudent(data.stu);
+        if (data.stu.verified === false) {
+          navigate('/nv');
+        }
         // setRegJobProfiles(data?.stu?.jobprofiles);
         setLoadings(false);
       })
@@ -67,23 +70,6 @@ const AnnouncementSection = ({ title }) => {
   }, []);
 
 
-  const handleAnnouncementChange = (e) => {
-    setAnnouncementText(e.target.value);
-  };
-
-  const handleSubmitAnnouncement = () => {
-    if (announcementText.trim() !== '') {
-      const newAnnouncement = {
-        id: new Date().getTime(),
-        text: announcementText,
-        timestamp: new Date().toLocaleString(),
-      };
-
-      setAnnouncements([...announcements, newAnnouncement]);
-      setAnnouncementText('');
-    }
-  };
-
   // Simulate loading for 2 seconds (you should replace this with your actual data fetching code)
   // useEffect(() => {
   //     setTimeout(() => {
@@ -93,7 +79,7 @@ const AnnouncementSection = ({ title }) => {
 
   const navigate = useNavigate();
   return (
-    student?.verified?(
+
     <div style={{ position: 'relative', padding: '10px' }}>
       <Paper sx={{ py: 1, px: 3 }} className="container">
         <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
@@ -150,7 +136,6 @@ const AnnouncementSection = ({ title }) => {
         )}
       </Paper>
     </div>
-    ):(navigate('/nv'))
   );
 };
 

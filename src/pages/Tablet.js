@@ -59,7 +59,9 @@ export const Tablet = () => {
       .then((res) => res.json())
       .then((data) => {
         setStudent(data.stu);
-        setRegJobProfiles(data?.stu?.jobprofiles);
+        if (data.stu.verified === false) {
+          navigate('/nv');
+        }
         setLoading(false);
       })
       .catch((err) => {
