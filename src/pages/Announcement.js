@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import {
   Typography,
   ListItem,
@@ -7,12 +7,42 @@ import {
   Paper,
 } from '@mui/material';
 import '../style/AnnouncementSection.css'
+import { useNavigate } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 const Announcement = ({ title }) => {
+  
+  const [student, setStudent] = useState({});
+  const [loadings, setLoadings] = useState(true);
+  
+
+  useEffect(() => {
+    fetch('http://localhost:8000/api/student/profile', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setStudent(data.stu);
+        // setRegJobProfiles(data?.stu?.jobprofiles);
+        setLoadings(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoadings(false);
+      });
+  }, []);
+
+  const navigate = useNavigate();
+
+  
   const [announcements, setAnnouncements] = useState([]);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
+  // const [loadinger, setLoadinger] = useState(true); // Add loading state
 
   useEffect(() => {
     fetch('http://localhost:8000/api/announcements/admin/companyAnnouncements', {
@@ -83,6 +113,7 @@ const Announcement = ({ title }) => {
     </Paper>
   </div>);
   return (
+    student?.verified?(
     <div style={{ position: 'relative', padding: '10px' }}>
       <Paper sx={{ py: 1, px: 3 }} className="container">
         <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
@@ -129,6 +160,7 @@ const Announcement = ({ title }) => {
         )}
       </Paper>
     </div>
+    ):(navigate('/nv'))
   );
 };
 

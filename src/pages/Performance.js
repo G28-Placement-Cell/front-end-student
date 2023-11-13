@@ -1,6 +1,7 @@
 import { Bar } from "react-chartjs-2"
 import '../App.css'
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const BarChart = () => {
   const options = {
@@ -43,6 +44,8 @@ const BarChart = () => {
   const data1 = [`${student?.jobprofiles?.length}`]
   const data2 = [`${student?.shortlisted?.length}`]
 
+  const navigate = useNavigate();
+
   const data = {
     labels,
     datasets: [
@@ -63,7 +66,7 @@ const BarChart = () => {
     ],
   }
 
-  return (<div className="graph-container" style={{paddingTop:'5vh'}}><Bar options={options} data={data}/></div>);
+  return (student?.verified?(<div className="graph-container" style={{paddingTop:'5vh'}}><Bar options={options} data={data}/></div>) : (navigate('/nv')));
 }
 
 export default BarChart

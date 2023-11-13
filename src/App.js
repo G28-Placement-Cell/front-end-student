@@ -24,6 +24,7 @@ import { registerCharts } from './components/Performancemain';
 import ContactUs from './pages/ContactUs';
 import AboutUs from './pages/AboutUs';
 import ForgotPass from './pages/ForgotPass';
+import { NotVerified } from './pages/NotVerified';
 import { ResetPassword } from './pages/ResetPassword';
 import LogOut from './pages/LogOut';
 
@@ -55,6 +56,7 @@ function App() {
           <Route path='/logout' element={<LogOut />} />
           <Route path='/forgotpass' element={<ForgotPass />} />
           <Route path='/resetpassword' element={<ResetPassword />} />
+          <Route path='/nv' element={<NotVerified />} />
           <Route path='/*' element={<Errored />} />
         </Routes>
       </div>

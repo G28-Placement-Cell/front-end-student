@@ -19,6 +19,31 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 const AnnouncementSection = ({ title }) => {
+  
+  const [student, setStudent] = useState({});
+  const [loadings, setLoadings] = useState(true);
+  useEffect(() => {
+    fetch('http://localhost:8000/api/student/profile', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setStudent(data.stu);
+        // setRegJobProfiles(data?.stu?.jobprofiles);
+        setLoadings(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoadings(false);
+      });
+  }, []);
+
+  // const navigate = useNavigate();
+
   const [announcements, setAnnouncements] = useState([]);
   const [announcementText, setAnnouncementText] = useState('');
   const [loading, setLoading] = useState(true); // Add loading state
@@ -68,6 +93,7 @@ const AnnouncementSection = ({ title }) => {
 
   const navigate = useNavigate();
   return (
+    student?.verified?(
     <div style={{ position: 'relative', padding: '10px' }}>
       <Paper sx={{ py: 1, px: 3 }} className="container">
         <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
@@ -124,6 +150,7 @@ const AnnouncementSection = ({ title }) => {
         )}
       </Paper>
     </div>
+    ):(navigate('/nv'))
   );
 };
 
