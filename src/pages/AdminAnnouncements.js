@@ -33,9 +33,9 @@ const AnnouncementSection = ({ title }) => {
       .then((res) => res.json())
       .then((data) => {
         setStudent(data.stu);
-        if (data.stu.verified === false) {
-          navigate('/nv');
-        }
+        // if (data.stu.verified === false) {
+        //   navigate('/nv');
+        // }
         // setRegJobProfiles(data?.stu?.jobprofiles);
         setLoadings(false);
       })
@@ -76,6 +76,7 @@ const AnnouncementSection = ({ title }) => {
   //         setLoading(false);
   //     }, 2000);
   // }, []);
+
 
   const navigate = useNavigate();
   return (

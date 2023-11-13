@@ -8,13 +8,12 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Buttoned } from '../components/Buttonsed';
 // import Header from '../components/Header';
 import 'react-data-grid/lib/styles.css';
 import { CheckDate } from '../components/ChechDate'
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+import { useNavigate } from 'react-router-dom';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -46,7 +45,7 @@ export const Tablet = () => {
   const [loading, setLoading] = useState(true);
   const [student, setStudent] = useState({});
   const [loadings, setLoadings] = useState(true);
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('http://localhost:8000/api/student/profile', {
@@ -59,6 +58,7 @@ export const Tablet = () => {
       .then((res) => res.json())
       .then((data) => {
         setStudent(data.stu);
+        setRegJobProfiles(data?.stu?.jobprofiles);
         if (data.stu.verified === false) {
           navigate('/nv');
         }
@@ -69,12 +69,6 @@ export const Tablet = () => {
         setLoading(false);
       });
   }, []);
-
-  const navigate = useNavigate();
-  // const booled = localStorage.getItem('studentInfo');
-  // const boolVerification = booled ? JSON.parse(booled).verified : null;
-
-  // console.log(boolVerification);
 
   useEffect(() => {
     fetch('http://localhost:8000/api/jobprofile/', {
@@ -95,9 +89,9 @@ export const Tablet = () => {
       });
   }, []);
 
-  // console.log('studentDetails', student);
-  // console.log('reg', regJobProfiles);
-  // console.log('jobprofiles', jobProfiles);
+  console.log('studentDetails', student);
+  console.log('reg', regJobProfiles);
+  console.log('jobprofiles', jobProfiles);
 
   const formatDate = (dateString) => {
     const options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' };
@@ -110,18 +104,6 @@ export const Tablet = () => {
     return `${day}/${month}/${year} ${date.toLocaleString(undefined, options).split(' ')[1]}`;
   };
 
-  // if (student?.verified) {
-
-  // }
-  // else {
-  //   return (
-  //     <>
-  //       {navigate('/nv')}
-  //     </>
-  //   )
-  // }
-
-
   return (
     <>
       {loading || loadings ? (
@@ -132,9 +114,9 @@ export const Tablet = () => {
           padding: "5vh 5vw",
         }}>
           <Paper sx={{ py: 1, px: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '73vh' }} className="container">
-            <Box sx={{ display: 'flex' }}>
-              <CircularProgress />
-            </Box>
+            <Typography variant="h4">
+              Loading... please wait...
+            </Typography>
           </Paper>
         </div>
       ) : (
@@ -180,7 +162,6 @@ export const Tablet = () => {
           </Table>
         </TableContainer>
       )}
-
     </>
   );
 };
