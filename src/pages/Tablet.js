@@ -8,7 +8,7 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Link,useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Buttoned } from '../components/Buttonsed';
 // import Header from '../components/Header';
 import 'react-data-grid/lib/styles.css';
@@ -46,7 +46,7 @@ export const Tablet = () => {
   const [loading, setLoading] = useState(true);
   const [student, setStudent] = useState({});
   const [loadings, setLoadings] = useState(true);
-  
+
 
   useEffect(() => {
     fetch('http://localhost:8000/api/student/profile', {
@@ -108,8 +108,20 @@ export const Tablet = () => {
     return `${day}/${month}/${year} ${date.toLocaleString(undefined, options).split(' ')[1]}`;
   };
 
+  if (student?.verified) {
+
+  }
+  else {
+    return (
+      <>
+        {navigate('/nv')}
+      </>
+    )
+  }
+
+
   return (
-    student?.verified? (<> 
+    <>
       {loading || loadings ? (
         <div style={{
           position: "relative",
@@ -166,7 +178,7 @@ export const Tablet = () => {
           </Table>
         </TableContainer>
       )}
-      
-    </>): (navigate('/nv'))
+
+    </>
   );
 };
