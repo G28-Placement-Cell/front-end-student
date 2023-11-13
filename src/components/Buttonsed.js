@@ -5,19 +5,19 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_
   const stu_id = localStorage.getItem('studentInfo');
   const stuId = stu_id ? JSON.parse(stu_id)._id : null;
   // const jobProfiles = localStorage.getItem('jobProfiles');
-  console.log(stuId);
-  console.log(jobId);
-  console.log(registered, 'reg');
+  // console.log(stuId);
+  // console.log(jobId);
+  // console.log(registered, 'reg');
 
   const [student, setStudent] = useState({});//student object
   const [loading, setLoading] = useState(true);//loading state
-  console.log(student_cpi);
+  // console.log(student_cpi);
   let isvalidcpi = false;
-  console.log(parseFloat(student_cpi), parseFloat(cpiOf));
+  // console.log(parseFloat(student_cpi), parseFloat(cpiOf));
   if (parseFloat(student_cpi) >= parseFloat(cpiOf)) {
     isvalidcpi = true;
   }
-  console.log(isvalidcpi);
+  // console.log(isvalidcpi);
 
   const [stads, setStads] = useState(registered);
 

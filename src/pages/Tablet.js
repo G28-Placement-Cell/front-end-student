@@ -93,9 +93,9 @@ export const Tablet = () => {
       });
   }, []);
 
-  console.log('studentDetails', student);
-  console.log('reg', regJobProfiles);
-  console.log('jobprofiles', jobProfiles);
+  // console.log('studentDetails', student);
+  // console.log('reg', regJobProfiles);
+  // console.log('jobprofiles', jobProfiles);
 
   const formatDate = (dateString) => {
     const options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' };
@@ -108,16 +108,16 @@ export const Tablet = () => {
     return `${day}/${month}/${year} ${date.toLocaleString(undefined, options).split(' ')[1]}`;
   };
 
-  if (student?.verified) {
+  // if (student?.verified) {
 
-  }
-  else {
-    return (
-      <>
-        {navigate('/nv')}
-      </>
-    )
-  }
+  // }
+  // else {
+  //   return (
+  //     <>
+  //       {navigate('/nv')}
+  //     </>
+  //   )
+  // }
 
 
   return (
