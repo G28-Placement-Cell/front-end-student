@@ -28,6 +28,9 @@ const Announcement = ({ title }) => {
       .then((res) => res.json())
       .then((data) => {
         setStudent(data.stu);
+        if (data.stu.verified === false) {
+          navigate('/nv');
+        }
         // setRegJobProfiles(data?.stu?.jobprofiles);
         setLoadings(false);
       })
@@ -113,7 +116,7 @@ const Announcement = ({ title }) => {
     </Paper>
   </div>);
   return (
-    student?.verified?(
+    // student?.verified?(
     <div style={{ position: 'relative', padding: '10px' }}>
       <Paper sx={{ py: 1, px: 3 }} className="container">
         <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
@@ -160,7 +163,7 @@ const Announcement = ({ title }) => {
         )}
       </Paper>
     </div>
-    ):(navigate('/nv'))
+    // ):(navigate('/nv'))
   );
 };
 

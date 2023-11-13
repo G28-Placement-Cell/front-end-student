@@ -33,6 +33,9 @@ const BarChart = () => {
     }).then((res) => res.json()).then((data) => {
       console.log(data);
       setStudent(data.stu);
+      if (data.stu.verified === false) {
+        navigate('/nv');
+      }
       setLoading(false);
     }).catch((err) => {
       console.log(err);
@@ -66,7 +69,7 @@ const BarChart = () => {
     ],
   }
 
-  return (student?.verified?(<div className="graph-container" style={{paddingTop:'5vh'}}><Bar options={options} data={data}/></div>) : (navigate('/nv')));
+  return (<div className="graph-container" style={{paddingTop:'5vh'}}><Bar options={options} data={data}/></div>);
 }
 
 export default BarChart
