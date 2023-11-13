@@ -33,10 +33,9 @@ const AnnouncementSection = ({ title }) => {
       .then((res) => res.json())
       .then((data) => {
         setStudent(data.stu);
-        // if (data.stu.verified === false) {
-        //   navigate('/nv');
-        // }
-        // setRegJobProfiles(data?.stu?.jobprofiles);
+        if (data.stu.verified === false) {
+          navigate('/nv');
+        }
         setLoadings(false);
       })
       .catch((err) => {
