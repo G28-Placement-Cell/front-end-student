@@ -31,7 +31,7 @@ function ChangePassword() {
       navigate('/');
     }
     catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   }
   const submitHandler = async (e) => {
@@ -47,7 +47,7 @@ function ChangePassword() {
       navigate('/');
     } catch (err) {
       toast.error(err?.data?.message || err.error);
-      console.log(err);
+      // console.log(err);
     }
   };
 

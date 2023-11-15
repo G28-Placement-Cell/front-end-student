@@ -184,7 +184,7 @@ function StudentRegister() {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                 })
                 .catch(error => {
                     console.error(error);
@@ -199,7 +199,7 @@ function StudentRegister() {
     }
     return (
         <>
-            {console.log("studentRegister.js")}
+            {/* {console.log("studentRegister.js")} */}
             <Typography variant="h4" sx={{ fontWeight: "bold", mt: 3, textAlign: "center" }}>
                 Student Registration
             </Typography>

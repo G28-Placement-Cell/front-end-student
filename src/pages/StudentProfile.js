@@ -22,7 +22,7 @@ function StudentProfile() {
   };
 
   useEffect(() => {
-    console.log(localStorage.getItem('token'));
+    // console.log(localStorage.getItem('token'));
     fetch('https://back-end-production-ee2f.up.railway.app/api/student/profile', {
       method: 'GET',
       headers: {
@@ -30,13 +30,13 @@ function StudentProfile() {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
     }).then((res) => res.json()).then((data) => {
-      console.log(data);
+      // console.log(data);
       setStudent(data.stu);
       // const profilefileid = student?.profile_pic;
       // const profileurl = `https://back-end-production-ee2f.up.railway.app/api/student/files/profilepic/${profilefileid}`
       setLoading(false);
     }).catch((err) => {
-      console.log(err);
+      // console.log(err);
       setLoading(false);
     });
   }, []);

@@ -11,13 +11,13 @@ function UpdateProfilepic() {
     const [tmp, setTmp] = useState('');
     const [done, setDone] = useState(false);
     if (!form) {
-        console.log('not ok');
+        // console.log('not ok');
     }
     if (form) console.log('oky');
     form?.addEventListener('submit', (e) => {
         e.preventDefault();
         const formData = new FormData(form);
-        console.log(formData.get('file'));
+        // console.log(formData.get('file'));
         fetch('https://back-end-production-ee2f.up.railway.app/api/student/files/profilepic', {
             method: 'POST',
             body: formData,

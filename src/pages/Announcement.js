@@ -35,7 +35,7 @@ const Announcement = ({ title }) => {
         setLoadings(false);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         setLoadings(false);
       });
   }, []);
@@ -59,11 +59,11 @@ const Announcement = ({ title }) => {
 
         // Filter out announcements with null company
         const validAnnouncements = data.filter(announcement => announcement.company);
-        console.log("Valid announcements:", validAnnouncements); // Log valid announcements
+        // console.log("Valid announcements:", validAnnouncements); // Log valid announcements
 
         // Extract the unique company IDs from the valid announcements
         const uniqueCompanyIds = [...new Set(validAnnouncements.map(announcement => announcement.company._id))];
-        console.log("Unique company IDs:", uniqueCompanyIds); // Log unique company IDs
+        // console.log("Unique company IDs:", uniqueCompanyIds); // Log unique company IDs
 
         // Fetch company names for each unique company ID
         const fetchCompanyNames = uniqueCompanyIds.map(companyId =>
@@ -86,7 +86,7 @@ const Announcement = ({ title }) => {
 
             });
 
-            console.log("Company map:", companyMap); // Log company map
+            // console.log("Company map:", companyMap); // Log company map
 
             const announcementsWithCompanyNames = validAnnouncements.map(announcement => ({
               ...announcement,
@@ -94,12 +94,12 @@ const Announcement = ({ title }) => {
             }));
 
             setAnnouncements(announcementsWithCompanyNames);
-            console.log(announcements);
+            // console.log(announcements);
             setLoading(false);
           });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         setLoading(false);
       });
   }, []);

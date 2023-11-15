@@ -23,7 +23,7 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_
 
   const handleRegister = () => {
     if (jobId && stuId) {
-      console.log("registered");
+      // console.log("registered");
       fetch(`https://back-end-production-ee2f.up.railway.app/api/jobprofile/${jobId}/${stuId}`, {
         method: 'POST',
         headers: {
@@ -36,16 +36,16 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_
       }).then((res) => res.json()).then((data) => {
         setStads(true);
       }).catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
     } else {
-      console.log("Missing jobId or stuId.");
+      // console.log("Missing jobId or stuId.");
     }
   }
 
   const handleDeregister = () => {
     if (jobId && stuId) {
-      console.log("deregistered");
+      // console.log("deregistered");
       fetch(`https://back-end-production-ee2f.up.railway.app/api/jobprofile/${jobId}/${stuId}`, {
         method: 'DELETE',
         headers: {
@@ -58,10 +58,10 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_
       }).then((res) => res.json()).then((data) => {
         setStads(false);
       }).catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
     } else {
-      console.log("Missing jobId or stuId.");
+      // console.log("Missing jobId or stuId.");
     }
   }
 
@@ -74,25 +74,6 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_
     if (currentDate.getTime() > date1.getTime() && currentDate.getTime() < date2.getTime())
       setStatus(!stats);
   }, []);
-
-
-  // return (
-  //   <>
-  //   {stats && isvalidcpi && !stads && <button style={{
-  //     backgroundColor: "#493D72", color: "white", fontSize: 16, height: 41,
-  //     marginTop: 2
-  //   }} className="btn btn-lg pb-2" onClick={() => { handleRegister() }}>REGISTER</button>}
-  //   {stads &&
-  //     <>
-  //       <button style={{ backgroundColor: "#493D72", color: "white", marginTop: 2, fontSize: 15, height: 41, borderRadius: 5 }} className="btn btn-sm pb-2" onClick={() => { handleDeregister() }}> DEREGISTER </button>
-  //     </>
-  //   }
-  //   {(!stats || !isvalidcpi) && <><button style={{
-  //     backgroundColor: "#493D72", color: "white", fontSize: 16, height: 41,
-  //     marginTop: 2
-  //   }} className="btn btn-lg pb-2" disabled> REGISTER </button></>}
-  // </>
-  // );
 
 
   let button;

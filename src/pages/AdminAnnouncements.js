@@ -39,7 +39,7 @@ const AnnouncementSection = ({ title }) => {
         setLoadings(false);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         setLoadings(false);
       });
   }, []);
@@ -63,7 +63,7 @@ const AnnouncementSection = ({ title }) => {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         setLoading(false);
       });
   }, []);

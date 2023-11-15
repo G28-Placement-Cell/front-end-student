@@ -65,7 +65,7 @@ export const Tablet = () => {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         setLoading(false);
       });
   }, []);
@@ -84,14 +84,14 @@ export const Tablet = () => {
         setLoadings(false);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         setLoadings(false);
       });
   }, []);
 
-  console.log('studentDetails', student);
-  console.log('reg', regJobProfiles);
-  console.log('jobprofiles', jobProfiles);
+  // console.log('studentDetails', student);
+  // console.log('reg', regJobProfiles);
+  // console.log('jobprofiles', jobProfiles);
 
   const formatDate = (dateString) => {
     const options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' };
