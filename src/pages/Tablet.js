@@ -139,7 +139,7 @@ export const Tablet = () => {
               {jobProfiles && jobProfiles.length > 0 && jobProfiles.map((row, index) => (
                 (student?.registering_for === row.offer_type) &&
                 <>
-                  <StyledTableRow className="mt-10 py-10" key={index}>
+                  <StyledTableRow className="mt-10 py-10" key={row?._id}>
                     <StyledTableCell component="th" scope="row">{index + 1}</StyledTableCell>
                     <StyledTableCell align="right">
                       <Link to={`/JobProfile/${row._id}`} style={{ textDecoration: 'none', color: 'black' }}>{row.company_name.toUpperCase()}</Link>
