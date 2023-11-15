@@ -24,7 +24,7 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_
   const handleRegister = () => {
     if (jobId && stuId) {
       console.log("registered");
-      fetch(`http://localhost:8000/api/jobprofile/${jobId}/${stuId}`, {
+      fetch(`https://back-end-production-ee2f.up.railway.app/api/jobprofile/${jobId}/${stuId}`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -46,7 +46,7 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_
   const handleDeregister = () => {
     if (jobId && stuId) {
       console.log("deregistered");
-      fetch(`http://localhost:8000/api/jobprofile/${jobId}/${stuId}`, {
+      fetch(`https://back-end-production-ee2f.up.railway.app/api/jobprofile/${jobId}/${stuId}`, {
         method: 'DELETE',
         headers: {
           'content-type': 'application/json',
@@ -97,83 +97,82 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_
 
   let button;
 
-if (stats && isvalidcpi && !stads) {
-  button = (
-    <button
-      style={{
-        backgroundColor: "#493D72",
-        color: "white",
-        fontSize: 16,
-        height: 41,
-        marginTop: 2,
-      }}
-      className="btn btn-lg pb-2"
-      onClick={() => {
-        handleRegister();
-      }}
-    >
-      REGISTER
-    </button>
-  );
-} else if (stads) {
-  if(stats) {
-  button = (
-    <button
-      style={{
-        backgroundColor: "#493D72",
-        color: "white",
-        marginTop: 2,
-        fontSize: 15,
-        height: 41,
-        borderRadius: 5,
-      }}
-      className="btn btn-sm pb-2"
-      onClick={() => {
-        handleDeregister();
-      }}
-    >
-      DEREGISTER
-    </button>
-  );
-  }
-  else
-  {
+  if (stats && isvalidcpi && !stads) {
     button = (
       <button
         style={{
           backgroundColor: "#493D72",
           color: "white",
-          marginTop: 2,
-          fontSize: 15,
+          fontSize: 16,
           height: 41,
-          borderRadius: 5,
+          marginTop: 2,
         }}
-        className="btn btn-sm pb-2"
-        disabled
+        className="btn btn-lg pb-2"
+        onClick={() => {
+          handleRegister();
+        }}
       >
-        DEREGISTER
+        REGISTER
       </button>
     );
+  } else if (stads) {
+    if (stats) {
+      button = (
+        <button
+          style={{
+            backgroundColor: "#493D72",
+            color: "white",
+            marginTop: 2,
+            fontSize: 15,
+            height: 41,
+            borderRadius: 5,
+          }}
+          className="btn btn-sm pb-2"
+          onClick={() => {
+            handleDeregister();
+          }}
+        >
+          DEREGISTER
+        </button>
+      );
+    }
+    else {
+      button = (
+        <button
+          style={{
+            backgroundColor: "#493D72",
+            color: "white",
+            marginTop: 2,
+            fontSize: 15,
+            height: 41,
+            borderRadius: 5,
+          }}
+          className="btn btn-sm pb-2"
+          disabled
+        >
+          DEREGISTER
+        </button>
+      );
     }
   }
- else {
-  button = (
-    <button
-      style={{
-        backgroundColor: "#493D72",
-        color: "white",
-        fontSize: 16,
-        height: 41,
-        marginTop: 2,
-      }}
-      className="btn btn-lg pb-2"
-      disabled
-    >
-      REGISTER
-    </button>
-  );
-}
-return <>{button}</>;
+  else {
+    button = (
+      <button
+        style={{
+          backgroundColor: "#493D72",
+          color: "white",
+          fontSize: 16,
+          height: 41,
+          marginTop: 2,
+        }}
+        className="btn btn-lg pb-2"
+        disabled
+      >
+        REGISTER
+      </button>
+    );
+  }
+  return <>{button}</>;
 }
 
 

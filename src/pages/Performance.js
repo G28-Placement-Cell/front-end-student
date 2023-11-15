@@ -24,7 +24,7 @@ const BarChart = () => {
 
   useEffect(() => {
     console.log(localStorage.getItem('token'));
-    fetch('http://localhost:8000/api/student/profile', {
+    fetch('https://back-end-production-ee2f.up.railway.app/api/student/profile', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -69,7 +69,7 @@ const BarChart = () => {
     ],
   }
 
-  return (<div className="graph-container" style={{paddingTop:'5vh'}}><Bar options={options} data={data}/></div>);
+  return (<div className="graph-container" style={{ paddingTop: '5vh' }}><Bar options={options} data={data} /></div>);
 }
 
 export default BarChart

@@ -178,7 +178,7 @@ function StudentRegister() {
             dispatch(setCredentials({ ...res }))
             const formData = new FormData();
 
-            await fetch('http://localhost:8000/api/student/files', {
+            await fetch('https://back-end-production-ee2f.up.railway.app/api/student/files', {
                 method: 'POST',
                 body: formData
             })

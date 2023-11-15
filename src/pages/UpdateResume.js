@@ -18,7 +18,7 @@ function UpdateResume() {
         e.preventDefault();
         const formData = new FormData(form);
         console.log(formData.get('file'));
-        fetch('http://localhost:8000/api/student/files/resume', {
+        fetch('https://back-end-production-ee2f.up.railway.app/api/student/files/resume', {
             method: 'POST',
             body: formData,
             headers: {

@@ -48,7 +48,7 @@ export const Tablet = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/student/profile', {
+    fetch('https://back-end-production-ee2f.up.railway.app/api/student/profile', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -71,7 +71,7 @@ export const Tablet = () => {
   }, []);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/jobprofile/', {
+    fetch('https://back-end-production-ee2f.up.railway.app/api/jobprofile/', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
