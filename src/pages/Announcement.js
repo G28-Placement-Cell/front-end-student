@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Typography,
   ListItem,
@@ -12,13 +12,13 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 const Announcement = ({ title }) => {
-  
+
   const [student, setStudent] = useState({});
   const [loadings, setLoadings] = useState(true);
-  
+
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/student/profile', {
+    fetch('https://back-end-production-ee2f.up.railway.app/api/student/profile', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -42,13 +42,13 @@ const Announcement = ({ title }) => {
 
   const navigate = useNavigate();
 
-  
+
   const [announcements, setAnnouncements] = useState([]);
   const [loading, setLoading] = useState(true);
   // const [loadinger, setLoadinger] = useState(true); // Add loading state
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/announcements/admin/companyAnnouncements', {
+    fetch('https://back-end-production-ee2f.up.railway.app/api/announcements/admin/companyAnnouncements', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -67,7 +67,7 @@ const Announcement = ({ title }) => {
 
         // Fetch company names for each unique company ID
         const fetchCompanyNames = uniqueCompanyIds.map(companyId =>
-          fetch(`http://localhost:8000/api/company/name/${companyId}`, {
+          fetch(`https://back-end-production-ee2f.up.railway.app/api/company/name/${companyId}`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json',
