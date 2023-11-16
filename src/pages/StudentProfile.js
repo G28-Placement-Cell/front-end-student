@@ -6,6 +6,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useEffect, useState } from 'react';
 import { useGetdataMutation } from '../slices/student/studentApislice';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
@@ -14,6 +15,7 @@ import { Paper } from '@mui/material';
 function StudentProfile() {
   const [student, setStudent] = useState({});//student object
   const [loading, setLoading] = useState(true);//loading state
+  const navigate = useNavigate();
 
   const options = {
     year: 'numeric',
@@ -44,17 +46,21 @@ function StudentProfile() {
   const handleClickResume = async () => {
     // const studentid = localStorage.getItem('studentinfo.student_id');
     const fileid = student?.resume;
+    if(!fileid) navigate('/*')
     // const res = await axios.get(`https://back-end-production-ee2f.up.railway.app/api/student/files/${fileid}`, {
     //   headers: {
     //     'Authorization': `Bearer ${localStorage.getItem('token')}`
     //   },
     // });
     // console.log(res);
+    else
     window.open(`https://back-end-production-ee2f.up.railway.app/api/student/files/resume/${fileid}`);
   }
 
   const handleClickProfilepic = async () => {
     const fileid = student?.profile_pic;
+    if(!fileid) navigate('/*')
+    else
     window.open(`https://back-end-production-ee2f.up.railway.app/api/student/files/profilepic/${fileid}`);
   }
   // useEffect(() => {
