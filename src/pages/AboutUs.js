@@ -201,49 +201,28 @@
 // export default AboutUs;
 
 import React, { useState } from 'react';
-import { useTransition, a } from 'react-spring';
 import '../style/aboutUs.css'
 import campus from '../images/campus.svg';
 import img1 from '../images/access_time.svg'
-import img2 from '../images/update.svg'
-import img3 from '../images/education.svg'
-import img4 from '../images/wallet.svg'
-import img5 from '../images/forum.svg'
-import img6 from '../images/feedback.svg'
+import img2 from '../images/user-friendly.svg'
+import img3 from '../images/jobs-1.svg'
+import img4 from '../images/mobile.svg'
+import img5 from '../images/database.svg'
+import img6 from '../images/security.svg'
+import img7 from '../images/shashank.jpg'
+import img8 from '../images/aum.jpg'
+import img9 from '../images/divy.jpg'
+import img10 from '../images/lad.jpg'
+import img11 from '../images/Nishith.jpg'
+import img12 from '../images/sahil.jpg'
+import img13 from '../images/shivang.jpg'
+import img14 from '../images/vinit.jpg'
+import img15 from '../images/vedant.png'
+import img16 from '../images/aarsh.png'
+import img17 from '../images/maulik.jpg'
 import ProfileCard from '../components/ProfileCard';
-import { HStack, VStack } from '@chakra-ui/react';
 const slides = [
-  // {
-  //   id: 1,
-  //   name: "John Doe",
-  //   role: "Frontend Developer",
-  //   image: "https://via.placeholder.com/150",
-  // },
-  // {
-  //   id: 2,
-  //   name: "Alice Brown",
-  //   role: "Backend Developer",
-  //   image: "https://via.placeholder.com/150",
-  // },
-  // {
-  //   id: 3,
-  //   name: "David Lee",
-  //   role: "AI Modeler",
-  //   image: "https://via.placeholder.com/150",
-  // },
-  // {
-  //   id: 4,
-  //   name: "Grace Robinson",
-  //   role: "Tester",
-  //   image: "https://via.placeholder.com/150",
-  // },
-  // {
-  //   id: 5,
-  //   name: "Mark Turner",
-  //   role: "Documentation Specialist",
-  //   image: "https://via.placeholder.com/150",
-  // },
-  // Add more team members here
+  
 ];
 
 
@@ -252,132 +231,96 @@ const AboutUs = () => {
 
   const profiles = [
     {
-      name: 'Julie L. Arsenault',
+      name: 'Shashank Upadhyay',
       username: 'Programmer',
-      imageSrc: 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp',
+      imageSrc: img7,
       socialLinks: [
-        { icon: 'fa-github', url: '#' },
-        { icon: 'fa-linkedin', url: '#' },
-        { icon: 'fa-instagram', url: '#' },
+        {url: 'https://www.linkedin.com/in/shashank-upadhyay-686422226' },
       ],
     },
     {
-      name: 'Frank A. Lopes',
+      name: 'Shivang Kacha',
       username: 'Programmer',
-      imageSrc: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(30).jpg',
+      imageSrc: img13,
       socialLinks: [
-        { icon: 'fa-github', url: '#' },
-        { icon: 'fa-linkedin', url: '#' },
-        { icon: 'fa-instagram', url: '#' },
+        {url: 'https://www.linkedin.com/in/shivang-kacha-1557a3220/' },
       ],
     },
     {
-      name: 'James M. Hinkle',
+      name: 'Vinit Mehta',
       username: 'Programmer',
-      imageSrc: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(28).jpg',
+      imageSrc: img14,
       socialLinks: [
-        { icon: 'fa-github', url: '#' },
-        { icon: 'fa-linkedin', url: '#' },
-        { icon: 'fa-instagram', url: '#' },
+        {url: 'https://www.linkedin.com/in/vinit-mehta-5a7b98251/' },
       ],
     },
     {
-      name: 'Maria C. Boucher',
+      name: 'Sahil Lakdawala',
       username: 'Programmer',
-      imageSrc: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(27).jpg',
+      imageSrc: img12,
       socialLinks: [
-        { icon: 'fa-github', url: '#' },
-        { icon: 'fa-linkedin', url: '#' },
-        { icon: 'fa-instagram', url: '#' },
+        {url: 'https://www.linkedin.com/in/sahil-h-lakdawala-816318260?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' },
       ],
     },
     {
-      name: 'Rasheed A. Harrison',
+      name: 'Aarsh Bhavsar',
       username: 'Programmer',
-      imageSrc: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(26).jpg',
+      imageSrc: img16,
       socialLinks: [
-        { icon: 'fa-github', url: '#' },
-        { icon: 'fa-linkedin', url: '#' },
-        { icon: 'fa-instagram', url: '#' },
+        {url: 'https://www.linkedin.com/in/aarsh-b-9a06a7226?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app' },
       ],
     },
     {
-      name: 'Karen I. McCluskey',
+      name: 'Dhruv Lad',
       username: 'Programmer',
-      imageSrc: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(25).jpg',
+      imageSrc: img10,
       socialLinks: [
-        { icon: 'fa-github', url: '#' },
-        { icon: 'fa-linkedin', url: '#' },
-        { icon: 'fa-instagram', url: '#' },
+        {url: 'https://www.linkedin.com/in/dhruv-lad-b9525a252?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' },
       ],
     },
     {
-      name: 'Michael K. Bayne',
+      name: 'Aum Patel',
       username: 'Programmer',
-      imageSrc: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(24).jpg',
+      imageSrc: img8,
       socialLinks: [
-        { icon: 'fa-github', url: '#' },
-        { icon: 'fa-linkedin', url: '#' },
-        { icon: 'fa-instagram', url: '#' },
+        {url: 'https://www.linkedin.com/in/aum-patel-219537236/' },
       ],
     },
     {
-      name: 'Josephine S. Darakjy',
+      name: 'Maulik Thakkar',
       username: 'Programmer',
-      imageSrc: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(23).jpg',
+      imageSrc: img17,
       socialLinks: [
-        { icon: 'fa-github', url: '#' },
-        { icon: 'fa-linkedin', url: '#' },
-        { icon: 'fa-instagram', url: '#' },
+        {url: 'https://www.linkedin.com/in/maulik-thakkar-631b5223b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' },
       ],
     },
     {
-      name: 'Eddie L. Johnson',
+      name: 'Vedant Shah',
       username: 'Programmer',
-      imageSrc: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(22).jpg',
+      imageSrc: img15,
       socialLinks: [
-        { icon: 'fa-github', url: '#' },
-        { icon: 'fa-linkedin', url: '#' },
-        { icon: 'fa-instagram', url: '#' },
+        {url: 'https://www.linkedin.com/in/vedant-shah-282a52249/' },
       ],
     },
     {
-      name: 'Chloe A. Roberts',
+      name: 'Nishith Parekh',
       username: 'Programmer',
-      imageSrc: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(20).jpg',
+      imageSrc: img11,
       socialLinks: [
-        { icon: 'fa-github', url: '#' },
-        { icon: 'fa-linkedin', url: '#' },
-        { icon: 'fa-instagram', url: '#' },
+        {url: 'https://in.linkedin.com/in/nishith-parekh-54727b252' },
       ],
     },
     {
-      name: 'Thomas A. Anderson',
+      name: 'Divy Patel',
       username: 'Programmer',
-      imageSrc: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).jpg',
-      socialLinks: [{ icon: 'fa-github', url: '#' }, { icon: 'fa-linkedin', url: '#' }, { icon: 'fa-instagram', url: '#' }],
-    },
-    {
-      name: 'Cynthia J. Olson',
-      username: 'Programmer',
-      imageSrc: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(16).jpg',
-      socialLinks: [{ icon: 'fa-github', url: '#' }, { icon: 'fa-linkedin', url: '#' }, { icon: 'fa-instagram', url: '#' }],
-
+      imageSrc: img9,
+      socialLinks: [ 
+        {url: 'https://www.linkedin.com/in/divy-patel-89426a27b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app' }
+      ],
     }
 
   ];
 
-
-
-
-  const transitions = useTransition(slides[index], {
-    from: { opacity: 0, transform: 'translate3d(-50%, 0, -200px) scale(0.8)' },
-    enter: { opacity: 1, transform: 'translate3d(0%, 0, 0) scale(1)' },
-    leave: { opacity: 0, transform: 'translate3d(50%, 0, -200px) scale(0.8)' },
-  });
-
-  const nextSlide = () => set((state) => (state + 1) % slides.length);
-  const prevSlide = () => set((state) => (state - 1 + slides.length) % slides.length);
 
   return (
     <div>
@@ -387,32 +330,6 @@ const AboutUs = () => {
       </p>
   </div>
 
-      {/* <div className='b' >
-        <p>
-                     Dhirubhai Ambani Institute of Information and Communication Technology (DA-IICT) is a University
-                     established under an Act of Gujarat State Legislature and recognized by the University Grants
-                     Commission and Association of Indian Universities. It is a university devoted to the Information and
-                     Communication Technology. Established by the Reliance Group, DA-IICT is widely seen as an
-                     institution 'with a difference' in terms of its academic programs, faculty profiles and overall
-                     ambience. In a short period of fifteen years, it is consistently ranked as one of the best
-                     technological institutes in the country in the fields of <b>computer science, electronics and
-                     communication engineering and information technology</b>.
-        </p>
-
-        <p>
-                     DA-IICT offers a unique B. Tech. Program in Information and Communication Technology, B. Tech (ICT with minors in Computational Science) and four
-                     post-graduate programs - M.Tech. (ICT), M.Sc. (IT), M.Sc. (ICT - ARD) and M.Des. (CD). The
-                     curriculum of theses programs are carefully designed in consultation with industry experts to ensure
-                     that they are relevant to industry and society. DA-IICT is also deeply committed to seeing its
-                     students as responsible citizens and its social science courses and the rural internship program are
-                     designed to give a strong sense of cultural roots and social questions to the students.
-        </p>
-        <p>
-                     The Placement Cell at DA-IICT works professionally with the Industry to explore opportunities for
-                     DA-IICT graduates for placements. The Cell makes its best efforts to reach out to all sub-sectors of
-                     the industry in order to ensure that DA-IICT graduates spread across the industry.
-        </p>
-      </div> */}
     <div class="main-content">
       <h2>About DA-IICT</h2>
       <p>DA-IICT is a premier institution of higher education dedicated to the Information and Communication Technology. Established by the Reliance Group, DA-IICT is widely recognized for its academic rigor, cutting-edge research, and strong industry connections.</p>
@@ -438,11 +355,6 @@ const AboutUs = () => {
         <li>B.Tech. (ICT with minors in Computational Science)</li>
       </ul>
     </div>
-  
-
-      {/* <div className='c'>
-        <img src={line} alt="line" className='line'></img>
-      </div> */}
 
       <div className='d'>
       Your future is our priority. Join DA-IICT for a world of opportunities and Gujarat's unrivaled placements.
@@ -460,43 +372,43 @@ const AboutUs = () => {
           <h3 className='title'>
             <b>  Use Anytime: </b>
           </h3>
-          <p className='disc'>Our website is accessible 24/7, allowing you to check stock patterns and predictions at your convenience. Whether you're an early bird or a night owl, you can access valuable insights whenever it suits you.</p>
+          <p className='disc'>Our website is accessible 24/7. Whether you're an early bird or a night owl, you can access valuable insights whenever it suits you.</p>
         </div>
 
 
         <div className='card'>
           <img src={img2} alt="img1" className='img1'></img>
           <h3 className='title'>
-            <b>  Real-time Updates: </b>
+            <b>  User Friendly Interface: </b>
           </h3>
-          <p className='disc'>Stay informed about the latest stock trends and predictions as our platform provides real-time data and analysis, enabling you to make timely decisions.</p>
+          <p className='disc'>The website is easy to navigate for both employers and candidates. Intuitive design and clear navigation menus enhances the user experience</p>
         </div>
 
 
         <div className='card'>
           <img src={img3} alt="img1" className='img1'></img>
           <h3 className='title'>
-            <b> Educational Resource:  </b>
+            <b> Job Listings:  </b>
           </h3>
-          <p className='disc'>Utilize our Newbie Manual to enhance your stock market knowledge. It's a valuable resource for both beginners and experienced investors, offering insights, tips, and tutorials to help you make informed choices.</p>
+          <p className='disc'>Comprehensive job listings with clear and detailed descriptions. Search and filter options for easy job discovery.</p>
         </div>
 
 
         <div className='card'>
           <img src={img4} alt="img1" className='img1'></img>
           <h3 className='title'>
-            <b> Personalized Portfolio: </b>
+            <b> Mobile Responsiveness: </b>
           </h3>
-          <p className='disc'> Create and manage your personalized portfolio effortlessly. Monitor your investments and track their performance over time, all in one place.</p>
+          <p className='disc'> The website is mobile-friendly to accommodate users accessing it from various devices.</p>
         </div>
 
 
         <div className='card'>
           <img src={img5} alt="img1" className='img1'></img>
           <h3 className='title'>
-            <b> Interactive Community: </b>
+            <b> Resume Database: </b>
           </h3>
-          <p className='disc'> Engage with a vibrant community of fellow investors. Share your thoughts, get feedback, and discuss strategies with like-minded individuals through our Comments and Feedback sections.</p>
+          <p className='disc'> A searchable database of candidate resumes for employers. Advanced filters for employers to find candidates based on specific criteria.</p>
         </div>
 
 
@@ -504,9 +416,9 @@ const AboutUs = () => {
         <div className='card'>
           <img src={img6} alt="img1" className='img1'></img>
           <h3 className='title'>
-            <b> User-driven Improvements: </b>
+            <b> Security and Privacy: </b>
           </h3>
-          <p className='disc'>Your feedback matters. We are constantly working to enhance the website based on user input. Your suggestions and comments play a crucial role in shaping the future of our platform.</p>
+          <p className='disc'>The security of user data is clearly communicated and prioritized. Secure login and data encryption protocols are implemented.</p>
         </div>
       </div>
 

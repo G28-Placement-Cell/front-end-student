@@ -1,5 +1,4 @@
 import React from 'react';
-
 const ProfileCard = ({ name, username, imageSrc, socialLinks }) => {
     return (
         <div className="col-md-12 col-xl-4">
@@ -14,14 +13,11 @@ const ProfileCard = ({ name, username, imageSrc, socialLinks }) => {
                         {socialLinks.map((link, index) => (
                             <a key={index} href={link.url}>
                                 <button type="button" className="btn btn-outline-primary btn-floating">
-                                    <i className={'fab ${link.icon} fa-lg'} />
+                                    View Profile
                                 </button>
                             </a>
                         ))}
                     </div>
-                    <button type="button" className="btn btn-primary btn-rounded btn-lg">
-                        Message now
-                    </button>
                 </div>
             </div>
         </div>
