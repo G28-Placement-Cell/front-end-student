@@ -45,7 +45,7 @@ const BarChart = () => {
 
   const labels = ["Performance"]
   const data1 = [`${student?.jobprofiles?.length}`]
-  const data2 = [`${student?.shortlisted?.length}`]
+  const data2 = [`${student?.shorlisted?.length}`]
 
   const navigate = useNavigate();
 
