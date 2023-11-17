@@ -25,7 +25,7 @@ function StudentProfile() {
 
   useEffect(() => {
     // console.log(localStorage.getItem('token'));
-    fetch('https://back-end-production-ee2f.up.railway.app/api/student/profile', {
+    fetch('https://back-end-production-3140.up.railway.app/api/student/profile', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -35,7 +35,7 @@ function StudentProfile() {
       // console.log(data);
       setStudent(data.stu);
       // const profilefileid = student?.profile_pic;
-      // const profileurl = `https://back-end-production-ee2f.up.railway.app/api/student/files/profilepic/${profilefileid}`
+      // const profileurl = `https://back-end-production-3140.up.railway.app/api/student/files/profilepic/${profilefileid}`
       setLoading(false);
     }).catch((err) => {
       // console.log(err);
@@ -47,21 +47,21 @@ function StudentProfile() {
     // const studentid = localStorage.getItem('studentinfo.student_id');
     const fileid = student?.resume;
     if(!fileid) navigate('/*')
-    // const res = await axios.get(`https://back-end-production-ee2f.up.railway.app/api/student/files/${fileid}`, {
+    // const res = await axios.get(`https://back-end-production-3140.up.railway.app/api/student/files/${fileid}`, {
     //   headers: {
     //     'Authorization': `Bearer ${localStorage.getItem('token')}`
     //   },
     // });
     // console.log(res);
     else
-    window.open(`https://back-end-production-ee2f.up.railway.app/api/student/files/resume/${fileid}`);
+    window.open(`https://back-end-production-3140.up.railway.app/api/student/files/resume/${fileid}`);
   }
 
   const handleClickProfilepic = async () => {
     const fileid = student?.profile_pic;
     if(!fileid) navigate('/*')
     else
-    window.open(`https://back-end-production-ee2f.up.railway.app/api/student/files/profilepic/${fileid}`);
+    window.open(`https://back-end-production-3140.up.railway.app/api/student/files/profilepic/${fileid}`);
   }
   // useEffect(() => {
   //   fetchdata();
@@ -96,7 +96,7 @@ function StudentProfile() {
   const profilefileid = student?.profile_pic;
   // console.log(profilefileid)
   // if (profilefileid) {
-  //   let profileurl = `https://back-end-production-ee2f.up.railway.app/api/student/files/profilepic/${profilefileid}`;
+  //   let profileurl = `https://back-end-production-3140.up.railway.app/api/student/files/profilepic/${profilefileid}`;
   // }
   return (
     <div className="container" style={{ marginTop: 0, paddingTop: '20px', marginBottom: 0, paddingBottom: '20px' }}>
@@ -106,7 +106,7 @@ function StudentProfile() {
             <div className="card" style={{ width: '100%' }}>
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
-                  {student && profilefileid && <img src={`https://back-end-production-ee2f.up.railway.app/api/student/files/profilepic/${profilefileid}`} alt="Admin" className="rounded-circle" width={150} height={150} />}
+                  {student && profilefileid && <img src={`https://back-end-production-3140.up.railway.app/api/student/files/profilepic/${profilefileid}`} alt="Admin" className="rounded-circle" width={150} height={150} />}
                   <div className="mt-3">
                     <h4 id='student_name'>{student?.name.toUpperCase()}</h4>
                     <p id="student id" className="text-secondary mb-1">{student?.student_id}</p>

@@ -20,7 +20,7 @@ function Jobprofile() {
 
   useEffect(() => {
     console.log(localStorage.getItem('token'));
-    fetch(`https://back-end-production-ee2f.up.railway.app/api/jobprofile/${id}`, {
+    fetch(`https://back-end-production-3140.up.railway.app/api/jobprofile/${id}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',

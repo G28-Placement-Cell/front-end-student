@@ -18,7 +18,7 @@ function UpdateProfilepic() {
         e.preventDefault();
         const formData = new FormData(form);
         // console.log(formData.get('file'));
-        fetch('https://back-end-production-ee2f.up.railway.app/api/student/files/profilepic', {
+        fetch('https://back-end-production-3140.up.railway.app/api/student/files/profilepic', {
             method: 'POST',
             body: formData,
             headers: {

@@ -24,7 +24,7 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_
   const handleRegister = () => {
     if (jobId && stuId) {
       // console.log("registered");
-      fetch(`https://back-end-production-ee2f.up.railway.app/api/jobprofile/${jobId}/${stuId}`, {
+      fetch(`https://back-end-production-3140.up.railway.app/api/jobprofile/${jobId}/${stuId}`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -46,7 +46,7 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_
   const handleDeregister = () => {
     if (jobId && stuId) {
       // console.log("deregistered");
-      fetch(`https://back-end-production-ee2f.up.railway.app/api/jobprofile/${jobId}/${stuId}`, {
+      fetch(`https://back-end-production-3140.up.railway.app/api/jobprofile/${jobId}/${stuId}`, {
         method: 'DELETE',
         headers: {
           'content-type': 'application/json',

@@ -49,7 +49,7 @@ export const Tablet = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('https://back-end-production-ee2f.up.railway.app/api/student/profile', {
+    fetch('https://back-end-production-3140.up.railway.app/api/student/profile', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -72,7 +72,7 @@ export const Tablet = () => {
   }, []);
 
   useEffect(() => {
-    fetch('https://back-end-production-ee2f.up.railway.app/api/jobprofile/', {
+    fetch('https://back-end-production-3140.up.railway.app/api/jobprofile/', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
