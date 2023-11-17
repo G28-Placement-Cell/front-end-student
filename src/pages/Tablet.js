@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom'
 import { Buttoned } from '../components/Buttonsed';
 // import Header from '../components/Header';
 import 'react-data-grid/lib/styles.css';
+import moment from 'moment-timezone';
 import { CheckDate } from '../components/ChechDate'
 import { useNavigate } from 'react-router-dom';
 
@@ -48,7 +49,7 @@ export const Tablet = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('https://back-end-production-ee2f.up.railway.app/api/student/profile', {
+    fetch('https://back-end-production-3140.up.railway.app/api/student/profile', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -71,7 +72,7 @@ export const Tablet = () => {
   }, []);
 
   useEffect(() => {
-    fetch('https://back-end-production-ee2f.up.railway.app/api/jobprofile/', {
+    fetch('https://back-end-production-3140.up.railway.app/api/jobprofile/', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -93,16 +94,16 @@ export const Tablet = () => {
   // console.log('reg', regJobProfiles);
   // console.log('jobprofiles', jobProfiles);
 
-  const formatDate = (dateString) => {
-    const options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' };
-    const date = new Date(dateString);
+  // const formatDate = (dateString) => {
+    const options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'UTC' };
+  //   const date = new Date(dateString);
 
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
-    const year = date.getFullYear();
+  //   const day = date.getDate().toString().padStart(2, '0');
+  //   const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+  //   const year = date.getFullYear();
 
-    return `${day}/${month}/${year} ${date.toLocaleString(undefined, options).split(' ')[1]}`;
-  };
+  //   return `${day}/${month}/${year} ${date.toLocaleString('en-GB', options).split(' ')[1]}`;
+  // };
 
   return (
     <>
@@ -147,13 +148,13 @@ export const Tablet = () => {
                     <StyledTableCell align="right">{row.offer_type.toUpperCase()}</StyledTableCell>
                     <StyledTableCell align="right">{row.cpi_criteria}</StyledTableCell>
                     <StyledTableCell align="right">{row.open_for.toUpperCase()}</StyledTableCell>
-                    <StyledTableCell align="right">{formatDate(row.registration_start_date)}</StyledTableCell>
-                    <StyledTableCell align="right">{formatDate(row.registration_end_date)}</StyledTableCell>
+                    <StyledTableCell align="right">{new Date(row.registration_start_date).toLocaleString('en-GB', options)}</StyledTableCell>
+                    <StyledTableCell align="right">{new Date(row.registration_end_date).toLocaleString('en-GB', options)}</StyledTableCell>
                     <StyledTableCell align="right">
-                      <CheckDate reg_open={row.registration_start_date} reg_end={row.registration_end_date} />
+                      <CheckDate reg_open={moment.utc(row.registration_start_date).tz('UTC').format('LLLL')} reg_end={moment.utc(row.registration_end_date).tz('UTC').format('LLLL')} />
                     </StyledTableCell>
                     <StyledTableCell align="right" style={{ alignItems: 'end', display: 'flex', flexDirection: 'column', justifyContent: 'end', columnWidth: 50 }}>
-                      <Buttoned reg_open={row.registration_start_date} reg_end={row.registration_end_date} cpiOf={row.cpi_criteria} jobId={row._id} registered={regJobProfiles.some(profile => profile === row._id)} student_cpi={student?.cpi} />
+                      <Buttoned reg_open={moment.utc(row.registration_start_date).tz('UTC').format('LLLL')} reg_end={moment.utc(row.registration_end_date).tz('UTC').format('LLLL')} cpiOf={row.cpi_criteria} jobId={row._id} registered={regJobProfiles.some(profile => profile === row._id)} student_cpi={student?.cpi} />
                     </StyledTableCell>
                   </StyledTableRow>
                 </>

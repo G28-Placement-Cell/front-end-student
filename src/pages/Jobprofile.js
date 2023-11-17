@@ -20,7 +20,7 @@ function Jobprofile() {
 
   useEffect(() => {
     console.log(localStorage.getItem('token'));
-    fetch(`https://back-end-production-ee2f.up.railway.app/api/jobprofile/${id}`, {
+    fetch(`https://back-end-production-3140.up.railway.app/api/jobprofile/${id}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -177,7 +177,7 @@ function Jobprofile() {
                   <h6 className="mb-0">Registration Start Date</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
-                  {new Date(company?.registration_start_date).toLocaleString(undefined, options)}
+                  {new Date(company?.registration_start_date).toLocaleString('en-GB', { ...options, timeZone: 'UTC' })}
                 </div>
               </div>
               <hr />
@@ -187,7 +187,7 @@ function Jobprofile() {
                   <h6 className="mb-0">Registration Start End</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
-                  {new Date(company?.registration_end_date).toLocaleString(undefined, options)}
+                  {new Date(company?.registration_end_date).toLocaleString('en-GB', { ...options, timeZone: 'UTC' })}
                 </div>
               </div>
 

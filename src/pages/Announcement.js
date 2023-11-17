@@ -18,7 +18,7 @@ const Announcement = ({ title }) => {
 
 
   useEffect(() => {
-    fetch('https://back-end-production-ee2f.up.railway.app/api/student/profile', {
+    fetch('https://back-end-production-3140.up.railway.app/api/student/profile', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -48,7 +48,7 @@ const Announcement = ({ title }) => {
   // const [loadinger, setLoadinger] = useState(true); // Add loading state
 
   useEffect(() => {
-    fetch('https://back-end-production-ee2f.up.railway.app/api/announcements/admin/companyAnnouncements', {
+    fetch('https://back-end-production-3140.up.railway.app/api/announcements/admin/companyAnnouncements', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -67,7 +67,7 @@ const Announcement = ({ title }) => {
 
         // Fetch company names for each unique company ID
         const fetchCompanyNames = uniqueCompanyIds.map(companyId =>
-          fetch(`https://back-end-production-ee2f.up.railway.app/api/company/name/${companyId}`, {
+          fetch(`https://back-end-production-3140.up.railway.app/api/company/name/${companyId}`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json',
