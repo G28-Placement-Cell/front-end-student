@@ -2,7 +2,7 @@ import React from 'react';
 const ProfileCard = ({ name, username, imageSrc, socialLinks }) => {
     return (
         <div className="col-md-12 col-xl-4">
-            <div className="card" style={{ borderRadius: '15px' }}>
+            <div className="card1" style={{ borderRadius: '15px' }}>
                 <div className="card-body text-center">
                     <div className="mt-3 mb-4">
                         <img src={imageSrc} className="rounded-circle img-fluid" style={{ width: '100px' }} alt="Profile Image" />

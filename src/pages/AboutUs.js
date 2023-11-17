@@ -165,7 +165,7 @@ const AboutUs = () => {
 
       <div className='f'>
 
-        <div className='card'>
+        <div className='card1'>
           <img src={img1} alt="img1" className='img1'></img>
           <h3 className='title'>
             <b>  Use Anytime: </b>
@@ -174,7 +174,7 @@ const AboutUs = () => {
         </div>
 
 
-        <div className='card'>
+        <div className='card1'>
           <img src={img2} alt="img1" className='img1'></img>
           <h3 className='title'>
             <b>  User Friendly Interface: </b>
@@ -183,7 +183,7 @@ const AboutUs = () => {
         </div>
 
 
-        <div className='card'>
+        <div className='card1'>
           <img src={img3} alt="img1" className='img1'></img>
           <h3 className='title'>
             <b> Job Listings:  </b>
@@ -192,7 +192,7 @@ const AboutUs = () => {
         </div>
 
 
-        <div className='card'>
+        <div className='card1'>
           <img src={img4} alt="img1" className='img1'></img>
           <h3 className='title'>
             <b> Mobile Responsiveness: </b>
@@ -201,7 +201,7 @@ const AboutUs = () => {
         </div>
 
 
-        <div className='card'>
+        <div className='card1'>
           <img src={img5} alt="img1" className='img1'></img>
           <h3 className='title'>
             <b> Resume Database: </b>
@@ -211,7 +211,7 @@ const AboutUs = () => {
 
 
 
-        <div className='card'>
+        <div className='card1'>
           <img src={img6} alt="img1" className='img1'></img>
           <h3 className='title'>
             <b> Security and Privacy: </b>
