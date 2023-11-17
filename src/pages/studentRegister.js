@@ -18,7 +18,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useLoginMutation, useRegisterMutation, useUploadMutation } from '../slices/student/studentApislice';
 import { setCredentials } from '../slices/student/authslice';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+function validatePassword(password) {
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordPattern.test(password);
+};
 
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
@@ -102,14 +107,69 @@ function StudentRegister() {
     const [upload, { isLoading: isUploading }] = useUploadMutation();
     const submitHandler = async (e) => {
         e.preventDefault();
+        if (/^\d+(\.\d{0,2})?$/.test(cpi)) {
+            // Input is a valid number with up to 2 decimal places
+            if (parseFloat(cpi) >= 4 && parseFloat(cpi) <= 10) {
+
+            } else {
+                toast.error('CPI must be between 4 and 10');
+                return;
+            }
+        } else {
+            toast.error('Invalid CPI format');
+            return;
+        }
+        if (/^\d+(\.\d{0,2})?$/.test(tenth_percentage)) {
+            // Input is a valid number with up to 2 decimal places
+            if (parseFloat(tenth_percentage) >= 0 && parseFloat(tenth_percentage) <= 100) {
+
+            } else {
+                toast.error('Tenth_percentage must be between 0 and 100');
+                return;
+            }
+        } else {
+            toast.error('Invalid tenth_percentage format');
+            return;
+        }
+        if (/^\d+(\.\d{0,2})?$/.test(twelth_percentage)) {
+            // Input is a valid number with up to 2 decimal places
+            if (parseFloat(twelth_percentage) >= 0 && parseFloat(twelth_percentage) <= 100) {
+
+            } else {
+                toast.error('Twelth_percentage must be between 0 and 100');
+                return;
+            }
+        } else {
+            toast.error('Invalid twelth_percentage format');
+            return;
+        }
+        const isValidEmail = email.endsWith('@daiict.ac.in');
+        if (!isValidEmail) {
+            toast.error("Please enter daiict email id");
+            return;
+        }
+        const isValidNumber = /^[0-9]{10}$/.test(phone) && parseInt(phone, 10) >= 0;
+        if (!isValidNumber) {
+            toast.error("Please enter valid mobile number");
+            return;
+        }
+        const isValidaltNumber = /^[0-9]{10}$/.test(alt_phone) && parseInt(alt_phone, 10) >= 0;
+        if (!isValidaltNumber) {
+            toast.error("Please enter valid alternate mobile number");
+            return;
+        }
         if (password !== altpassword) {
             setError(true);
-            alert("Passwords do not match");
+            toast.error("Passwords do not match");
             return; // Exit the function without submitting the form
         } else if (email === altemail) {
             setError(true);
-            alert("Please enter different email id");
+            toast.error("Please enter different email id");
             return; // Exit the function without submitting the form
+        } else if (!validatePassword(password)) {
+            setError(true);
+            toast.error('Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character');
+            return;
         } else {
             setError(false);
         }
@@ -118,13 +178,13 @@ function StudentRegister() {
             dispatch(setCredentials({ ...res }))
             const formData = new FormData();
 
-            await fetch('http://localhost:8000/api/student/files', {
+            await fetch('https://back-end-production-ee2f.up.railway.app/api/student/files', {
                 method: 'POST',
                 body: formData
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                 })
                 .catch(error => {
                     console.error(error);
@@ -139,7 +199,7 @@ function StudentRegister() {
     }
     return (
         <>
-            {console.log("studentRegister.js")}
+            {/* {console.log("studentRegister.js")} */}
             <Typography variant="h4" sx={{ fontWeight: "bold", mt: 3, textAlign: "center" }}>
                 Student Registration
             </Typography>
@@ -362,7 +422,7 @@ function StudentRegister() {
                                         variant="outlined"
                                         fullWidth
                                         onChange={(e) => setTenth_percentage(e.target.value)}
-                                        type="number"
+                                        // type="number"
                                         sx={{ mt: 2 }}
                                         required={true}
                                     />
@@ -373,7 +433,7 @@ function StudentRegister() {
                                         variant="outlined"
                                         fullWidth
                                         onChange={(e) => setTwelth_percentage(e.target.value)}
-                                        type="number"
+                                        // type="number"
                                         required={true}
                                         sx={{ mt: 2 }}
                                     />
@@ -383,7 +443,7 @@ function StudentRegister() {
                                         name="cpi"
                                         variant="outlined"
                                         fullWidth
-                                        type="number"
+                                        // type="number"
                                         onChange={(e) => setCpi(e.target.value)}
                                         required={true}
                                         sx={{ mt: 2 }}

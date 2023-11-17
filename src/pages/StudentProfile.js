@@ -6,10 +6,16 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useEffect, useState } from 'react';
 import { useGetdataMutation } from '../slices/student/studentApislice';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import { Paper } from '@mui/material';
 
 function StudentProfile() {
   const [student, setStudent] = useState({});//student object
   const [loading, setLoading] = useState(true);//loading state
+  const navigate = useNavigate();
 
   const options = {
     year: 'numeric',
@@ -18,35 +24,45 @@ function StudentProfile() {
   };
 
   useEffect(() => {
-    console.log(localStorage.getItem('token'));
-    fetch('http://localhost:8000/api/student/profile', {
+    // console.log(localStorage.getItem('token'));
+    fetch('https://back-end-production-ee2f.up.railway.app/api/student/profile', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
     }).then((res) => res.json()).then((data) => {
-      console.log(data);
+      // console.log(data);
       setStudent(data.stu);
+      // const profilefileid = student?.profile_pic;
+      // const profileurl = `https://back-end-production-ee2f.up.railway.app/api/student/files/profilepic/${profilefileid}`
       setLoading(false);
     }).catch((err) => {
-      console.log(err);
+      // console.log(err);
       setLoading(false);
     });
   }, []);
 
-  const handleclick = async () => {
+  const handleClickResume = async () => {
     // const studentid = localStorage.getItem('studentinfo.student_id');
     const fileid = student?.resume;
-    // const res = await axios.get(`http://localhost:8000/api/student/files/${fileid}`, {
+    if(!fileid) navigate('/*')
+    // const res = await axios.get(`https://back-end-production-ee2f.up.railway.app/api/student/files/${fileid}`, {
     //   headers: {
     //     'Authorization': `Bearer ${localStorage.getItem('token')}`
     //   },
     // });
     // console.log(res);
-    window.open(`http://localhost:8000/api/student/files/${fileid}`);
+    else
+    window.open(`https://back-end-production-ee2f.up.railway.app/api/student/files/resume/${fileid}`);
   }
 
+  const handleClickProfilepic = async () => {
+    const fileid = student?.profile_pic;
+    if(!fileid) navigate('/*')
+    else
+    window.open(`https://back-end-production-ee2f.up.railway.app/api/student/files/profilepic/${fileid}`);
+  }
   // useEffect(() => {
   //   fetchdata();
   // }, []);
@@ -62,26 +78,48 @@ function StudentProfile() {
     whiteSpace: 'nowrap',
     width: 1,
   });
-  if (loading) return (<div>Loading...</div>);
+
+
+
+  if (loading) return (<div style={{
+    position: "relative",
+    display: "flex",
+    justifyContent: "center",
+    padding: "5vh 5vw",
+  }}>
+    <Paper sx={{ py: 1, px: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '73vh' }} className="container">
+      <Box sx={{ display: 'flex' }}>
+        <CircularProgress />
+      </Box>
+    </Paper>
+  </div>);
+  const profilefileid = student?.profile_pic;
+  // console.log(profilefileid)
+  // if (profilefileid) {
+  //   let profileurl = `https://back-end-production-ee2f.up.railway.app/api/student/files/profilepic/${profilefileid}`;
+  // }
   return (
-    <div className="container" style={{marginTop:0, paddingTop:'20px', marginBottom:0, paddingBottom:'20px'}}>
+    <div className="container" style={{ marginTop: 0, paddingTop: '20px', marginBottom: 0, paddingBottom: '20px' }}>
       <div className="main-body">
         <div className="row gutters-sm">
           <div className="col-md-4 mb-3">
-            <div className="card">
+            <div className="card" style={{ width: '100%' }}>
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} />
+                  {student && profilefileid && <img src={`https://back-end-production-ee2f.up.railway.app/api/student/files/profilepic/${profilefileid}`} alt="Admin" className="rounded-circle" width={150} height={150} />}
                   <div className="mt-3">
                     <h4 id='student_name'>{student?.name.toUpperCase()}</h4>
                     <p id="student id" className="text-secondary mb-1">{student?.student_id}</p>
-                    <p id="verify" className="text-muted font-size-sm">Your profile is APPROVED </p>
+                    {
+                      student?.verified ? <p id="verify" className="text-muted font-size-sm">Your profile is APPROVED </p> : <p id="verify" className="text-muted font-size-sm">Your profile is NOT APPROVED </p>
+                    }
+
                   </div>
                 </div>
               </div>
             </div>
-            <div className="card mt-3">
-              <ul className="list-group list-group-flush">
+            <div className="card mt-3" style={{ width: '100%' }}>
+              <ul className="list-group list-group-flush" style={{ width: '100%' }}>
                 <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                   <h6 className="mb-0">Email</h6>
                   <span id="Email" className="text-secondary">{student?.email.main}</span>
@@ -130,8 +168,8 @@ function StudentProfile() {
             </div>
           </div>
           <div className="col-md-8">
-            <div className="card mb-3">
-              <div className="card-body">
+            <div className="card mb-3" style={{ width: '100%' }}>
+              <div className="card-body" style={{ width: '100%' }}>
                 <div className="row">
                   <div className="col-sm-3">
                     <h6 className="mb-0">First Name</h6>
@@ -245,13 +283,12 @@ function StudentProfile() {
                 <hr />
                 <div className="row">
                   <div className="col-sm-12">
-                    <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" onClick={handleclick} variant="contained" startIcon={<CloudUploadIcon />}>
+                    <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" onClick={handleClickResume} variant="contained" startIcon={<CloudDownloadIcon />}>
                       Download Resume
                     </Button>
-                    {/* <Button href='/updateresume' sx={{ width: 150, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
-                      Upload Resume
-                      <VisuallyHiddenInput type="file" />
-                    </Button> */}
+                    <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" onClick={handleClickProfilepic} variant="contained" startIcon={<CloudDownloadIcon />}>
+                      Download Profilepic
+                    </Button>
                   </div>
                 </div>
               </div>

@@ -1,6 +1,7 @@
 import { Bar } from "react-chartjs-2"
 import '../App.css'
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const BarChart = () => {
   const options = {
@@ -22,26 +23,31 @@ const BarChart = () => {
 
 
   useEffect(() => {
-    console.log(localStorage.getItem('token'));
-    fetch('http://localhost:8000/api/student/profile', {
+    // console.log(localStorage.getItem('token'));
+    fetch('https://back-end-production-ee2f.up.railway.app/api/student/profile', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
     }).then((res) => res.json()).then((data) => {
-      console.log(data);
+      // console.log(data);
       setStudent(data.stu);
+      if (data.stu.verified === false) {
+        navigate('/nv');
+      }
       setLoading(false);
     }).catch((err) => {
-      console.log(err);
+      // console.log(err);
       setLoading(false);
     });
   }, []);
 
   const labels = ["Performance"]
   const data1 = [`${student?.jobprofiles?.length}`]
-  const data2 = [`${student?.shortlisted?.length}`]
+  const data2 = [`${student?.shorlisted?.length}`]
+
+  const navigate = useNavigate();
 
   const data = {
     labels,
@@ -63,7 +69,7 @@ const BarChart = () => {
     ],
   }
 
-  return (<div className="graph-container" style={{paddingTop:'5vh'}}><Bar options={options} data={data}/></div>);
+  return (<div className="graph-container" style={{ paddingTop: '5vh' }}><Bar options={options} data={data} /></div>);
 }
 
 export default BarChart

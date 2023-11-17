@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import * as React from 'react';
+import { Typography, Paper, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,17 +9,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Link } from 'react-router-dom'
-import Paper from '@mui/material/Paper';
 import { Buttoned } from '../components/Buttonsed';
 // import Header from '../components/Header';
 import 'react-data-grid/lib/styles.css';
 import { CheckDate } from '../components/ChechDate'
-import JobProfile from './Jobprofile'
-
-
-// import Footer from '../components/Footer';
-
-
+import { useNavigate } from 'react-router-dom';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -43,112 +38,130 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-// function createData(profileId,name, type,cpi,link,open_for,registration_open,registration_end) {
-//   return { profileId,name, type,cpi,link,open_for,registration_open,registration_end };
-// }
 export const Tablet = () => {
   // const [stats, setStatus] = useState(false);
-  const [company, setCompany] = useState([]);//student object
-  const [loading, setLoading] = useState(true);//loading state
+  const [jobProfiles, setJobProfiles] = useState([]);
+  const [regJobProfiles, setRegJobProfiles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [student, setStudent] = useState({});
+  const [loadings, setLoadings] = useState(true);
+  const navigate = useNavigate();
+
   useEffect(() => {
-    console.log(localStorage.getItem('token'));
-    fetch('http://localhost:8000/api/student/jobprofile', {
+    fetch('https://back-end-production-ee2f.up.railway.app/api/student/profile', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
-    }).then((res) => res.json()).then((data) => {
-      console.log(data.job);
-      setCompany(data.job);
-      // setCompany(data);
-      setLoading(false);
-    }).catch((err) => {
-      console.log(err);
-      setLoading(false);
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setStudent(data.stu);
+        setRegJobProfiles(data?.stu?.jobprofiles);
+        if (data.stu.verified === false) {
+          navigate('/nv');
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        // console.log(err);
+        setLoading(false);
+      });
   }, []);
 
+  useEffect(() => {
+    fetch('https://back-end-production-ee2f.up.railway.app/api/jobprofile/', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setJobProfiles(data.jobProfiles);
+        setLoadings(false);
+      })
+      .catch((err) => {
+        // console.log(err);
+        setLoadings(false);
+      });
+  }, []);
 
+  // console.log('studentDetails', student);
+  // console.log('reg', regJobProfiles);
+  // console.log('jobprofiles', jobProfiles);
 
-  const options = {
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
+  const formatDate = (dateString) => {
+    const options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+    const date = new Date(dateString);
+
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year} ${date.toLocaleString(undefined, options).split(' ')[1]}`;
   };
 
-
-  const [student, setStudent] = useState({});//student object
-  const [loadings, setLoadings] = useState(true);//loading state
-
-  useEffect(() => {
-    console.log(localStorage.getItem('token'));
-    fetch('http://localhost:8000/api/student/profile', {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
-    }).then((res) => res.json()).then((data) => {
-      console.log(data);
-      setStudent(data.stu);
-      setLoadings(false);
-    }).catch((err) => {
-      console.log(err);
-      setLoadings(false);
-    });
-  }, []);
-
-  const [cnt, setCnt] = useState(1);
   return (
     <>
-      {/* style={{height: '85vh'}}  */}
-      {/* <Header />   */}
-
-      <TableContainer component={Paper} sx={{ borderRadius: 0 }}>
-        <Table stickyHeader sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead >
-            <TableRow >
-              <StyledTableCell>PROFILE ID</StyledTableCell>
-              <StyledTableCell align="right">COMPANY NAME</StyledTableCell>
-              <StyledTableCell align="right">TYPE</StyledTableCell>
-              <StyledTableCell align="right">CPI</StyledTableCell>
-              <StyledTableCell align="right">OPEN FOR</StyledTableCell>
-              <StyledTableCell align="right">REGISTRATION STARTS</StyledTableCell>
-              <StyledTableCell align="right">REGISTRATION ENDS</StyledTableCell>
-              <StyledTableCell align="right">STATUS</StyledTableCell>
-              <StyledTableCell align="right">ACTION</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {company.map((row, index) => (
-              (student?.registering_for === row.offer_type) &&
-              <>
-                <StyledTableRow className="mt-10 py-10" key={row._id}>
-                  <StyledTableCell component="th" scope="row">{index + 1}</StyledTableCell>
-                  <StyledTableCell align="right">
-                    {/* <a style={{color: "#2B2442", textDecoration: "none"}} href={<JobProfile company={row}/>} target="_blank">{row.company_name}</a> */}
-                    <Link to={`/JobProfile/${row._id}`} style={{textDecoration:'none',color:'black'}}>{row.company_name.toUpperCase()}</Link>
-                  </StyledTableCell>
-                  <StyledTableCell align="right">{row.offer_type.toUpperCase()}</StyledTableCell>
-                  <StyledTableCell align="right">{row.cpi_criteria}</StyledTableCell>
-                  <StyledTableCell align="right">{row.open_for.toUpperCase()}</StyledTableCell>
-                  <StyledTableCell align="right">{new Date(row.registration_start_date).toLocaleString(undefined, options)}</StyledTableCell>
-                  <StyledTableCell align="right">{new Date(row.registration_end_date).toLocaleString(undefined, options)}</StyledTableCell>
-                  <StyledTableCell align="right">
-                    <CheckDate reg_open={row.registration_start_date} reg_end={row.registration_end_date} />
-                  </StyledTableCell>
-                  <StyledTableCell align="right" style={{ alignItems: 'end', display: 'flex', flexDirection: 'column', justifyContent: 'end', columnWidth: 50 }}><Buttoned reg_open={row.registration_start_date} reg_end={row.registration_end_date} cpiOf={row.cpi_criteria} jobId={row._id}/></StyledTableCell>
-                </StyledTableRow>
-
-              </>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      {/* <Footer /> */}
+      {loading || loadings ? (
+        <div style={{
+          position: "relative",
+          display: "flex",
+          justifyContent: "center",
+          padding: "5vh 5vw",
+        }}>
+          <Paper sx={{ py: 1, px: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '73vh' }} className="container">
+            <Typography variant="h4">
+              Loading... please wait...
+            </Typography>
+          </Paper>
+        </div>
+      ) : (
+        <TableContainer component={Paper} sx={{ borderRadius: 0 }}>
+          <Table stickyHeader sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableHead >
+              <TableRow >
+                <StyledTableCell>PROFILE ID</StyledTableCell>
+                <StyledTableCell align="right">COMPANY NAME</StyledTableCell>
+                <StyledTableCell align="right">TYPE</StyledTableCell>
+                <StyledTableCell align="right">CPI</StyledTableCell>
+                <StyledTableCell align="right">OPEN FOR</StyledTableCell>
+                <StyledTableCell align="right">REGISTRATION STARTS</StyledTableCell>
+                <StyledTableCell align="right">REGISTRATION ENDS</StyledTableCell>
+                <StyledTableCell align="right">STATUS</StyledTableCell>
+                <StyledTableCell align="right">ACTION</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {jobProfiles && jobProfiles.length > 0 && jobProfiles.map((row, index) => (
+                (student?.registering_for === row.offer_type) &&
+                <>
+                  <StyledTableRow className="mt-10 py-10" key={row?._id}>
+                    <StyledTableCell component="th" scope="row">{index + 1}</StyledTableCell>
+                    <StyledTableCell align="right">
+                      <Link to={`/JobProfile/${row._id}`} style={{ textDecoration: 'none', color: 'black' }}>{row.company_name.toUpperCase()}</Link>
+                    </StyledTableCell>
+                    <StyledTableCell align="right">{row.offer_type.toUpperCase()}</StyledTableCell>
+                    <StyledTableCell align="right">{row.cpi_criteria}</StyledTableCell>
+                    <StyledTableCell align="right">{row.open_for.toUpperCase()}</StyledTableCell>
+                    <StyledTableCell align="right">{formatDate(row.registration_start_date)}</StyledTableCell>
+                    <StyledTableCell align="right">{formatDate(row.registration_end_date)}</StyledTableCell>
+                    <StyledTableCell align="right">
+                      <CheckDate reg_open={row.registration_start_date} reg_end={row.registration_end_date} />
+                    </StyledTableCell>
+                    <StyledTableCell align="right" style={{ alignItems: 'end', display: 'flex', flexDirection: 'column', justifyContent: 'end', columnWidth: 50 }}>
+                      <Buttoned reg_open={row.registration_start_date} reg_end={row.registration_end_date} cpiOf={row.cpi_criteria} jobId={row._id} registered={regJobProfiles.some(profile => profile === row._id)} student_cpi={student?.cpi} />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                </>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
     </>
   );
-}
+};

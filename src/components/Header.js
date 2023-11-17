@@ -15,37 +15,58 @@ import TemporaryDrawer from './Navbar';
 
 
 function Header() {
+  const studentInfoJSON = localStorage.getItem('studentInfo');
+  const studentInfo = JSON.parse(studentInfoJSON);
+
   const [sidebar, setSidebar] = useState(false);
   const dispatch = useDispatch();
   const [logoutapicall] = useLogoutMutation();
-
   const navigate = useNavigate();
+
   const logoutHandler = async () => {
     try {
       await logoutapicall().unwrap();
       dispatch(logout());
-      navigate('/');
+      navigate("/");
+    } catch (error) {
+      // console.log(error);
     }
-    catch (err) {
-      console.log(err);
-    }
-  }
+  };
 
   const showSidebar = () => setSidebar(!sidebar);
   return (
     <AppBar position="sticky" style={{ backgroundColor: "#2B2442" }}>
       <Toolbar>
-        < TemporaryDrawer />
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1, marginLeft: 2 }}>
-          Placement Cell
+        {studentInfo && (
+          <TemporaryDrawer logoutHandler={logoutHandler} />
+        )}
+
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{ flexGrow: 1, marginLeft: 2 }}
+
+        >
+          {
+            studentInfo ?
+
+              < span onClick={() => navigate('/profile')} style={{ cursor: 'pointer' }}>
+                Placement Cell
+              </span>
+              :
+              <span onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+                Placement Cell
+              </span>
+          }
+
+
         </Typography>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button color="inherit" style={{ minWidth: '16vh' }}>Contact us</Button>
+          <Button color='inherit' style={{ minWidth: '16vh' }} onClick={() => navigate('/ContactUs')}>Contact Us</Button>
           <Button color='inherit' style={{ minWidth: '16vh' }} onClick={() => navigate('/aboutus')}>About Us</Button>
-          <Button color="inherit" onClick={logoutHandler}>Logout</Button>
         </div>
       </Toolbar>
-    </AppBar>
+    </AppBar >
   );
 }
 

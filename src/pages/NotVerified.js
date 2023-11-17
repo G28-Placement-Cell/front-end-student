@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Paper, Typography } from '@mui/material';
 
-export const Errored = () => {
+export const NotVerified = () => {
     const navigate = useNavigate();
 
     return (
@@ -14,7 +14,7 @@ export const Errored = () => {
         }}>
             <Paper sx={{ py: 1, px: 3, display: 'flex', flexDirection:'column' , justifyContent: 'center', alignItems: 'center', minHeight: '73vh' }} className="container">
                 <Typography variant="h4" sx={{mb:1}}>
-                    Page Not Found
+                    Your profile has not been verified yet
                 </Typography>
                 {localStorage.getItem('studentInfo') ? (
                     <Button variant='contained' sx={{width:'260px'}} onClick={() => navigate('/profile')}>

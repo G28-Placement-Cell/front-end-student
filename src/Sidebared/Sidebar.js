@@ -3,6 +3,7 @@ import React from 'react';
 import * as BiIcons from 'react-icons/bi';
 import * as TfiIcons from "react-icons/tfi";
 import * as HiIcons from "react-icons/hi"
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 
 // import * as RxIcons from "react-icons/rx"
 import * as TbIcons from 'react-icons/tb'
@@ -42,6 +43,12 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
+    title: 'Update Profile pic',
+    path: '/updateProfilepic',
+    icon: <BiIcons.BiUpload />,
+    cName: 'nav-text'
+  },
+  {
     title: 'Company Announcements',
     path: '/companyannouncements',
     icon: <TfiIcons.TfiAnnouncement />,
@@ -76,5 +83,11 @@ export const SidebarData = [
     path: '/changepassword',
     icon: <TbIcons.TbArrowsExchange />,
     cName: 'nav-text'
-  }
+  },
+  {
+    title: 'Logout',
+    path: '/logout', // or whatever path you prefer
+    icon: <LogoutRoundedIcon />,
+    cName: 'nav-text',
+  },
 ];

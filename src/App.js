@@ -8,28 +8,34 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import StudentProfile from './pages/StudentProfile';
 import { ChangePassword } from './pages/ChangePassword';
+// import { ResetPassword } from './pages/ResetPassword';
 import Announcement from './pages/Announcement'
 import StudentLogin from './pages/StudentLogin';
 import { Errored } from './pages/Errored';
 import BarChart from './pages/Performance'
 import StudentRegister from './pages/studentRegister';
 import UpdateResume from './pages/UpdateResume';
+import UpdateProfilepic from './pages/UpdateProfilepic';
 import AnnouncementSection from './pages/AdminAnnouncements';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Jobprofile from './pages/Jobprofile';
-import {registerCharts} from './components/Performancemain';
+import { registerCharts } from './components/Performancemain';
+import ContactUs from './pages/ContactUs';
 import AboutUs from './pages/AboutUs';
-
+import ForgotPass from './pages/ForgotPass';
+import { NotVerified } from './pages/NotVerified';
+import { ResetPassword } from './pages/ResetPassword';
+import LogOut from './pages/LogOut';
 
 registerCharts()
 
 function App() {
 
   return (
-      <Router>
-        <Header />
-        <div style={{minHeight: "84vh", backgroundColor:'#e4eaf5'}}>
+    <Router>
+      <Header />
+      <div style={{ minHeight: "84vh", backgroundColor: '#e4eaf5' }}>
         <ToastContainer />
         <Routes>
           <Route path='/' element={<StudentLogin />} />
@@ -38,18 +44,24 @@ function App() {
           <Route path='/companies' element={<Tablet />} />
           <Route path='/companyannouncements' element={<Announcement />} />
           <Route path='/adminannouncements' element={<AnnouncementSection />} />
-          <Route path='/performance' element={<BarChart/>}/>
+          <Route path='/performance' element={<BarChart />} />
           <Route path='/updateResume' element={<UpdateResume />} />
+          <Route path='/updateProfilepic' element={<UpdateProfilepic />} />
           {/* <Route path='/updateresume'  /> */}
           <Route path='/changepassword' element={<ChangePassword />} />
-          <Route path='/jobprofile/:id' element={<Jobprofile />}/>
-          <Route path='/aboutus' element={<AboutUs />}/>
-          <Route path='/logout' />
+          <Route path='/resetpassword' element={<ResetPassword />} />
+          <Route path='/jobprofile/:id' element={<Jobprofile />} />
+          <Route path='/aboutus' element={<AboutUs />} />
+          <Route path='/contactus' element={<ContactUs />} />
+          <Route path='/logout' element={<LogOut />} />
+          <Route path='/forgotpass' element={<ForgotPass />} />
+          <Route path='/resetpassword' element={<ResetPassword />} />
+          <Route path='/nv' element={<NotVerified />} />
           <Route path='/*' element={<Errored />} />
         </Routes>
-        </div>
-        <Footer />
-      </Router>
+      </div>
+      <Footer />
+    </Router>
   );
 
 }

@@ -20,7 +20,7 @@ function Jobprofile() {
 
   useEffect(() => {
     console.log(localStorage.getItem('token'));
-    fetch(`http://localhost:8000/api/jobprofile/${id}`, {
+    fetch(`https://back-end-production-ee2f.up.railway.app/api/jobprofile/${id}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -43,7 +43,7 @@ function Jobprofile() {
         <div className="row gutters-sm">
 
           <div className="card mb-3">
-            <div className="card-body">
+            <div className="card-body" style={{ width: '100%' }}>
               <div className="row">
                 <div className="col-sm-3">
                   <h6 className="mb-0">Company Name</h6>
@@ -71,7 +71,7 @@ function Jobprofile() {
                 </div>
               </div>
               <hr />
-              
+
               <div className="row">
                 <div className="col-sm-3">
                   <h6 className="mb-0">UG Criteria</h6>
@@ -97,11 +97,11 @@ function Jobprofile() {
                   <h6 className="mb-0">Company Category</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
-                  {company?.ctc>10?"A1":"A"}
+                  {company?.ctc > 10 ? "A1" : "A"}
                 </div>
               </div>
               <hr />
-              
+
               <div className="row">
                 <div className="col-sm-3">
                   <h6 className="mb-0">Open For</h6>

@@ -39,7 +39,7 @@ function StudentLogin() {
         }
         catch (err) {
             toast.error(err?.data?.message || err.error);
-            console.log(err);
+            // console.log(err);
         }
     }
 
@@ -115,12 +115,12 @@ function StudentLogin() {
 
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px', padding: '10px' }}>
                                 {/* Submit button */}
-                                <Button type="submit" variant="contained" color="primary">
+                                <Button type="submit" variant="contained" color="primary" sx={{ width: '100px' }}>
                                     Login
                                 </Button>
 
                                 {/* Forgot Password link */}
-                                <a href="#" style={{ textDecoration: 'none', color: 'blue' }}>Forgot Password?</a>
+                                <a href='/forgotpass' style={{ textDecoration: 'none', color: 'blue' }}>Forgot Password?</a>
                                 <a href="/register" style={{ textDecoration: 'none', color: 'blue' }}>Register</a>
                             </div>
                         </form>

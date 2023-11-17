@@ -7,13 +7,48 @@ import {
   Paper,
 } from '@mui/material';
 import '../style/AnnouncementSection.css'
+import { useNavigate } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 const Announcement = ({ title }) => {
-  const [announcements, setAnnouncements] = useState([]);
-  const [loading, setLoading] = useState(true); // Add loading state
+
+  const [student, setStudent] = useState({});
+  const [loadings, setLoadings] = useState(true);
+
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/announcements/admin/companyAnnouncements', {
+    fetch('https://back-end-production-ee2f.up.railway.app/api/student/profile', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setStudent(data.stu);
+        if (data.stu.verified === false) {
+          navigate('/nv');
+        }
+        // setRegJobProfiles(data?.stu?.jobprofiles);
+        setLoadings(false);
+      })
+      .catch((err) => {
+        // console.log(err);
+        setLoadings(false);
+      });
+  }, []);
+
+  const navigate = useNavigate();
+
+
+  const [announcements, setAnnouncements] = useState([]);
+  const [loading, setLoading] = useState(true);
+  // const [loadinger, setLoadinger] = useState(true); // Add loading state
+
+  useEffect(() => {
+    fetch('https://back-end-production-ee2f.up.railway.app/api/announcements/admin/companyAnnouncements', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -24,15 +59,15 @@ const Announcement = ({ title }) => {
 
         // Filter out announcements with null company
         const validAnnouncements = data.filter(announcement => announcement.company);
-        console.log("Valid announcements:", validAnnouncements); // Log valid announcements
+        // console.log("Valid announcements:", validAnnouncements); // Log valid announcements
 
         // Extract the unique company IDs from the valid announcements
         const uniqueCompanyIds = [...new Set(validAnnouncements.map(announcement => announcement.company._id))];
-        console.log("Unique company IDs:", uniqueCompanyIds); // Log unique company IDs
+        // console.log("Unique company IDs:", uniqueCompanyIds); // Log unique company IDs
 
         // Fetch company names for each unique company ID
         const fetchCompanyNames = uniqueCompanyIds.map(companyId =>
-          fetch(`http://localhost:8000/api/company/name/${companyId}`, {
+          fetch(`https://back-end-production-ee2f.up.railway.app/api/company/name/${companyId}`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json',
@@ -51,7 +86,7 @@ const Announcement = ({ title }) => {
 
             });
 
-            console.log("Company map:", companyMap); // Log company map
+            // console.log("Company map:", companyMap); // Log company map
 
             const announcementsWithCompanyNames = validAnnouncements.map(announcement => ({
               ...announcement,
@@ -59,18 +94,30 @@ const Announcement = ({ title }) => {
             }));
 
             setAnnouncements(announcementsWithCompanyNames);
-            console.log(announcements);
+            // console.log(announcements);
             setLoading(false);
           });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         setLoading(false);
       });
   }, []);
-
+  if (loading) return (<div style={{
+    position: "relative",
+    display: "flex",
+    justifyContent: "center",
+    padding: "5vh 5vw",
+  }}>
+    <Paper sx={{ py: 1, px: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '73vh' }} className="container">
+      <Box sx={{ display: 'flex' }}>
+        <CircularProgress />
+      </Box>
+    </Paper>
+  </div>);
   return (
-    <div style={{ position: 'relative', padding:'10px' }}>
+    // student?.verified?(
+    <div style={{ position: 'relative', padding: '10px' }}>
       <Paper sx={{ py: 1, px: 3 }} className="container">
         <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
           Company Announcements {title}:
@@ -116,6 +163,7 @@ const Announcement = ({ title }) => {
         )}
       </Paper>
     </div>
+    // ):(navigate('/nv'))
   );
 };
 

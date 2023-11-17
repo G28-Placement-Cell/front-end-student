@@ -1,70 +1,63 @@
 import React, { useState } from 'react';
-import './MainCP.css';
-import { useChange_passwordMutation, useLogoutMutation } from '../slices/student/studentApislice';
+import './Reset.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../slices/student/authslice';
 import { useNavigate } from 'react-router-dom';
+import { useReset_applyMutation } from '../slices/student/studentApislice';
+import { removeReset } from '../slices/student/authslice';
 
 function validatePassword(password) {
   const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   return passwordPattern.test(password);
 };
-
-function ChangePassword() {
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
+function ResetPassword() {
+  const [otp, setOtp] = useState('');
+  const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
-  const [change_password] = useChange_passwordMutation();
-  const [logout] = useLogoutMutation();
   const dispatch = useDispatch();
-  const [logoutapicall] = useLogoutMutation();
-  const [show, setShow] = useState(false);
-
+  const [reset_apply] = useReset_applyMutation();
   const navigate = useNavigate();
-  const logoutHandler = async () => {
-    try {
-      await logoutapicall().unwrap();
-      dispatch(logout());
-      navigate('/');
-    }
-    catch (err) {
-      // console.log(err);
-    }
-  }
+
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (!validatePassword(newPassword)) {
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return; // Exit the function without submitting the form
+    }
+    else if (!validatePassword(password)) {
       toast.error('Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character');
       return;
     }
     try {
       // console.log('ok');
-      const res = await change_password({ currentPassword, newPassword, confirmPassword }).unwrap();
+      const resetId = localStorage.getItem('resetId');
+      console.log(resetId);
+      const res = await reset_apply({ otp, password, resetId }).unwrap();
+      dispatch(removeReset());
       toast.success(res.message);
       navigate('/');
     } catch (err) {
       toast.error(err?.data?.message || err.error);
-      // console.log(err);
+      console.log(err);
     }
   };
 
   return (
     <div className="maincp" style={{ marginTop: 0, paddingTop: '20px' }}>
       <div className="change-password-container">
-        <h2>Change Password</h2>
-        <form onSubmit={submitHandler}>
+        <h2>Reset Password</h2>
+        <form id='uploadForm' onSubmit={submitHandler}>
 
           <div className="password-form">
-            <label htmlFor="currentPassword">Current Password</label>
+            <label htmlFor="currentPassword">Enter OTP</label>
             <input
-              type="password"
-              id="currentPassword"
+              //   type="password"
+              id="otp"
               required
               // value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
+              onChange={(e) => setOtp(e.target.value)}
             />
             <label htmlFor="newPassword">New Password</label>
             <input
@@ -72,7 +65,7 @@ function ChangePassword() {
               id="newPassword"
               // value={newPassword}
               required
-              onChange={(e) => setNewPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <label htmlFor="confirmPassword">Confirm New Password</label>
             <input
@@ -82,15 +75,14 @@ function ChangePassword() {
               // value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            <button
-              type="submit" > Change Password</button>
+            <button type="submit">Reset Password</button>
             {message && <p className="message">{message}</p>}
           </div>
         </form>
-      </div >
+      </div>
     </div >
 
   );
 }
 
-export default ChangePassword;
+export default ResetPassword;
