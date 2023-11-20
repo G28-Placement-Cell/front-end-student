@@ -1,3 +1,4 @@
+
   .a {
     text-align: center;
     background-image: url("../images/campus-1.png");
@@ -91,7 +92,7 @@
     padding: 20px;
 }
 
-.card {
+.card1 {
     flex: 1;
     min-width: calc(33.33% - 20px);
     /* 2 cards per row with spacing */
@@ -99,6 +100,12 @@
     margin: 10px;
     align-items: center;
     border: 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card1:hover{
+  box-shadow: 0px 30px 18px -8px rgba(0, 0, 0, 0.1);
+  transform: scale(1.05, 1.05);
 }
 
 .img1 {
@@ -109,6 +116,13 @@
 }
 .img2 {
   width: 200px;
+  /* Adjust the image size as needed */
+  height: auto;
+
+}
+
+.img3 {
+  width: 20px;
   /* Adjust the image size as needed */
   height: auto;
 
