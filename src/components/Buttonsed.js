@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
+import { Typography, Paper, Button } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import { useNavigate } from "react-router-dom";
 
 export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_cpi }) => {
-
+  const navigate = useNavigate();
   const stu_id = localStorage.getItem('studentInfo');
   const stuId = stu_id ? JSON.parse(stu_id)._id : null;
   // const jobProfiles = localStorage.getItem('jobProfiles');
@@ -11,6 +15,7 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_
 
   const [student, setStudent] = useState({});//student object
   const [loading, setLoading] = useState(true);//loading state
+  const [load, setLoad] = useState(false);
   // console.log(student_cpi);
   let isvalidcpi = false;
   // console.log(parseFloat(student_cpi), parseFloat(cpiOf));
@@ -22,7 +27,10 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_
   const [stads, setStads] = useState(registered);
 
   const handleRegister = () => {
+
+
     if (jobId && stuId) {
+      setLoad(true);
       // console.log("registered");
       fetch(`https://back-end-production-3140.up.railway.app/api/jobprofile/${jobId}/${stuId}`, {
         method: 'POST',
@@ -32,9 +40,10 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_
         },
         body: JSON.stringify({
           profileId: 1,
-        })
+        }),
       }).then((res) => res.json()).then((data) => {
         setStads(true);
+        setLoad(false);
       }).catch((err) => {
         // console.log(err);
       });
@@ -45,6 +54,7 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_
 
   const handleDeregister = () => {
     if (jobId && stuId) {
+      setLoad(true);
       // console.log("deregistered");
       fetch(`https://back-end-production-3140.up.railway.app/api/jobprofile/${jobId}/${stuId}`, {
         method: 'DELETE',
@@ -57,6 +67,7 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_
         })
       }).then((res) => res.json()).then((data) => {
         setStads(false);
+        setLoad(false);
       }).catch((err) => {
         // console.log(err);
       });
@@ -153,7 +164,27 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_
       </button>
     );
   }
-  return <>{button}</>;
+  if (load) return <>
+    {
+      <button
+        style={{
+          backgroundColor: "#493D72",
+          color: "white",
+          fontSize: 16,
+          height: 41,
+          marginTop: 2,
+        }}
+        className="btn btn-lg pb-2"
+      >
+        Loading...
+      </button>
+    }</>
+  else {
+    return <>
+
+      {button}
+    </>;
+  }
 }
 
 

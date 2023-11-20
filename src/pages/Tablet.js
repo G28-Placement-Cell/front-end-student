@@ -15,6 +15,8 @@ import 'react-data-grid/lib/styles.css';
 import moment from 'moment-timezone';
 import { CheckDate } from '../components/ChechDate'
 import { useNavigate } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -95,7 +97,7 @@ export const Tablet = () => {
   // console.log('jobprofiles', jobProfiles);
 
   // const formatDate = (dateString) => {
-    const options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'UTC' };
+  const options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'UTC' };
   //   const date = new Date(dateString);
 
   //   const day = date.getDate().toString().padStart(2, '0');
@@ -115,9 +117,9 @@ export const Tablet = () => {
           padding: "5vh 5vw",
         }}>
           <Paper sx={{ py: 1, px: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '73vh' }} className="container">
-            <Typography variant="h4">
-              Loading... please wait...
-            </Typography>
+            <Box sx={{ display: 'flex' }}>
+              <CircularProgress />
+            </Box>
           </Paper>
         </div>
       ) : (
