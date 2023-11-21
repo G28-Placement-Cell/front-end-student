@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import {
   Typography,
+  TextField,
   ListItem,
   ListItemText,
   List,
   Paper,
 } from '@mui/material';
+import { Autocomplete } from "@mui/material";
 import '../style/AnnouncementSection.css'
 import { useNavigate } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -15,6 +17,8 @@ const Announcement = ({ title }) => {
 
   const [student, setStudent] = useState({});
   const [loadings, setLoadings] = useState(true);
+  const [searchInput, setSearchInput] = useState(""); // Add searchInput state
+  const [filteredAnnouncements, setFilteredAnnouncements] = useState([]);
 
 
   useEffect(() => {
@@ -39,6 +43,7 @@ const Announcement = ({ title }) => {
         setLoadings(false);
       });
   }, []);
+
 
   const navigate = useNavigate();
 
@@ -103,6 +108,23 @@ const Announcement = ({ title }) => {
         setLoading(false);
       });
   }, []);
+
+  const handleSearch = (value) => {
+    if (!value) {
+      setSearchInput(value);
+      setFilteredAnnouncements(announcements);
+      return;
+    }
+
+    setSearchInput(value);
+    const filtered = announcements.filter(
+      (announcement) =>
+        announcement?.title?.toLowerCase().includes(value.toLowerCase()) ||
+        announcement?.description?.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredAnnouncements(filtered);
+  };
+
   if (loading) return (<div style={{
     position: "relative",
     display: "flex",
@@ -115,25 +137,66 @@ const Announcement = ({ title }) => {
       </Box>
     </Paper>
   </div>);
+
+  
+
+
   return (
     // student?.verified?(
-    <div style={{ position: 'relative', padding: '10px' }}>
+
+    <div style={{ position: 'relative' }}>
       <Paper sx={{ py: 1, px: 3 }} className="container">
+      <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
         <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
           Company Announcements {title}:
         </Typography>
+        <Autocomplete
+            disablePortal
+            id="search-announcement"
+            options={announcements.map((announcement) => announcement.title)}
+            value={searchInput}
+            onChange={(_, newValue) => handleSearch(newValue)}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Search title"
+                sx={{
+                  width: 350,
+                  margin: "10px auto",
+                }}
+              />
+            )}
+          />
+          </div>
         {loading ? (
-          <p>Loading...</p>
+          <div style={{
+            position: "relative",
+            display: "flex",
+            justifyContent: "center",
+            padding: "5vh 5vw",
+          }}>
+            <Paper sx={{ py: 1, px: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '73vh' }} className="container">
+              <Box sx={{ display: 'flex' }}>
+                <CircularProgress />
+              </Box>
+            </Paper>
+          </div>
         ) : (
           announcements && announcements.length > 0 ? (
             <List className="list">
-              {announcements
-                .slice()
-                .reverse()
-                .map((announcement, index) => (
-                  <ListItem key={index} className="item">
-                    <ListItemText
-                      primary={
+                {(searchInput ? filteredAnnouncements : announcements)
+              .slice()
+              .reverse()
+              .map((announcement, index) => (
+                <ListItem key={index} className="item">
+                  <ListItemText
+                     primary={
                         <div>
                           <Typography variant='h6' sx={{ mb: 1 }}>{announcement?.companyName}</Typography>
                           <Typography variant='body1'>{announcement.title}</Typography>
@@ -150,19 +213,71 @@ const Announcement = ({ title }) => {
                           </Typography>
                         </div>
                       }
-                      secondaryTypographyProps={{ variant: "body2" }}
-                    />
-                  </ListItem>
-                ))}
+                    secondaryTypographyProps={{ variant: "body2" }}
+                  />
+                </ListItem>
+              ))}
             </List>
           ) : (
             <div style={{ minHeight: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Typography sx={{ textAlign: 'center' }} variant="body1">No data to display</Typography>
+              <Typography sx={{ textAlign: "center" }} variant="body1">
+              {searchInput
+                ? "No matching announcements found"
+                : "No data to display"}
+              </Typography>
             </div>
           )
         )}
       </Paper>
     </div>
+
+
+    // <div style={{ position: 'relative', padding: '10px' }}>
+    //   <Paper sx={{ py: 1, px: 3 }} className="container">
+    //     <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
+    //       Company Announcements {title}:
+    //     </Typography>
+    //     {loading ? (
+    //       <p>Loading...</p>
+    //     ) : (
+    //       announcements && announcements.length > 0 ? (
+    //         <List className="list">
+    //           {announcements
+    //             .slice()
+    //             .reverse()
+    //             .map((announcement, index) => (
+    //               <ListItem key={index} className="item">
+    //                 <ListItemText
+    //                   primary={
+    //                     <div>
+    //                       <Typography variant='h6' sx={{ mb: 1 }}>{announcement?.companyName}</Typography>
+    //                       <Typography variant='body1'>{announcement.title}</Typography>
+    //                     </div>
+    //                   }
+    //                   secondary={
+    //                     <div>
+    //                       <Typography variant='body2'>{announcement.description}</Typography>
+    //                       <Typography
+    //                         sx={{ fontSize: 12, fontStyle: "italic", textAlign: "right" }}
+    //                         color="text.secondary"
+    //                       >
+    //                         {new Date(announcement.date).toLocaleString()}
+    //                       </Typography>
+    //                     </div>
+    //                   }
+    //                   secondaryTypographyProps={{ variant: "body2" }}
+    //                 />
+    //               </ListItem>
+    //             ))}
+    //         </List>
+    //       ) : (
+    //         <div style={{ minHeight: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    //           <Typography sx={{ textAlign: 'center' }} variant="body1">No data to display</Typography>
+    //         </div>
+    //       )
+    //     )}
+    //   </Paper>
+    // </div>
     // ):(navigate('/nv'))
   );
 };
