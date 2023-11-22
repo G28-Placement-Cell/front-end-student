@@ -112,7 +112,7 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_
       button = (
         <button
           style={{
-            backgroundColor: "#493D72",
+            backgroundColor: "#2B2442",
             color: "white",
             marginTop: 2,
             fontSize: 15,
@@ -132,7 +132,7 @@ export const Buttoned = ({ reg_open, reg_end, cpiOf, jobId, registered, student_
       button = (
         <button
           style={{
-            backgroundColor: "#493D72",
+            backgroundColor: "#2B2442",
             color: "white",
             marginTop: 2,
             fontSize: 15,

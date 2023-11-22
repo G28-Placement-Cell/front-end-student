@@ -146,16 +146,14 @@ const Announcement = ({ title }) => {
 
     <div style={{ position: 'relative' }}>
       <Paper sx={{ py: 1, px: 3 }} className="container">
-      <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
+      
+        <div
+          style={{ display: "flex", flexDirection: "column", width: "100%" }}
         >
         <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
           Company Announcements {title}:
         </Typography>
+
         <Autocomplete
             disablePortal
             id="search-announcement"
@@ -167,7 +165,7 @@ const Announcement = ({ title }) => {
                 {...params}
                 label="Search title"
                 sx={{
-                  width: 350,
+                  width: "100%",
                   margin: "10px auto",
                 }}
               />
