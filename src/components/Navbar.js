@@ -1,13 +1,42 @@
-import * as React from 'react';
+import {React, useState, useEffect, Fragment} from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import { SidebarData } from '../Sidebared/Sidebar';
+import {SidebarDatanot} from '../Sidebared/SidebarNot'
 import { Link } from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa';
 
 export default function TemporaryDrawer({ logoutHandler }) {
-  const [state, setState] = React.useState({
+  const [student, setStudent] = useState({});//student object
+  const [loading, setLoading] = useState(true);//loading state
+  
+  useEffect(() => {
+    // console.log(localStorage.getItem('token'));
+    fetch('https://back-end-production-3140.up.railway.app/api/student/profile', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    }).then((res) => res.json()).then((data) => {
+      // console.log(data);
+      setStudent(data.stu);
+      // const profilefileid = student?.profile_pic;
+      // const profileurl = `https://back-end-production-3140.up.railway.app/api/student/files/profilepic/${profilefileid}`
+      setLoading(false);
+    }).catch((err) => {
+      // console.log(err);
+      setLoading(false);
+    });
+  }, []);
+
+  const isStudentVerified = student?.verified;
+  // console.log(student);
+  // console.log(isStudentVerified);
+  const selectedSidebarData = isStudentVerified ? SidebarData : SidebarDatanot;
+
+  const [state, setState] = useState({
     top: false,
     left: false,
     bottom: false,
@@ -23,6 +52,7 @@ export default function TemporaryDrawer({ logoutHandler }) {
   };
 
   const list = (anchor) => (
+    
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 300, height: 1000 }}
       role="presentation"
@@ -30,7 +60,7 @@ export default function TemporaryDrawer({ logoutHandler }) {
       onKeyDown={toggleDrawer(anchor, false)}
       style={{ backgroundColor: '#2B2442' }}
     >
-      {SidebarData.map((item, index) => (
+      {selectedSidebarData.map((item, index) => (
         <li key={index} className={item.cName}>
           <Link to={item.path} onClick={item.title === 'Logout' ? logoutHandler : undefined}>
             {item.icon}
@@ -44,7 +74,7 @@ export default function TemporaryDrawer({ logoutHandler }) {
   return (
     <div>
       {['left'].map((anchor) => (
-        <React.Fragment key={anchor}>
+        <Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>
             {<FaIcons.FaBars style={{ color: 'white', alignSelf: 'center', fontSize: 25, justifySelf: 'center', marginBottom: 4 }} />}
           </Button>
@@ -55,7 +85,7 @@ export default function TemporaryDrawer({ logoutHandler }) {
           >
             {list(anchor, logoutHandler)}
           </Drawer>
-        </React.Fragment>
+        </Fragment>
       ))}
     </div>
   );

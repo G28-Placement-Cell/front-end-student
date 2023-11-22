@@ -21,6 +21,7 @@
     "font-awesome": "^4.7.0",
     "lucide-react": "^0.279.0",
     "moment": "^2.29.4",
+    "moment-timezone": "^0.5.43",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-data-grid": "^7.0.0-beta.39",

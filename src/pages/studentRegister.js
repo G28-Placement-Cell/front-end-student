@@ -131,6 +131,19 @@ function StudentRegister() {
             toast.error('Invalid tenth_percentage format');
             return;
         }
+        const birthdate = new Date(dob);
+
+        // Get the current date
+        const today = new Date();
+
+        // Check if the birthdate is before today
+        if (birthdate < today) {
+            // Birthdate is valid (before today)
+            // Your additional logic for birthdate goes here
+        } else {
+            toast.error('Birthdate must be before today');
+            return;
+        }
         if (/^\d+(\.\d{0,2})?$/.test(twelth_percentage)) {
             // Input is a valid number with up to 2 decimal places
             if (parseFloat(twelth_percentage) >= 0 && parseFloat(twelth_percentage) <= 100) {
@@ -158,6 +171,40 @@ function StudentRegister() {
             toast.error("Please enter valid alternate mobile number");
             return;
         }
+        if (/^\d+$/.test(total_backlogs)) {
+            // Input is a valid integer
+            const totalBacklogValue = parseInt(total_backlogs, 10);
+
+            if (totalBacklogValue >= 0) {
+                // Total backlog is an integer and greater than or equal to zero
+                // Your additional logic for total backlog goes here
+            } else {
+                toast.error('Total backlog must be greater than or equal to zero');
+                return;
+            }
+        } else {
+            toast.error('Invalid total backlog format');
+            return;
+        }
+        if (/^\d+$/.test(current_backlogs)) {
+            // Input is a valid integer
+            const currentBacklogValue = parseInt(current_backlogs, 10);
+
+            if (currentBacklogValue >= 0) {
+                // Total backlog is an integer and greater than or equal to zero
+                // Your additional logic for total backlog goes here
+            } else {
+                toast.error('Current backlog must be greater than or equal to zero');
+                return;
+            }
+        } else {
+            toast.error('Invalid current backlog format');
+            return;
+        }
+        if (total_backlogs < current_backlogs) {
+            toast.error('Current backlog must be less than or equal to total backlog');
+            return;
+        }
         if (password !== altpassword) {
             setError(true);
             toast.error("Passwords do not match");
@@ -178,20 +225,20 @@ function StudentRegister() {
             dispatch(setCredentials({ ...res }))
             const formData = new FormData();
 
-            await fetch('https://back-end-production-ee2f.up.railway.app/api/student/files', {
+            await fetch('https://back-end-production-3140.up.railway.app/api/student/files', {
                 method: 'POST',
                 body: formData
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                 })
                 .catch(error => {
                     console.error(error);
                 });
             // const res1 = await upload({ formData }).unwrap();
             // console.log(res1);
-            navigate('/');
+            navigate('/profile');
         }
         catch (err) {
             toast.error(err?.data?.message || err.error)
@@ -199,7 +246,7 @@ function StudentRegister() {
     }
     return (
         <>
-            {console.log("studentRegister.js")}
+            {/* {console.log("studentRegister.js")} */}
             <Typography variant="h4" sx={{ fontWeight: "bold", mt: 3, textAlign: "center" }}>
                 Student Registration
             </Typography>
@@ -334,7 +381,7 @@ function StudentRegister() {
                                     </div>
                                     <RadioGroup
                                         aria-labelledby="demo-radio-buttons-group-label"
-                                        defaultValue="male"
+
                                         name="radio-buttons-group"
                                         onChange={(e) => setGender(e.target.value)}
                                     >
@@ -520,7 +567,7 @@ function StudentRegister() {
                                                 onChange={handleReg}
 
                                             >
-                                                <MenuItem value={"placement"}>Placement</MenuItem>
+                                                <MenuItem value={"job"}>JOB</MenuItem>
                                                 <MenuItem value={"si"}>SI</MenuItem>
                                             </Select>
                                         </FormControl>

@@ -12,9 +12,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLogoutMutation } from '../slices/student/studentApislice';
 import TemporaryDrawer from './Navbar';
 
-
-
 function Header() {
+  // const [sidebar, setSidebar] = useState(false);
   const studentInfoJSON = localStorage.getItem('studentInfo');
   const studentInfo = JSON.parse(studentInfoJSON);
 
@@ -33,6 +32,7 @@ function Header() {
     }
   };
 
+  console.log(studentInfo);
   const showSidebar = () => setSidebar(!sidebar);
   return (
     <AppBar position="sticky" style={{ backgroundColor: "#2B2442" }}>
@@ -40,17 +40,11 @@ function Header() {
         {studentInfo && (
           <TemporaryDrawer logoutHandler={logoutHandler} />
         )}
-
-        <Typography
-          variant="h6"
-          component="div"
-          sx={{ flexGrow: 1, marginLeft: 2 }}
-
-        >
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1, marginLeft: 2 }}>
           {
             studentInfo ?
 
-              < span onClick={() => navigate('/profile')} style={{ cursor: 'pointer' }}>
+              <span onClick={() => navigate('/aboutus')} style={{ cursor: 'pointer' }}>
                 Placement Cell
               </span>
               :
@@ -59,14 +53,13 @@ function Header() {
               </span>
           }
 
-
         </Typography>
-        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button color='inherit' style={{ minWidth: '16vh' }} onClick={() => navigate('/ContactUs')}>Contact Us</Button>
+        {/* <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Button color="inherit" style={{ minWidth: '16vh' }} onClick={() => navigate('/contactus')}>Contact Us</Button>
           <Button color='inherit' style={{ minWidth: '16vh' }} onClick={() => navigate('/aboutus')}>About Us</Button>
-        </div>
+        </div> */}
       </Toolbar>
-    </AppBar >
+    </AppBar>
   );
 }
 

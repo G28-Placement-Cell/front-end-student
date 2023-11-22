@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-const baseQuery = fetchBaseQuery({ baseUrl: 'https://back-end-production-ee2f.up.railway.app/' });
+const baseQuery = fetchBaseQuery({ baseUrl: 'https://back-end-production-3140.up.railway.app/' });
 
 
 export const apislice = createApi({
