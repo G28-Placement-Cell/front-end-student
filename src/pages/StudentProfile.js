@@ -283,10 +283,10 @@ function StudentProfile() {
                 <hr />
                 <div className="row">
                   <div className="col-sm-12">
-                    <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" onClick={handleClickResume} variant="contained" startIcon={<CloudDownloadIcon />}>
+                    <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442", my:1 }} id="resume" required={true} component="label" onClick={handleClickResume} variant="contained" startIcon={<CloudDownloadIcon />}>
                       Download Resume
                     </Button>
-                    <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" onClick={handleClickProfilepic} variant="contained" startIcon={<CloudDownloadIcon />}>
+                    <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442", my:1 }} id="resume" required={true} component="label" onClick={handleClickProfilepic} variant="contained" startIcon={<CloudDownloadIcon />}>
                       Download Profilepic
                     </Button>
                   </div>

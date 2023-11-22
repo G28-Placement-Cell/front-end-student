@@ -60,74 +60,61 @@ function StudentLogin() {
     };
 
     return (
-        <>
-            {/* <AppBar position="static">
-                <Toolbar>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Placement Cell
-                    </Typography>
-                    <Button color="inherit" sx={{ mx: 1 }}>Login As</Button>
-                    <Button color="inherit" sx={{ mx: 1 }}>Contact us</Button>
-                    <Button color="inherit" sx={{ mx: 1 }}>About Us</Button>
-                </Toolbar>
-            </AppBar> */}
-
-            <Grid container>
-                {/* Left 60% - Image */}
-                <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} item xs={8}>
-                    <img src={student} alt="Admin Image" style={{ width: '64%', height: '87%', alignItems: 'center' }} />
-                </Grid>
-
-                {/* Right 40% - Admin Input Area */}
-                <Grid item xs={4} component={Paper} elevation={3}>
-                    <div style={{ padding: '20px' }}>
-                        <Typography sx={heading} variant="h4" gutterBottom>
-                            Student Login
-                        </Typography>
-                        {/* Admin login form */}
-                        <form onSubmit={submitHandler}>
-                            <TextField
-                                label="student_id"
-                                id="student_id"
-                                name="student_id"
-                                type="number"
-                                variant="outlined"
-                                fullWidth
-                                required
-                                style={inputStyles}
-                                onChange={(e) => {
-                                    setStudentid(e.target.value);
-                                }}
-                            />
-                            <TextField
-                                label="Password"
-                                id="password"
-                                name="password"
-                                type="password"
-                                variant="outlined"
-                                fullWidth
-                                required
-                                style={inputStyles}
-                                onChange={(e) => {
-                                    setPassword(e.target.value)
-                                }}
-                            />
-
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px', padding: '10px' }}>
-                                {/* Submit button */}
-                                <Button type="submit" variant="contained" color="primary" sx={{ width: '100px' }}>
-                                    Login
-                                </Button>
-
-                                {/* Forgot Password link */}
-                                <a href='/forgotpass' style={{ textDecoration: 'none', color: 'blue' }}>Forgot Password?</a>
-                                <a href="/register" style={{ textDecoration: 'none', color: 'blue' }}>Register</a>
-                            </div>
-                        </form>
-                    </div>
-                </Grid>
+        <Grid container>
+            {/* Left 60% - Image */}
+            <Grid item xs={12} md={6} lg={7} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <img src={student} alt="Student Image" style={{ width: '85%', height: '85%' }} />
             </Grid>
-        </>
+
+            {/* Right 40% - Student Input Area */}
+            <Grid item xs={12} md={6} lg={5} component={Paper} elevation={3}>
+                <div style={{ padding: '20px' }}>
+                    <Typography sx={heading} variant="h4" gutterBottom>
+                        Student Login
+                    </Typography>
+                    {/* Admin login form */}
+                    <form onSubmit={submitHandler}>
+                        <TextField
+                            label="student_id"
+                            id="student_id"
+                            name="student_id"
+                            type="number"
+                            variant="outlined"
+                            fullWidth
+                            required
+                            style={inputStyles}
+                            onChange={(e) => {
+                                setStudentid(e.target.value);
+                            }}
+                        />
+                        <TextField
+                            label="Password"
+                            id="password"
+                            name="password"
+                            type="password"
+                            variant="outlined"
+                            fullWidth
+                            required
+                            style={inputStyles}
+                            onChange={(e) => {
+                                setPassword(e.target.value)
+                            }}
+                        />
+
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px', padding: '10px' }}>
+                            {/* Submit button */}
+                            <Button type="submit" variant="contained" color="primary" sx={{ width: '100px' }}>
+                                Login
+                            </Button>
+
+                            {/* Forgot Password link */}
+                            <a href='/forgotpass' style={{ textDecoration: 'none', color: 'blue' }}>Forgot Password?</a>
+                            <a href="/register" style={{ textDecoration: 'none', color: 'blue' }}>Register</a>
+                        </div>
+                    </form>
+                </div>
+            </Grid>
+        </Grid>
     );
 }
 
