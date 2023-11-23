@@ -2,6 +2,9 @@ import { Bar } from "react-chartjs-2"
 import '../App.css'
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import { Paper } from "@mui/material";
 
 const BarChart = () => {
   const options = {
@@ -15,6 +18,7 @@ const BarChart = () => {
         text: "Performance analysis",
       },
     },
+    
   }
 
   const [student, setStudent] = useState({});
@@ -68,6 +72,18 @@ const BarChart = () => {
       },
     ],
   }
+  if (loading) return (<div style={{
+    position: "relative",
+    display: "flex",
+    justifyContent: "center",
+    padding: "5vh 5vw",
+  }}>
+    <Paper sx={{ py: 1, px: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '73vh' }} className="container">
+      <Box sx={{ display: 'flex' }}>
+        <CircularProgress />
+      </Box>
+    </Paper>
+  </div>);
 
   return (<div className="graph-container" style={{ paddingTop: '5vh' }}><Bar options={options} data={data} /></div>);
 }
