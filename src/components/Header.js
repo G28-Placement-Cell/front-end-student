@@ -44,7 +44,7 @@ function Header() {
           {
             studentInfo ?
 
-              <span onClick={() => navigate('/aboutus')} style={{ cursor: 'pointer' }}>
+              <span onClick={() => navigate('/profile')} style={{ cursor: 'pointer' }}>
                 Placement Cell
               </span>
               :
