@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../style/studentprofile.css';
 import { useParams } from 'react-router-dom';
-
+import { Paper, Box, CircularProgress } from '@mui/material'; 
 
 function Jobprofile() {
   const { id } = useParams();
@@ -35,7 +35,20 @@ function Jobprofile() {
       setLoading(false);
     });
   }, []);
-  if (!company) <>loading</>
+  
+  if (loading) return (<div style={{
+    position: "relative",
+    display: "flex",
+    justifyContent: "center",
+    padding: "5vh 5vw",
+  }}>
+    <Paper sx={{ py: 1, px: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '73vh' }} className="container">
+      <Box sx={{ display: 'flex' }}>
+        <CircularProgress />
+      </Box>
+    </Paper>
+  </div>);
+
   return (
     <div className="container">
       <div className="main-body">
