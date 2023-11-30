@@ -46,7 +46,7 @@ function StudentProfile() {
   const handleClickResume = async () => {
     // const studentid = localStorage.getItem('studentinfo.student_id');
     const fileid = student?.resume;
-    if(!fileid) navigate('/*')
+    if (!fileid) navigate('/*')
     // const res = await axios.get(`https://back-end-production-3140.up.railway.app/api/student/files/${fileid}`, {
     //   headers: {
     //     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -54,14 +54,14 @@ function StudentProfile() {
     // });
     // console.log(res);
     else
-    window.open(`https://back-end-production-3140.up.railway.app/api/student/files/resume/${fileid}`);
+      window.open(`https://back-end-production-3140.up.railway.app/api/student/files/resume/${fileid}`);
   }
 
   const handleClickProfilepic = async () => {
     const fileid = student?.profile_pic;
-    if(!fileid) navigate('/*')
+    if (!fileid) navigate('/*')
     else
-    window.open(`https://back-end-production-3140.up.railway.app/api/student/files/profilepic/${fileid}`);
+      window.open(`https://back-end-production-3140.up.railway.app/api/student/files/profilepic/${fileid}`);
   }
   // useEffect(() => {
   //   fetchdata();
@@ -283,12 +283,13 @@ function StudentProfile() {
                 <hr />
                 <div className="row">
                   <div className="col-sm-12">
-                    <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442", my:1 }} id="resume" required={true} component="label" onClick={handleClickResume} variant="contained" startIcon={<CloudDownloadIcon />}>
+
+                    <Button disabled={!student?.resume} sx={{ width: 150, mr: 5, backgroundColor: "#2B2442", my: 1 }} id="resume" required={true} component="label" onClick={handleClickResume} variant="contained" startIcon={<CloudDownloadIcon />} >
                       Download Resume
                     </Button>
-                    <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442", my:1 }} id="resume" required={true} component="label" onClick={handleClickProfilepic} variant="contained" startIcon={<CloudDownloadIcon />}>
+                    {/* <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442", my: 1 }} id="resume" required={true} component="label" onClick={handleClickProfilepic} variant="contained" startIcon={<CloudDownloadIcon />}>
                       Download Profilepic
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
               </div>

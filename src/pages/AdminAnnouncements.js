@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   Typography,
@@ -10,61 +10,77 @@ import {
   ListItemText,
   ListItemIcon,
   Divider,
+  Box,
   Fab,
-} from "@mui/material";
+} from '@mui/material';
 import { Autocomplete } from "@mui/material";
-import { PostAdd as PostAddIcon, Add as AddIcon } from "@mui/icons-material";
-import "../style/AnnouncementSection.css";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
+import { PostAdd as PostAddIcon, Add as AddIcon } from '@mui/icons-material';
+// import '../CSS_files/AnnouncementSection.css'
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 const AnnouncementSection = ({ title }) => {
-  const [student, setStudent] = useState();
-  const [loadings, setLoadings] = useState(true);
-  useEffect(() => {
-    fetch(
-      "https://back-end-production-3140.up.railway.app/api/student/profile",
-      {
-        method: "GET",
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setStudent(data.stu);
-        if (data.stu.verified === false) {
-          navigate("/nv");
-        }
-        setLoadings(false);
-      })
-      .catch((err) => {
-        // console.log(err);
-        setLoadings(false);
-      });
-  }, []);
-
-  // const navigate = useNavigate();
-
   const [announcements, setAnnouncements] = useState([]);
-  const [announcementText, setAnnouncementText] = useState("");
+  const [announcementText, setAnnouncementText] = useState('');
   const [loading, setLoading] = useState(true); // Add loading state
   const [searchInput, setSearchInput] = useState(""); // Add searchInput state
-  const [filteredAnnouncements, setFilteredAnnouncements] = useState([]);
+  const [filteredAnnouncements, setFilteredAnnouncements] = useState([]); // Add filteredAnnouncements state
+
+  const [student, setStudent] = useState([]);
+  // const []
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(
-      "https://back-end-production-3140.up.railway.app/api/announcements/admin/student",
-      {
-        method: "GET",
-        headers: {
-          "content-type": "application/json",
-        },
+    // console.log(localStorage.getItem('token'));
+    fetch('https://back-end-production-3140.up.railway.app/api/company/profile', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
-    )
+    }).then((res) => res.json()).then((data) => {
+      // console.log(data);
+      // console.log(data.comp.isVerified)
+      if (data.comp.isVerified == false) {
+        // alert("Your profile is not verified yet");
+        navigate('/nv');
+      }
+      setLoading(false);
+    }).catch((err) => {
+      // console.log(err);
+      setLoading(false);
+    });
+  }, [])
+
+  useEffect(() => {
+    // console.log(localStorage.getItem('token'));
+    fetch('https://back-end-production-3140.up.railway.app/api/company/profile', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }).then((res) => res.json()).then((data) => {
+      // console.log(data);
+      // console.log(data.comp.isVerified)
+      if (data.comp.isVerified == false) {
+        // alert("Your profile is not verified yet");
+        navigate('/nv');
+      }
+      setLoading(false);
+    }).catch((err) => {
+      // console.log(err);
+      setLoading(false);
+    });
+  }, [])
+
+  useEffect(() => {
+    fetch('https://back-end-production-3140.up.railway.app/api/announcements/admin/company/company', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setAnnouncements(data);
@@ -75,13 +91,6 @@ const AnnouncementSection = ({ title }) => {
         setLoading(false);
       });
   }, []);
-
-  // Simulate loading for 2 seconds (you should replace this with your actual data fetching code)
-  // useEffect(() => {
-  //     setTimeout(() => {
-  //         setLoading(false);
-  //     }, 2000);
-  // }, []);
 
   const handleSearch = (value) => {
     if (!value) {
@@ -99,113 +108,75 @@ const AnnouncementSection = ({ title }) => {
     setFilteredAnnouncements(filtered);
   };
 
-  const navigate = useNavigate();
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{
+      position: "relative",
+      display: "flex",
+      justifyContent: "center",
+      padding: "5vh 5vw",
+    }}>
       <Paper sx={{ py: 1, px: 3 }} className="container">
-        <div
-          style={{ display: "flex", flexDirection: "column", width: "100%" }}
-        >
-          <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
-            Admin Announcements {title}:
-          </Typography>
-          <Autocomplete
-            disablePortal
-            id="search-announcement"
-            options={announcements.map((announcement) => announcement.title)}
-            value={searchInput}
-            onChange={(_, newValue) => handleSearch(newValue)}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Search title"
-                sx={{
-                  width: '100%',
-                  margin: "10px auto",
-                }}
-              />
-            )}
-          />
-        </div>
+        <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
+          Admin Announcements {title}:
+        </Typography>
+        <Autocomplete
+              disablePortal
+              id="search-announcement"
+              options={announcements.map((announcement) => announcement.title)}
+              value={searchInput}
+              onChange={(_, newValue) => handleSearch(newValue)}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Search title"
+                  sx={{
+                    width: '100%',
+                    margin: "10px auto",
+                  }}
+                />
+              )}
+            />
         {loading ? (
-          <div
-            style={{
-              position: "relative",
-              display: "flex",
-              justifyContent: "center",
-              padding: "5vh 5vw",
-            }}
-          >
-            <Paper
-              sx={{
-                py: 1,
-                px: 3,
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                minHeight: "73vh",
-              }}
-              className="container"
-            >
-              <Box sx={{ display: "flex" }}>
-                <CircularProgress />
-              </Box>
-            </Paper>
-          </div>
-        ) : announcements && announcements.length > 0 ? (
-          <List className="list">
-            {(searchInput ? filteredAnnouncements : announcements)
-              .slice()
-              .reverse()
-              .map((announcement, index) => (
-                <ListItem key={index} className="item">
-                  <ListItemText
-                    primary={
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <Typography>{announcement.title}</Typography>
-                      </div>
-                    }
-                    secondary={
-                      <div>
-                        <Typography>{announcement.description}</Typography>
-                        <Typography
-                          sx={{
-                            fontSize: 12,
-                            fontStyle: "italic",
-                            textAlign: "right",
-                          }}
-                          color="text.secondary"
-                        >
-                          {new Date(announcement.date).toLocaleString()}
-                        </Typography>
-                      </div>
-                    }
-                    secondaryTypographyProps={{ variant: "body2" }}
-                  />
-                </ListItem>
-              ))}
-          </List>
+          <p>Loading...</p>
         ) : (
-          <div
-            style={{
-              minHeight: "40vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
+          announcements && announcements.length > 0 ? (
+            <List className="list">
+              {(searchInput ? filteredAnnouncements : announcements)
+                .slice() // Create a shallow copy of the array
+                .reverse() // Reverse the order of announcements
+                .map((announcement, index) => (
+                  <ListItem key={index} className="item">
+                    <ListItemText
+                      primary={
+                        <div style={{ display: "flex", justifyContent: "space-between" }}>
+                          <Typography>{announcement.title}</Typography>
+                        </div>
+                      }
+                      secondary={
+                        <div>
+                          <Typography>{announcement.description}</Typography>
+                          <Typography
+                            sx={{ fontSize: 12, fontStyle: "italic", textAlign: "right" }}
+                            color="text.secondary"
+                          >
+                            {new Date(announcement.date).toLocaleString()}
+                          </Typography>
+                        </div>
+                      }
+                      secondaryTypographyProps={{ variant: "body2" }} // Customize secondary text style
+                    />
+                  </ListItem>
+                ))}
+            </List>
+          ) : (
+            <div style={{ minHeight: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Typography sx={{ textAlign: "center" }} variant="body1">
               {searchInput
                 ? "No matching announcements found"
                 : "No data to display"}
             </Typography>
-          </div>
+            </div>
+          )
         )}
       </Paper>
     </div>
