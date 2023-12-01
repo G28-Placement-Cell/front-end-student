@@ -85,6 +85,8 @@ function Jobprofile() {
               </div>
               <hr />
 
+              {company?.open_for.toUpperCase()==='BTECH' && 
+              <>
               <div className="row">
                 <div className="col-sm-3">
                   <h6 className="mb-0">UG Criteria</h6>
@@ -93,17 +95,31 @@ function Jobprofile() {
                   {company?.cpi_criteria}
                 </div>
               </div>
+              
               <hr />
+              </>
+              }
+              
+              
+                
 
+              {(company?.open_for.toUpperCase()==='MTECH' || company?.open_for.toUpperCase()==='MSC') &&
+              <>
               <div className="row">
+              
                 <div className="col-sm-3">
                   <h6 className="mb-0">PG Criteria</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
                   {company?.cpi_criteria}
                 </div>
+              
               </div>
               <hr />
+              </>
+              }
+              
+            
 
               <div className="row">
                 <div className="col-sm-3">
@@ -154,7 +170,9 @@ function Jobprofile() {
                 </div>
               </div>
               <hr />
-
+              
+              {company?.open_for.toUpperCase()==='BTECH' &&
+              <>
               <div className="row">
                 <div className="col-sm-3">
                   <h6 className="mb-0">UG Package(LPA)</h6>
@@ -164,7 +182,13 @@ function Jobprofile() {
                 </div>
               </div>
               <hr />
+              </>
+              }
+              
+              
 
+              {(company?.open_for==='MTECH' || company?.open_for==='MSC') &&  
+              <> 
               <div className="row">
                 <div className="col-sm-3">
                   <h6 className="mb-0">PG Package(LPA)</h6>
@@ -174,6 +198,9 @@ function Jobprofile() {
                 </div>
               </div>
               <hr />
+              </>
+              }
+              
 
               <div className="row">
                 <div className="col-sm-3">
