@@ -121,7 +121,7 @@ function StudentProfile() {
             <div className="card mt-3" style={{ width: '100%' }}>
               <ul className="list-group list-group-flush" style={{ width: '100%' }}>
                 <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                  <h6 className="mb-0">Email</h6>
+                  <h6 className="mb-0 mt-3">Email</h6>
                   <span id="Email" className="text-secondary">{student?.email.main}</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">

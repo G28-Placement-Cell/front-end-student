@@ -68,10 +68,10 @@ export const Tablet = () => {
         setLoading(false);
       })
       .catch((err) => {
-        // console.log(err);
+        console.error(err);
         setLoading(false);
       });
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     fetch('https://back-end-production-3140.up.railway.app/api/jobprofile/', {
@@ -82,12 +82,44 @@ export const Tablet = () => {
       }
     })
       .then((res) => res.json())
-      .then((data) => {
-        setJobProfiles(data.jobProfiles);
+      .then(async (data) => {
+        const updatedJobProfiles = await Promise.all(data.jobProfiles.map(async (profile) => {
+          if (profile.company) {
+            try {
+              console.log('profile', profile);
+              const response = await fetch(`http://localhost:8000/api/company/name/${profile?.company}`, {
+                method: 'GET',
+                headers: {
+                  'content-type': 'application/json',
+                  'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+              });
+              const companyData = await response.json();
+
+              console.log('companyData', companyData?.company?.companyname);
+              return {
+                ...profile,
+                companyName: companyData?.company?.companyname
+              };
+            } catch (err) {
+              console.error(err);
+              return {
+                ...profile,
+                companyName: 'Company Name Unavailable'
+              };
+            }
+          } else {
+            return {
+              ...profile,
+              companyName: ''
+            };
+          }
+        }));
+        setJobProfiles(updatedJobProfiles);
         setLoadings(false);
       })
       .catch((err) => {
-        // console.log(err);
+        console.error(err);
         setLoadings(false);
       });
   }, []);
@@ -106,6 +138,8 @@ export const Tablet = () => {
 
   //   return `${day}/${month}/${year} ${date.toLocaleString('en-GB', options).split(' ')[1]}`;
   // };
+
+  console.log('jobProfiles', jobProfiles);
 
   return (
     <>
@@ -129,6 +163,7 @@ export const Tablet = () => {
               <TableRow >
                 <StyledTableCell>PROFILE ID</StyledTableCell>
                 <StyledTableCell align="right">COMPANY NAME</StyledTableCell>
+                <StyledTableCell align="right">PROFILE NAME</StyledTableCell>
                 <StyledTableCell align="right">TYPE</StyledTableCell>
                 <StyledTableCell align="right">CPI</StyledTableCell>
                 <StyledTableCell align="right">OPEN FOR</StyledTableCell>
@@ -145,9 +180,47 @@ export const Tablet = () => {
                   <StyledTableRow className="mt-10 py-10" key={row?._id}>
                     <StyledTableCell component="th" scope="row">{index + 1}</StyledTableCell>
                     <StyledTableCell align="right">
-                      <Link to={`/JobProfile/${row._id}`} style={{ textDecoration: 'none', color: 'black' }}>{row.company_name.toUpperCase()}</Link>
+                      <Link
+                        to={`/JobProfile/${row?.companyName}/${row._id}`}
+                        style={{
+                          textDecoration: 'none',
+                          color: 'black',
+                          transition: 'color 0.3s ease-in-out', // Adding transition for smooth effect
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.color = 'purple';
+                          e.target.style.textDecoration = 'underline'
+                        }} // Change color on hover
+                        onMouseLeave={(e) => {
+                          e.target.style.color = 'black';
+                          e.target.style.textDecoration = 'none'
+                        }} // Reset color on mouse leave
+                      >
+                        {row?.companyName?.toUpperCase()}
+                      </Link>
+
                     </StyledTableCell>
-                    <StyledTableCell align="right">{row.offer_type.toUpperCase()}</StyledTableCell>
+                    <StyledTableCell align="right">
+                      <Link
+                        to={`/JobProfile/${row?.companyName}/${row._id}`}
+                        style={{
+                          textDecoration: 'none',
+                          color: 'black',
+                          transition: 'color 0.3s ease-in-out', // Adding transition for smooth effect
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.color = 'purple';
+                          e.target.style.textDecoration = 'underline'
+                        }} // Change color on hover
+                        onMouseLeave={(e) => {
+                          e.target.style.color = 'black';
+                          e.target.style.textDecoration = 'none'
+                        }} // Reset color on mouse leave
+                      >
+                        {row.company_name.toUpperCase()}
+                      </Link>
+                    </StyledTableCell>
+                    <StyledTableCell align="right">{row?.offer_type?.toUpperCase()}</StyledTableCell>
                     <StyledTableCell align="right">{row.cpi_criteria}</StyledTableCell>
                     <StyledTableCell align="right">{row.open_for.toUpperCase()}</StyledTableCell>
                     <StyledTableCell align="right">{new Date(row.registration_start_date).toLocaleString('en-GB', options)}</StyledTableCell>

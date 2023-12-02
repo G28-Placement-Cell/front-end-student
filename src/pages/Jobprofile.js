@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../style/studentprofile.css';
 import { useParams } from 'react-router-dom';
-import { Paper, Box, CircularProgress } from '@mui/material'; 
+import { Paper, Box, CircularProgress } from '@mui/material';
 
 function Jobprofile() {
-  const { id } = useParams();
+  const { name, id } = useParams();
   console.log(id);
 
   const options = {
@@ -35,7 +35,7 @@ function Jobprofile() {
       setLoading(false);
     });
   }, []);
-  
+
   if (loading) return (<div style={{
     position: "relative",
     display: "flex",
@@ -62,6 +62,15 @@ function Jobprofile() {
                   <h6 className="mb-0">Company Name</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
+                  {name?.toUpperCase()}
+                </div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-sm-3">
+                  <h6 className="mb-0">Profile Name</h6>
+                </div>
+                <div className="col-sm-9 text-secondary">
                   {company?.company_name?.toUpperCase()}
                 </div>
               </div>
@@ -85,41 +94,41 @@ function Jobprofile() {
               </div>
               <hr />
 
-              {company?.open_for.toUpperCase()==='BTECH' && 
-              <>
-              <div className="row">
-                <div className="col-sm-3">
-                  <h6 className="mb-0">UG Criteria</h6>
-                </div>
-                <div className="col-sm-9 text-secondary">
-                  {company?.cpi_criteria}
-                </div>
-              </div>
-              
-              <hr />
-              </>
-              }
-              
-              
-                
+              {company?.open_for.toUpperCase() === 'BTECH' &&
+                <>
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">UG Criteria</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {company?.cpi_criteria}
+                    </div>
+                  </div>
 
-              {(company?.open_for.toUpperCase()==='MTECH' || company?.open_for.toUpperCase()==='MSC') &&
-              <>
-              <div className="row">
-              
-                <div className="col-sm-3">
-                  <h6 className="mb-0">PG Criteria</h6>
-                </div>
-                <div className="col-sm-9 text-secondary">
-                  {company?.cpi_criteria}
-                </div>
-              
-              </div>
-              <hr />
-              </>
+                  <hr />
+                </>
               }
-              
-            
+
+
+
+
+              {(company?.open_for.toUpperCase() === 'MTECH' || company?.open_for.toUpperCase() === 'MSC') &&
+                <>
+                  <div className="row">
+
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">PG Criteria</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {company?.cpi_criteria}
+                    </div>
+
+                  </div>
+                  <hr />
+                </>
+              }
+
+
 
               <div className="row">
                 <div className="col-sm-3">
@@ -170,37 +179,37 @@ function Jobprofile() {
                 </div>
               </div>
               <hr />
-              
-              {company?.open_for.toUpperCase()==='BTECH' &&
-              <>
-              <div className="row">
-                <div className="col-sm-3">
-                  <h6 className="mb-0">UG Package(LPA)</h6>
-                </div>
-                <div className="col-sm-9 text-secondary">
-                  {company?.ctc}
-                </div>
-              </div>
-              <hr />
-              </>
-              }
-              
-              
 
-              {(company?.open_for==='MTECH' || company?.open_for==='MSC') &&  
-              <> 
-              <div className="row">
-                <div className="col-sm-3">
-                  <h6 className="mb-0">PG Package(LPA)</h6>
-                </div>
-                <div className="col-sm-9 text-secondary">
-                  {company?.ctc}
-                </div>
-              </div>
-              <hr />
-              </>
+              {company?.open_for.toUpperCase() === 'BTECH' &&
+                <>
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">UG Package(LPA)</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {company?.ctc}
+                    </div>
+                  </div>
+                  <hr />
+                </>
               }
-              
+
+
+
+              {(company?.open_for === 'MTECH' || company?.open_for === 'MSC') &&
+                <>
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">PG Package(LPA)</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {company?.ctc}
+                    </div>
+                  </div>
+                  <hr />
+                </>
+              }
+
 
               <div className="row">
                 <div className="col-sm-3">

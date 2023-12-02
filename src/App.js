@@ -50,7 +50,7 @@ function App() {
           {/* <Route path='/updateresume'  /> */}
           <Route path='/changepassword' element={<ChangePassword />} />
           <Route path='/resetpassword' element={<ResetPassword />} />
-          <Route path='/jobprofile/:id' element={<Jobprofile />} />
+          <Route path='/jobprofile/:name/:id' element={<Jobprofile />} />
           <Route path='/aboutus' element={<AboutUs />} />
           <Route path='/contactus' element={<ContactUs />} />
           <Route path='/logout' element={<LogOut />} />
