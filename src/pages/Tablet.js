@@ -87,7 +87,7 @@ export const Tablet = () => {
           if (profile.company) {
             try {
               console.log('profile', profile);
-              const response = await fetch(`http://localhost:8000/api/company/name/${profile?.company}`, {
+              const response = await fetch(`https://back-end-production-3140.up.railway.app/api/company/name/${profile?.company}`, {
                 method: 'GET',
                 headers: {
                   'content-type': 'application/json',
